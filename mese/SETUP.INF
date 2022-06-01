@@ -1,0 +1,22 @@
+[General]
+
+AppName = MESE for Windows
+AppDir  = C:\MESE
+AppMain = MESE.EXE
+Contact = your local Junior Achievement office
+Password= 0
+
+[AppSubDirs]
+
+[AppFiles]
+
+File1 = MESE.EXE
+
+[SystemFiles]
+
+File1 = CTL3DV2.DLL
+
+[ProgMan]
+
+Group = Junior Achievement,JA
+File1 = MESE,MESE.EXE
