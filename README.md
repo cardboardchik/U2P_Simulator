@@ -1,5 +1,13 @@
 # Mese_2022 or Management and Economic Simulator Exercise
-Based on the Junior Achievement Management and Economic Simulator Exercise programm
-It dosen't run on 64-bit sistems
-Therefore, I decided to rewrite this programm in Python
-Here is a screenshot of original program, it also will in the repository
+Based on the Junior Achievement Management and Economic Simulator Exercise programm.
+It dosen't run on 64-bit sistems.
+Therefore, I decided to rewrite this programm in Python.
+
+I also added the old version of the program.
+
+
+To run the progtam, you need to find MESE.EXE and run it (only runs on 32-bit systems). I checked on Windows 7(32-bit), everything worked.
+
+A new version in development.
+
+Expected end day of development 20 July
