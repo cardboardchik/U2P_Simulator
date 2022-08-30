@@ -278,11 +278,10 @@ class Ui_Dialog_Print(object):
     def print(self):
         
         result = literal_eval(open("result.txt", "r").readline())
-        
+        companies = literal_eval(open("Dialog_Setup.txt", "r").readline())
+        companies_len = len(companies)
         def create_pdf(company_name, company_num, result, company_names):
             pdf = FPDF()
-
-
             pdf.add_page()
 
             # Company Report for NNN Period N
@@ -312,7 +311,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=55, align="R", txt=f"{result['data']['sales'][company_num]}  $", border=0)
+            pdf.cell(w=80, h=55, align="R", txt=f"{round(result['data']['sales'][company_num])}  $", border=0)
 
             # Sales_%
             pdf.set_xy(0, 0)
@@ -331,7 +330,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=65, align="R", txt=f"-{result['data']['goods_cost_predicted'][company_num]}  $", border=0)
+            pdf.cell(w=80, h=65, align="R", txt=f"-{round(result['data']['goods_cost_predicted'][company_num])}  $", border=0)
 
             # COGS_%
             pdf.set_xy(0, 0)
@@ -346,7 +345,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=71, align="L", txt="_________________", border=0)
 
-            gross_margin = result["data"]["sales"][company_num] - result['data']['goods_cost_predicted'][company_num]
+            gross_margin = round(result["data"]["sales"][company_num] - result['data']['goods_cost_predicted'][company_num])
             # Gross Margin
             pdf.set_xy(5, 0)
             pdf.set_font("Arial", "", 12)
@@ -357,7 +356,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=85, align="R", txt=f"-{gross_margin}  $", border=0)
+            pdf.cell(w=80, h=85, align="R", txt=f"{gross_margin}  $", border=0)
 
             # Gross Margin_%
             pdf.set_xy(0, 0)
@@ -377,7 +376,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=95, align="R", txt=f"-{int(result['decisions']['mk'][company_num])}  $", border=0)
+            pdf.cell(w=80, h=95, align="R", txt=f"-{round(result['decisions']['mk'][company_num])}  $", border=0)
 
             # Marketing_%
             pdf.set_xy(0, 0)
@@ -397,7 +396,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=105, align="R", txt=f"-{result['data']['depreciation'][company_num]}  $", border=0)
+            pdf.cell(w=80, h=105, align="R", txt=f"-{round(result['data']['depreciation'][company_num])}  $", border=0)
 
 
             # Depreciation_%
@@ -417,7 +416,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=115, align="R", txt=f"-{result['decisions']['rd'][company_num]}  $", border=0)
+            pdf.cell(w=80, h=115, align="R", txt=f"-{round(result['decisions']['rd'][company_num])}  $", border=0)
 
 
             # R & D_%
@@ -437,7 +436,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=125, align="R", txt="-1000  $", border=0)
+            pdf.cell(w=80, h=125, align="R", txt="###  $", border=0)
 
             # Layoff Charge_%
             pdf.set_xy(0, 0)
@@ -456,7 +455,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=135, align="R", txt=f"-{round(result['data']['inventory_charge'][company_num], 2)}  $", border=0)
+            pdf.cell(w=80, h=135, align="R", txt=f"-{round(result['data']['inventory_charge'][company_num])}  $", border=0)
 
             # Inventory Charge_%
             pdf.set_xy(0, 0)
@@ -520,7 +519,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=175, align="R", txt=f"-{result['data']['tax_charge'][company_num]}  $", border=0)
+            pdf.cell(w=80, h=175, align="R", txt=f"-{round(result['data']['tax_charge'][company_num])}  $", border=0)
 
             # Tax_%
             pdf.set_xy(0, 0)
@@ -546,7 +545,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=195, align="R", txt=f"{result['data']['profit'][company_num]}  $", border=0)
+            pdf.cell(w=80, h=195, align="R", txt=f"{round(result['data']['profit'][company_num])}  $", border=0)
 
             # Net Profit_%
             pdf.set_xy(0, 0)
@@ -583,7 +582,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=65, align="R", txt=result['decisions']['price'][company_num], border=0)
+            pdf.cell(w=185, h=65, align="R", txt=str(result['decisions']['price'][company_num]), border=0)
 
             # Price of measurement
             pdf.set_xy(184, 0)
@@ -602,7 +601,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=75, align="R", txt=result['data']['prod'][company_num], border=0)
+            pdf.cell(w=185, h=75, align="R", txt=str(round(result['data']['prod'][company_num])), border=0)
 
             # Production of measurement
             pdf.set_xy(184, 0)
@@ -621,7 +620,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=85, align="R", txt=result['decisions']['mk'][company_num], border=0)
+            pdf.cell(w=185, h=85, align="R", txt=str(round(result['decisions']['mk'][company_num])), border=0)
 
             # Marketing of measurement
             pdf.set_xy(184, 0)
@@ -640,7 +639,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=95, align="R", txt=result['decisions']['ci'][company_num], border=0)
+            pdf.cell(w=185, h=95, align="R", txt=str(round(result['decisions']['ci'][company_num])), border=0)
 
             # Investment of measurement
             pdf.set_xy(184, 0)
@@ -659,7 +658,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=105, align="R", txt=result['decisions']['rd'][company_num], border=0)
+            pdf.cell(w=185, h=105, align="R", txt=str(round(result['decisions']['rd'][company_num])), border=0)
 
             # Investment of measurement
             pdf.set_xy(184, 0)
@@ -687,7 +686,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=135, align="R", txt=result['data']['prod'][company_num], border=0)
+            pdf.cell(w=185, h=135, align="R", txt=str(round(result['data']['prod'][company_num])), border=0)
 
             # Production_unit of measurement
             pdf.set_xy(184, 0)
@@ -706,7 +705,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=145, align="R", txt=result['data']['size'][company_num], border=0)
+            pdf.cell(w=185, h=145, align="R", txt=str(round(result['data']['size'][company_num])), border=0)
 
             # Factory Capacity_unit of measurement
             pdf.set_xy(184, 0)
@@ -725,7 +724,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=155, align="R", txt=result['decisions']['prod_rate'][company_num] * 100, border=0)
+            pdf.cell(w=185, h=155, align="R", txt=str(round(result['decisions']['prod_rate'][company_num] * 100)), border=0)
 
             # Capacity Utilization_unit of measurement
             pdf.set_xy(184, 0)
@@ -744,7 +743,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=165, align="R", txt=round(result['data']['prod_cost_unit'][company_num], 2), border=0)
+            pdf.cell(w=185, h=165, align="R", txt=str(round(result['data']['prod_cost_unit'][company_num], 2)), border=0)
 
             # Production Cost/Unit_unit of measurement
             pdf.set_xy(184, 0)
@@ -763,7 +762,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=175, align="R", txt=result['data']['inventory'][company_num], border=0)
+            pdf.cell(w=185, h=175, align="R", txt=str(round(result['data']['inventory'][company_num])), border=0)
 
             # Inventory_unit of measurement
             pdf.set_xy(184, 0)
@@ -810,7 +809,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=215, align="R", txt=result['data']['orders'][company_num], border=0)
+            pdf.cell(w=185, h=215, align="R", txt=str(round(result['data']['orders'][company_num])), border=0)
 
             # Orders Received_unit of measurement
             pdf.set_xy(184, 0)
@@ -829,7 +828,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=225, align="R", txt=result['data']['sold'][company_num], border=0)
+            pdf.cell(w=185, h=225, align="R", txt=str(round(result['data']['sold'][company_num])), border=0)
 
             # Sales Made_unit of measurement
             pdf.set_xy(184, 0)
@@ -848,7 +847,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=235, align="R", txt=result['data']['unfilled'][company_num], border=0)
+            pdf.cell(w=185, h=235, align="R", txt=str(round(result['data']['unfilled'][company_num])), border=0)
 
             # Unfilled Orders_unit of measurement
             pdf.set_xy(184, 0)
@@ -867,7 +866,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=245, align="R", txt=round(result['decisions']['price'][company_num], 2), border=0)
+            pdf.cell(w=185, h=245, align="R", txt=str(round(result['decisions']['price'][company_num], 2)), border=0)
 
             # Price/Unit Sold_unit of measurement
             pdf.set_xy(184, 0)
@@ -882,14 +881,14 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=255, align="L", txt="Total Cost/Unit Sold", border=0)
 
-            Margin_Unit_Sold = result["data"]["margin_unit_sold"]
-            Total_Cost_Unit_Sold = result["data"]["total_cost_unit_sold"]
+            Margin_Unit_Sold = round(result["data"]["margin_unit_sold"][company_num], 2)
+            Total_Cost_Unit_Sold = round(result["data"]["total_cost_unit_sold"][company_num], 2)
             
             # Total Cost/Unit Sold_int
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=255, align="R", txt=Total_Cost_Unit_Sold, border=0)
+            pdf.cell(w=185, h=255, align="R", txt=str(Total_Cost_Unit_Sold), border=0)
 
             # Total Cost/Unit Sold_unit of measurement
             pdf.set_xy(184, 0)
@@ -908,7 +907,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=265, align="R", txt=Margin_Unit_Sold, border=0)
+            pdf.cell(w=185, h=265, align="R", txt=str(Margin_Unit_Sold), border=0)
 
             # Margin/Unit Sold_unit of measurement
             pdf.set_xy(184, 0)
@@ -936,13 +935,13 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 147.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=170, h=0, align="R", txt=f"{result['data']['capital'][company_num]} $", border=0)
+            pdf.cell(w=170, h=0, align="R", txt=f"{round(result['data']['capital'][company_num])} $", border=0)
 
             # Factory Size_int_units
             pdf.set_xy(0, 147.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=190, h=0, align="R", txt=result['data']['size'][company_num], border=0)
+            pdf.cell(w=190, h=0, align="R", txt=str(round(result['data']['size'][company_num])), border=0)
 
             # Factory Size_unit of measurement
             pdf.set_xy(189, 147.5)
@@ -957,7 +956,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Net Investment", border=0)
 
-            Net_Investment = result['decisions']['ci'][company_num] - result['data']['depreciation'][company_num]
+            Net_Investment = round(result['decisions']['ci'][company_num] - result['data']['depreciation'][company_num])
             
             # Net Investment_int_$
             pdf.set_xy(0, 152.5)
@@ -971,7 +970,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 152.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=190, h=0, align="R", txt=Net_Investment_int_units, border=0)
+            pdf.cell(w=190, h=0, align="R", txt=str(Net_Investment_int_units), border=0)
 
             # Net Investment_unit of measurement
             pdf.set_xy(189, 152.5)
@@ -993,7 +992,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Size Next Period", border=0)
 
-            Size_Next_Period = result["data"]["capital"][company_num] + Net_Investment
+            Size_Next_Period = round(result["data"]["capital"][company_num] + Net_Investment)
             
             # Size Next Period_int_$
             pdf.set_xy(0, 162.5)
@@ -1005,7 +1004,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 162.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=190, h=0, align="R", txt=round(Size_Next_Period / result['settings']['unit_fee']), border=0)
+            pdf.cell(w=190, h=0, align="R", txt=str(round(Size_Next_Period / result['settings']['unit_fee'])), border=0)
 
             # Size Next Period_unit of measurement
             pdf.set_xy(189, 162.5)
@@ -1034,7 +1033,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=220, align="R", txt=f"{result['data']['cash'][company_num]}  $", border=0)
+            pdf.cell(w=80, h=220, align="R", txt=f"{round(result['data']['cash'][company_num])}  $", border=0)
 
             # Cash_%
             pdf.set_xy(0, 0)
@@ -1095,7 +1094,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=260, align="L", txt="Total Assets", border=0)
 
-            Total_Assets = result['data']['cash'][company_num] + result['data']['goods_cost_inventory'][company_num] + Size_Next_Period
+            Total_Assets = round(result['data']['cash'][company_num] + result['data']['goods_cost_inventory'][company_num] + Size_Next_Period)
 
             # Total Assets_int
             pdf.set_xy(0, 0)
@@ -1108,15 +1107,16 @@ class Ui_Dialog_Print(object):
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=100, h=260, align="R", txt="-100%", border=0)
-
-            Loans =  result['data']['loan'][company_num]
+            
 
             # Loans
             pdf.set_xy(5, 142.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Loans", border=0)
-
+            
+            Loans =  round(result['data']['loan'][company_num])
+            
             # Loans_int
             pdf.set_xy(0, 142.5)
             pdf.set_font("Arial", "", 12)
@@ -1136,13 +1136,13 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Retained Earnings", border=0)
 
-            Retained_Earnings = result['data']['retern'][company_num]
+            Retained_Earnings = round(result['data']['retern'][company_num])
 
             # Retained Earnings_int
             pdf.set_xy(0, 147.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=0, align="R", ftxt=f"{Retained_Earnings}  $", border=0)
+            pdf.cell(w=80, h=0, align="R", txt=f"{Retained_Earnings}  $", border=0)
 
             # Retained Earnings_%
             pdf.set_xy(0, 147.5)
@@ -1157,7 +1157,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Capital", border=0)
 
-            Capital = result['data']['capital'][company_num]
+            Capital = round(result['data']['capital'][company_num])
 
             # Capital_int
             pdf.set_xy(0, 152.5)
@@ -1185,7 +1185,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Liabilities+Equity", border=0)
 
-            Liabilities_plus_Equity = Loans + Retained_Earnings + Capital
+            Liabilities_plus_Equity = round(Loans + Retained_Earnings + Capital)
 
             # Liabilities+Equity_int
             pdf.set_xy(0, 162.5)
@@ -1230,7 +1230,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Total Orders", border=0)
 
-            Total_Orders = sum(result['data']['orders'])
+            Total_Orders = round(sum(result['data']['orders']))
 
             # Total Orders_int
             pdf.set_xy(0, 185)
@@ -1272,7 +1272,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Total Sold", border=0)
 
-            Total_Sold = sum(result['data']['sold'])
+            Total_Sold = round(sum(result['data']['sold']))
 
             # Total Sold_int
             pdf.set_xy(0, 195)
@@ -1293,7 +1293,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Total Capacity", border=0)
             
-            Total_Capacity = sum(result['data']['size'])
+            Total_Capacity = round(sum(result['data']['size']))
 
             # Total Capacity_int
             pdf.set_xy(0, 200)
@@ -1470,7 +1470,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 190)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=180, h=0, align="R", txt=f"{result['data']['average_price']}  $", border=0)
+            pdf.cell(w=180, h=0, align="R", txt=f"{round(result['data']['average_price'], 2)}  $", border=0)
 
             # Average Price_%
             pdf.set_xy(0, 190)
@@ -1595,7 +1595,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Tax Rate", border=0)
 
-            Tax_Rate = result["settings"]["tax_rate"] * 100
+            Tax_Rate = round(result["settings"]["tax_rate"] * 100)
 
             # Tax Rate_int
             pdf.set_xy(0, 227.5)
@@ -1616,7 +1616,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Tax Paid in Period", border=0)
 
-            Tax_Paid_in_Period = result["data"]["tax_paid_to_period"]
+            Tax_Paid_in_Period = round(result["data"]["tax_paid_to_period"])
 
             # Tax Paid in Period_int
             pdf.set_xy(0, 232.5)
@@ -1637,7 +1637,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Tax Paid to Date", border=0)
 
-            tax_paid_to_date = result["data"]["tax_paid_to_date"]
+            tax_paid_to_date = round(result["data"]["tax_paid_to_date"])
 
             # Tax Paid to Date_int
             pdf.set_xy(0, 237.5)
@@ -1673,20 +1673,14 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Price", border=0)
 
-            # RetErn
-            pdf.set_xy(5, 265)
-            pdf.set_font("Arial", "", 12)
-            pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=0, h=0, align="L", txt="RetErn", border=0)
-
             # Un Shr
-            pdf.set_xy(5, 270)
+            pdf.set_xy(5, 265)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Un Shr", border=0)
 
             # MPI
-            pdf.set_xy(5, 275)
+            pdf.set_xy(5, 270)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="MPI", border=0)
@@ -1711,13 +1705,13 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 250)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=46, h=0, align="R", txt=f"{result['data']['sales'][0]} $", border=0)
+            pdf.cell(w=46, h=0, align="R", txt=f"{round(result['data']['sales'][0])} $", border=0)
             
             # Profit for Company 1
             pdf.set_xy(0, 255)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=46, h=0, align="R", txt=f"{result['data']['profit'][0]} $", border=0)
+            pdf.cell(w=46, h=0, align="R", txt=f"{round(result['data']['profit'][0])} $", border=0)
             
             # Price for Company 1
             pdf.set_xy(0, 260)
@@ -1754,13 +1748,13 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 250)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=68.5, h=0, align="R", txt=f"{result['data']['sales'][1]} $", border=0)
+            pdf.cell(w=68.5, h=0, align="R", txt=f"{round(result['data']['sales'][1])} $", border=0)
             
             # Profit for Company 2
             pdf.set_xy(0, 255)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=68.5, h=0, align="R", txt=f"{result['data']['profit'][1]} $", border=0)
+            pdf.cell(w=68.5, h=0, align="R", txt=f"{round(result['data']['profit'][1])} $", border=0)
             
             # Price for Company 2
             pdf.set_xy(0, 260)
@@ -1797,13 +1791,13 @@ class Ui_Dialog_Print(object):
                 pdf.set_xy(0, 250)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=91, h=0, align="R", txt=f"{result['data']['sales'][2]} $", border=0)
+                pdf.cell(w=91, h=0, align="R", txt=f"{round(result['data']['sales'][2])} $", border=0)
             
                 # Profit for Company 3
                 pdf.set_xy(0, 255)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=91, h=0, align="R", txt=f"{result['data']['profit'][2]} $", border=0)
+                pdf.cell(w=91, h=0, align="R", txt=f"{round(result['data']['profit'][2])} $", border=0)
             
                 # Price for Company 3
                 pdf.set_xy(0, 260)
@@ -1840,13 +1834,13 @@ class Ui_Dialog_Print(object):
                 pdf.set_xy(0, 250)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=113.5, h=0, align="R", txt=f"{result['data']['sales'][3]} $", border=0)
+                pdf.cell(w=113.5, h=0, align="R", txt=f"{round(result['data']['sales'][3])} $", border=0)
             
                 # Profit for Company 4
                 pdf.set_xy(0, 255)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=113.5, h=0, align="R", txt=f"{result['data']['profit'][3]} $", border=0)
+                pdf.cell(w=113.5, h=0, align="R", txt=f"{round(result['data']['profit'][3])} $", border=0)
             
                 # Price for Company 4
                 pdf.set_xy(0, 260)
@@ -1883,13 +1877,13 @@ class Ui_Dialog_Print(object):
                 pdf.set_xy(0, 250)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=136, h=0, align="R", txt=f"{result['data']['sales'][4]} $", border=0)
+                pdf.cell(w=136, h=0, align="R", txt=f"{round(result['data']['sales'][4])} $", border=0)
             
                 # Profit for Company 5
                 pdf.set_xy(0, 255)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=136, h=0, align="R", txt=f"{result['data']['profit'][4]} $", border=0)
+                pdf.cell(w=136, h=0, align="R", txt=f"{round(result['data']['profit'][4])} $", border=0)
             
                 # Price for Company 5
                 pdf.set_xy(0, 260)
@@ -1926,13 +1920,13 @@ class Ui_Dialog_Print(object):
                 pdf.set_xy(0, 250)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=158.5, h=0, align="R", txt=f"{result['data']['sales'][5]} $", border=0)
+                pdf.cell(w=158.5, h=0, align="R", txt=f"{round(result['data']['sales'][5])} $", border=0)
             
                 # Profit for Company 6
                 pdf.set_xy(0, 255)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=158.5, h=0, align="R", txt=f"{result['data']['profit'][5]} $", border=0)
+                pdf.cell(w=158.5, h=0, align="R", txt=f"{round(result['data']['profit'][5])} $", border=0)
             
                 # Price for Company 6
                 pdf.set_xy(0, 260)
@@ -1969,13 +1963,13 @@ class Ui_Dialog_Print(object):
                 pdf.set_xy(0, 250)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=181, h=0, align="R", txt=f"{result['data']['sales'][6]} $", border=0)
+                pdf.cell(w=181, h=0, align="R", txt=f"{round(result['data']['sales'][6])} $", border=0)
             
                 # Profit for Company 7
                 pdf.set_xy(0, 255)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=181, h=0, align="R", txt=f"{result['data']['profit'][6]} $", border=0)
+                pdf.cell(w=181, h=0, align="R", txt=f"{round(result['data']['profit'][6])} $", border=0)
             
                 # Price for Company 7
                 pdf.set_xy(0, 260)
@@ -2012,13 +2006,13 @@ class Ui_Dialog_Print(object):
                 pdf.set_xy(0, 250)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=203.5, h=0, align="R", txt=f"{result['data']['sales'][7]} $", border=0)
+                pdf.cell(w=203.5, h=0, align="R", txt=f"{round(result['data']['sales'][7])} $", border=0)
 
                 # Profit for Company 8
                 pdf.set_xy(0, 255)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=203.5, h=0, align="R", txt=f"{result['data']['profit'][7]} $", border=0)
+                pdf.cell(w=203.5, h=0, align="R", txt=f"{round(result['data']['profit'][7])} $", border=0)
 
                 # Price for Company 8
                 pdf.set_xy(0, 260)
@@ -2027,24 +2021,27 @@ class Ui_Dialog_Print(object):
                 pdf.cell(w=203.5, h=0, align="R", txt=f"{result['decisions']['price'][7]} $", border=0)
 
                 # Un Shr for Company 8
-                pdf.set_xy(0, 270)
+                pdf.set_xy(0, 265)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
                 pdf.cell(w=203.5, h=0, align="R", txt="13%", border=0)
 
                 # MPI for Company 8
-                pdf.set_xy(0, 275)
+                pdf.set_xy(0, 270)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
                 pdf.cell(w=203.5, h=0, align="R", txt=f"{result['data']['mpi'][7]}   ", border=0)
 
 
-            pdf.output("2.pdf", "F")
+            pdf.output(f"{company_num + 1}.pdf", "F")
 
-currentprinter = win32print.GetDefaultPrinter()
+        for i in range(1, companies_len + 1):
+            create_pdf(companies[f"Company_{i}"], i - 1, result, companies) 
 
-win32api.ShellExecute(0, "print", "1.pdf", None,  ".",  0)
-win32print.SetDefaultPrinter(currentprinter)
+#currentprinter = win32print.GetDefaultPrinter()
+
+#win32api.ShellExecute(0, "print", "1.pdf", None,  ".",  0)
+#win32print.SetDefaultPrinter(currentprinter)
 
 
 if __name__ == "__main__":

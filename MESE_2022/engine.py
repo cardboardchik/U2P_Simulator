@@ -5,7 +5,6 @@ import math
 
 
 def init(count):
-    zero = [0 for i in range(count)]
     game = {
         "player_count": count,
         "total_tick": 99,
@@ -77,39 +76,39 @@ def init(count):
         },
     
         "decisions": {
-            "price": zero,
-            "prod_rate": zero,
-            "mk": zero,
-            "ci": zero,
-            "rd": zero,
+            "price": [0 for i in range(count)],
+            "prod_rate": [0 for i in range(count)],
+            "mk": [0 for i in range(count)],
+            "ci": [0 for i in range(count)],
+            "rd": [0 for i in range(count)],
         },
 
         "data": {
-            "prod": zero,
-            "prod_over": zero,
-            "prod_cost_unit": zero,
-            "prod_cost_marginal": zero,
-            "prod_cost": zero,
+            "prod": [0 for i in range(count)],
+            "prod_over": [0 for i in range(count)],
+            "prod_cost_unit": [0 for i in range(count)],
+            "prod_cost_marginal": [0 for i in range(count)],
+            "prod_cost": [0 for i in range(count)],
             
-            "margin_unit_sold": zero,
-            "total_cost_unit_sold": zero,
+            "margin_unit_sold": [0 for i in range(count)],
+            "total_cost_unit_sold": [0 for i in range(count)],
 
-            "goods": zero,
-            "goods_predicted": zero, 
-            "goods_cost": zero,
-            "goods_cost_predicted": zero, 
-            "goods_max_sales": zero,
+            "goods": [0 for i in range(count)],
+            "goods_predicted": [0 for i in range(count)], 
+            "goods_cost": [0 for i in range(count)],
+            "goods_cost_predicted": [0 for i in range(count)], 
+            "goods_max_sales": [0 for i in range(count)],
 
-            "depreciation": zero,
-            "capital": zero,
-            "size": zero,
-            "spending": zero,
-            "balance_early": zero,
-            "loan_early": zero,
-            "interest": zero,
+            "depreciation": [0 for i in range(count)],
+            "capital": [0 for i in range(count)],
+            "size": [0 for i in range(count)],
+            "spending": [0 for i in range(count)],
+            "balance_early": [0 for i in range(count)],
+            "loan_early": [0 for i in range(count)],
+            "interest": [0 for i in range(count)],
 
-            "history_mk": zero,
-            "history_rd": zero,
+            "history_mk": [0 for i in range(count)],
+            "history_rd": [0 for i in range(count)],
 
             "average_price_given": None,
             "average_price_planned": None,
@@ -118,44 +117,44 @@ def init(count):
             "demand_effect_rd": None,
             "orders_demand": None,
 
-            "share_effect_price": zero,
-            "share_effect_mk": zero,
-            "share_effect_rd": zero,
-            "share": zero,
-            "share_compressed": zero,
+            "share_effect_price": [0 for i in range(count)],
+            "share_effect_mk": [0 for i in range(count)],
+            "share_effect_rd": [0 for i in range(count)],
+            "share": [0 for i in range(count)],
+            "share_compressed": [0 for i in range(count)],
 
-            "orders": zero,
-            "sold": zero,
-            "inventory": zero,
-            "unfilled": zero,
+            "orders": [0 for i in range(count)],
+            "sold": [0 for i in range(count)],
+            "inventory": [0 for i in range(count)],
+            "unfilled": [0 for i in range(count)],
 
-            "goods_cost_sold": zero,
-            "goods_cost_inventory": zero,
+            "goods_cost_sold": [0 for i in range(count)],
+            "goods_cost_inventory": [0 for i in range(count)],
 
-            "sales": zero,
-            "inventory_charge": zero,
-            "cost_before_tax": zero,
-            "profit_before_tax": zero,
-            "tax_charge": zero,
-            "profit": zero,
+            "sales": [0 for i in range(count)],
+            "inventory_charge": [0 for i in range(count)],
+            "cost_before_tax": [0 for i in range(count)],
+            "profit_before_tax": [0 for i in range(count)],
+            "tax_charge": [0 for i in range(count)],
+            "profit": [0 for i in range(count)],
             
             "tax_paid_to_period": None,
-            "tax_paid_to_date": None,
+            "tax_paid_to_date": 0,
 
-            "balance": zero,
-            "loan": zero,
-            "cash": zero,
-            "retern": zero,
+            "balance": [0 for i in range(count)],
+            "loan": [0 for i in range(count)],
+            "cash": [0 for i in range(count)],
+            "retern": [0 for i in range(count)],
 
             "average_price": None,
 
-            "mpi_a": zero,
-            "mpi_b": zero,
-            "mpi_c": zero,
-            "mpi_d": zero,
-            "mpi_e": zero,
-            "mpi_f": zero,
-            "mpi": zero,
+            "mpi_a": [0 for i in range(count)],
+            "mpi_b": [0 for i in range(count)],
+            "mpi_c": [0 for i in range(count)],
+            "mpi_d": [0 for i in range(count)],
+            "mpi_e": [0 for i in range(count)],
+            "mpi_f": [0 for i in range(count)],
+            "mpi": [0 for i in range(count)],
     
         },
        
@@ -177,7 +176,7 @@ def init(count):
         game["data"]["goods_cost_inventory"][i] = 0
 
         game["data"]["loan"][i] = 0 #game["settings"]["initial_loan"] / game["player_count"]
-        game["data"]["cash"][i] = game["settings"]["initial_cash"]
+        game["data"]["cash"][i] = game["settings"]["initial_cash"] / game["player_count"]
         game["data"]["retern"][i] = 0 #game["settings"]["mpi_retern_factor"]
                         
         i += 1
@@ -410,12 +409,8 @@ def exec(game):
         game["data"]["cash"][i] = max(game["data"]["balance"][i], 0)
         game["data"]["retern"][i] += game["data"]["profit"][i] #* game["delta"]
         
-        # :)
-        game["data"]["margin_unit_sold"][i] = round(game["data"]["profit"][i] / game["data"]["sold"][i], 2)
-        game["data"]["total_cost_unit_sold"][i] = round(game["decisions"]["price"][i] - game["data"]["margin_unit_sold"][i], 2)
         
-        game["data"]["tax_paid_to_period"] = round(sum(game["data"]["tax_charge"]))
-        game["data"]["tax_paid_to_date"] += game["data"]["tax_paid_to_period"]
+        
     
     each(fun_3)
     
@@ -428,7 +423,19 @@ def exec(game):
     sum_sold = sum(game["data"]["sold"])
     
     
+    
+    
+    
     def fun_4(i):
+        # :)
+        game["data"]["margin_unit_sold"][i] = round(game["data"]["profit"][i] / game["data"]["sold"][i], 2)
+        game["data"]["total_cost_unit_sold"][i] = round(game["decisions"]["price"][i] - game["data"]["margin_unit_sold"][i], 2)
+        
+        game["data"]["tax_paid_to_period"] = round(sum(game["data"]["tax_charge"]))
+        game["data"]["tax_paid_to_date"] += game["data"]["tax_paid_to_period"]
+        
+        
+        
         game["data"]["mpi_a"][i] = game["settings"]["mpi_factor_a"] * game["player_count"] * (
             game["data"]["retern"][i] / game["now_tick"] / game["settings"]["mpi_retern_factor"]
         )
