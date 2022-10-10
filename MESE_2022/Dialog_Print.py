@@ -3,11 +3,23 @@ from PyQt6 import QtCore, QtGui, QtWidgets, QtPrintSupport
 from ast import literal_eval
 import win32print
 import win32api
+import subprocess
+import time
 from fpdf import FPDF
+import os
+import fitz
+import shutil
 
 
 class Ui_Dialog_Print(object):
     def setupUi(self, Dialog_Print):
+        
+        try:
+            os.remove('./report.pdf')
+            shutil.rmtree('./reports/')
+        except FileNotFoundError:
+            pass
+        
         Dialog_Print.setObjectName("Dialog_Print")
         Dialog_Print.resize(380, 300)
         Dialog_Print.setMinimumSize(QtCore.QSize(380, 300))
@@ -17,7 +29,7 @@ class Ui_Dialog_Print(object):
                        QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Dialog_Print.setWindowIcon(icon)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_Print)
-        self.buttonBox.setGeometry(QtCore.QRect(107, 260, 161, 32))
+        self.buttonBox.setGeometry(QtCore.QRect(107, 270, 161, 32))
         font = QtGui.QFont()
         font.setFamily("Montserrat Medium")
         font.setPointSize(10)
@@ -138,12 +150,43 @@ class Ui_Dialog_Print(object):
         self.lineEdit_Industry.setAlignment(
             QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lineEdit_Industry.setObjectName("lineEdit_Industry")
+        
+        self.label_ATTENTION = QtWidgets.QLabel(Dialog_Print)
+        self.label_ATTENTION.setGeometry(QtCore.QRect(35, 230, 340, 20))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Medium")
+        font.setPointSize(9)
+        self.label_ATTENTION.setFont(font)
+        self.label_ATTENTION.setObjectName("label_1")
+        self.label_ATTENTION.setText("ATTENTION! The default printer is used for printing.")
+        self.label_ATTENTION.setOpenExternalLinks(True)
+        self.label_ATTENTION.setStyleSheet("color: red;")
+        
+        self.label_download = QtWidgets.QLabel(Dialog_Print)
+        self.label_download.setGeometry(QtCore.QRect(115, 242.5, 340, 20))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Medium")
+        font.setPointSize(9)
+        self.label_download.setFont(font)
+        self.label_download.setObjectName("label_1")
+        self.label_download.setText("Get acrobat you can <a href='https://get.adobe.com/reader/'>here</a>.")
+        self.label_download.setOpenExternalLinks(True)
+        
+        self.label_prompt = QtWidgets.QLabel(Dialog_Print)
+        self.label_prompt.setGeometry(QtCore.QRect(20, 255, 341, 20))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Medium")
+        font.setPointSize(9)
+        self.label_prompt.setFont(font)
+        self.label_prompt.setObjectName("label_1")
+        self.label_prompt.setText("To print, you need to take a few simple steps. <a href='https://helpx.adobe.com/acrobat/kb/not-default-pdf-owner-windows10.html'>Instruction</a>.")
+        self.label_prompt.setOpenExternalLinks(True)
 
         self.setup = literal_eval(open("Dialog_Setup.txt").readline())
         setup_len = len(self.setup)
 
         self.checkBox_status = {
-            f"Company {i}": True for i in range(1, setup_len + 1)
+            f"Company_{i}": True for i in range(1, setup_len + 1)
         }
 
         self.setup_array = []
@@ -158,39 +201,39 @@ class Ui_Dialog_Print(object):
 
         if setup_len == 7:
             self.checkBox_8.setEnabled(False)
-            self.checkBox_status["Company 8"] = False
+            self.checkBox_status["Company_8"] = False
         elif setup_len == 6:
             self.checkBox_8.setEnabled(False)
             self.checkBox_7.setEnabled(False)
-            self.checkBox_status["Company 8"] = False
-            self.checkBox_status["Company 7"] = False
+            self.checkBox_status["Company_8"] = False
+            self.checkBox_status["Company_7"] = False
         elif setup_len == 5:
             self.checkBox_8.setEnabled(False)
             self.checkBox_7.setEnabled(False)
             self.checkBox_6.setEnabled(False)
-            self.checkBox_status["Company 8"] = False
-            self.checkBox_status["Company 7"] = False
-            self.checkBox_status["Company 6"] = False
+            self.checkBox_status["Company_8"] = False
+            self.checkBox_status["Company_7"] = False
+            self.checkBox_status["Company_6"] = False
         elif setup_len == 4:
             self.checkBox_8.setEnabled(False)
             self.checkBox_7.setEnabled(False)
             self.checkBox_6.setEnabled(False)
             self.checkBox_5.setEnabled(False)
-            self.checkBox_status["Company 8"] = False
-            self.checkBox_status["Company 7"] = False
-            self.checkBox_status["Company 6"] = False
-            self.checkBox_status["Company 5"] = False
+            self.checkBox_status["Company_8"] = False
+            self.checkBox_status["Company_7"] = False
+            self.checkBox_status["Company_6"] = False
+            self.checkBox_status["Company_5"] = False
         elif setup_len == 3:
             self.checkBox_8.setEnabled(False)
             self.checkBox_7.setEnabled(False)
             self.checkBox_6.setEnabled(False)
             self.checkBox_5.setEnabled(False)
             self.checkBox_4.setEnabled(False)
-            self.checkBox_status["Company 8"] = False
-            self.checkBox_status["Company 7"] = False
-            self.checkBox_status["Company 6"] = False
-            self.checkBox_status["Company 5"] = False
-            self.checkBox_status["Company 4"] = False
+            self.checkBox_status["Company_8"] = False
+            self.checkBox_status["Company_7"] = False
+            self.checkBox_status["Company_6"] = False
+            self.checkBox_status["Company_5"] = False
+            self.checkBox_status["Company_4"] = False
         elif setup_len == 2:
             self.checkBox_8.setEnabled(False)
             self.checkBox_7.setEnabled(False)
@@ -198,12 +241,12 @@ class Ui_Dialog_Print(object):
             self.checkBox_5.setEnabled(False)
             self.checkBox_4.setEnabled(False)
             self.checkBox_3.setEnabled(False)
-            self.checkBox_status["Company 8"] = False
-            self.checkBox_status["Company 7"] = False
-            self.checkBox_status["Company 6"] = False
-            self.checkBox_status["Company 5"] = False
-            self.checkBox_status["Company 4"] = False
-            self.checkBox_status["Company 3"] = False
+            self.checkBox_status["Company_8"] = False
+            self.checkBox_status["Company_7"] = False
+            self.checkBox_status["Company_6"] = False
+            self.checkBox_status["Company_5"] = False
+            self.checkBox_status["Company_4"] = False
+            self.checkBox_status["Company_3"] = False
         else:
             pass
 
@@ -252,34 +295,33 @@ class Ui_Dialog_Print(object):
         self.lineEdit_Industry.setText(_translate("Dialog_Print", "E"))
 
     def checkBox_1_Clicked(self, status):
-        self.checkBox_status["Company 1"] = status
+        self.checkBox_status["Company_1"] = status
 
     def checkBox_2_Clicked(self, status):
-        self.checkBox_status["Company 2"] = status
+        self.checkBox_status["Company_2"] = status
 
     def checkBox_3_Clicked(self, status):
-        self.checkBox_status["Company 3"] = status
+        self.checkBox_status["Company_3"] = status
 
     def checkBox_4_Clicked(self, status):
-        self.checkBox_status["Company 4"] = status
+        self.checkBox_status["Company_4"] = status
 
     def checkBox_5_Clicked(self, status):
-        self.checkBox_status["Company 5"] = status
+        self.checkBox_status["Company_5"] = status
 
     def checkBox_6_Clicked(self, status):
-        self.checkBox_status["Company 6"] = status
+        self.checkBox_status["Company_6"] = status
 
     def checkBox_7_Clicked(self, status):
-        self.checkBox_status["Company 7"] = status
+        self.checkBox_status["Company_7"] = status
 
     def checkBox_8_Clicked(self, status):
-        self.checkBox_status["Company 8"] = status
+        self.checkBox_status["Company_8"] = status
+        
+        
 
     def print(self):
         
-        result = literal_eval(open("result.txt", "r").readline())
-        companies = literal_eval(open("Dialog_Setup.txt", "r").readline())
-        companies_len = len(companies)
         def create_pdf(company_name, company_num, result, company_names):
             pdf = FPDF()
             pdf.add_page()
@@ -288,7 +330,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 13)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=210, h=30, align="C", txt=f"Company Report for {company_name} Period {result['now_tick']}", border=0)
+            pdf.cell(w=210, h=30, align="C", txt=f"Company Report for {company_name} Period {result['now_tick'] - 1}", border=0)
 
 
             # Lines for Income Statement
@@ -1214,7 +1256,7 @@ class Ui_Dialog_Print(object):
             pdf.set_xy(0, 170)
             pdf.set_font("Arial", "", 13)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=210, h=0, align="C", txt="Industry Report for Period 0", border=0)
+            pdf.cell(w=210, h=0, align="C", txt=f"Industry Report for Period {result['now_tick'] - 1}", border=0)
 
 
             # Units
@@ -2032,16 +2074,50 @@ class Ui_Dialog_Print(object):
                 pdf.set_text_color(0, 0, 0)
                 pdf.cell(w=203.5, h=0, align="R", txt=f"{result['data']['mpi'][7]}   ", border=0)
 
+                # creation folder
+                try:
+                    os.makedirs('./reports')
+                except OSError:
+                    pass
 
-            pdf.output(f"{company_num + 1}.pdf", "F")
 
-        for i in range(1, companies_len + 1):
-            create_pdf(companies[f"Company_{i}"], i - 1, result, companies) 
+            pdf.output(f"./reports/{company_num + 1}.pdf", "F")
 
-#currentprinter = win32print.GetDefaultPrinter()
 
-#win32api.ShellExecute(0, "print", "1.pdf", None,  ".",  0)
-#win32print.SetDefaultPrinter(currentprinter)
+        result = literal_eval(open("result.txt", "r").readline())
+        companies = literal_eval(open("Dialog_Setup.txt", "r").readline())
+        
+        # for merger
+        pdf_array = []
+        
+        # creation PDF files
+        for i, g in self.checkBox_status.items():
+            if g == True:
+                create_pdf(companies[i], int(i[-1]) - 1, result, companies)
+                
+                # for merger
+                pdf_array.append(f'./reports/{int(i[-1])}.pdf')
+        
+        
+        # merger PDF files
+        result_report = fitz.open()
+
+        for pdf in pdf_array:
+            with fitz.open(pdf) as mfile:
+                result_report.insert_pdf(mfile)
+    
+        result_report.save("report.pdf")
+        
+        
+        # print report
+        currentprinter = win32print.GetDefaultPrinter()
+
+        win32api.ShellExecute(0, "print", "report.pdf", None,  ".",  0)
+        win32print.SetDefaultPrinter(currentprinter)
+        
+        time.sleep(5)
+        
+        subprocess.call("TASKKILL /F /IM Acrobat.exe", shell=True)
 
 
 if __name__ == "__main__":

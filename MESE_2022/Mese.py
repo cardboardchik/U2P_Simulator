@@ -96,11 +96,16 @@ class Ui_Mese(object):
         
         
         self.label_ResultsforPeriod = QtWidgets.QLabel(self.centralwidget)
-        self.label_ResultsforPeriod.setGeometry(QtCore.QRect(560, 160, 161, 21))
+        self.label_ResultsforPeriod.setGeometry(QtCore.QRect(560, 160, 180, 21))
         font = QtGui.QFont()
         font.setFamily("Montserrat Medium")
         font.setPointSize(13)
         self.label_ResultsforPeriod.setFont(font)
+        
+        self.result_period = self.period
+        if self.period - 1 <= -1:
+            self.result_period = ""
+            
         self.label_ResultsforPeriod.setObjectName("label_ResultsforPeriod")
         
         
@@ -172,6 +177,11 @@ class Ui_Mese(object):
         self.pushButton_View.setObjectName("pushButton_View")
         self.pushButton_View.clicked.connect(self.pushButton_View_was_clicked)
         
+        if self.period == 0:
+            self.pushButton_View.setEnabled(False)
+        else:
+            self.pushButton_View.setEnabled(True)
+
         
         self.pushButton_Graph = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Graph.setGeometry(QtCore.QRect(570, 240, 161, 41))
@@ -182,6 +192,10 @@ class Ui_Mese(object):
         self.pushButton_Graph.setObjectName("pushButton_Graph")
         self.pushButton_Graph.clicked.connect(self.pushButton_Graph_was_clicked)
         
+        if self.period == 0:
+            self.pushButton_Graph.setEnabled(False)
+        else:
+            self.pushButton_Graph.setEnabled(True)
         
         self.pushButton_Print = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Print.setGeometry(QtCore.QRect(570, 320, 161, 41))
@@ -192,6 +206,10 @@ class Ui_Mese(object):
         self.pushButton_Print.setObjectName("pushButton_Print")
         self.pushButton_Print.clicked.connect(self.pushButton_Print_was_clicked)
         
+        if self.period == 0:
+            self.pushButton_Print.setEnabled(False)
+        else:
+            self.pushButton_Print.setEnabled(True)
         
         
         self.label_Options = QtWidgets.QLabel(self.centralwidget)
@@ -361,16 +379,18 @@ class Ui_Mese(object):
         self.menubar.addAction(self.menuOptions.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
         
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(720, 160, 51, 22))
-        font = QtGui.QFont()
-        font.setFamily("Montserrat Medium")
-        font.setPointSize(13)
-        self.comboBox.setFont(font)
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
+        #self.comboBox = QtWidgets.QComboBox(self.centralwidget)
+        #self.comboBox.setGeometry(QtCore.QRect(720, 160, 51, 22))
+        #font = QtGui.QFont()
+        #font.setFamily("Montserrat Medium")
+        #font.setPointSize(13)
+        #self.comboBox.setFont(font)
+        #self.comboBox.setObjectName("comboBox")
+        #self.comboBox.addItem("")
+        #self.comboBox.addItem("")
+        #self.comboBox.addItem("")
+        
+        
 
         self.retranslateUi(Mese)
         QtCore.QMetaObject.connectSlotsByName(Mese)
@@ -385,8 +405,8 @@ class Ui_Mese(object):
         self.pushButton_Setup.setText(_translate("Mese", "Setup"))
         self.pushButton_Restart.setText(_translate("Mese", "Restart"))
         self.label_Simulation.setText(_translate("Mese", "Simulation", "30"))
-        self.label_ResultsforPeriod.setText(_translate("Mese", "Results for Period "))
-        self.label_DecisionsforPeriod.setText(_translate("Mese", "Decisions for Period "))
+        self.label_ResultsforPeriod.setText(_translate("Mese", f"Results for Period {self.result_period}"))
+        self.label_DecisionsforPeriod.setText(_translate("Mese", f"Decisions for Period {self.period}"))
         self.pushButton_EnterallDecisions.setText(_translate("Mese", "Enter all Decisions"))
         self.pushButton_ReviewDecisions.setText(_translate("Mese", "Review Decisions"))
         self.pushButton_ClosePeriod.setText(_translate("Mese", "Close Period"))
@@ -412,9 +432,9 @@ class Ui_Mese(object):
         self.actionDark.setText(_translate("Mese", "Dark"))
         self.actionLight.setText(_translate("Mese", "Light"))
         self.actionContact_us.setText(_translate("Mese", "Contact us"))
-        self.comboBox.setItemText(0, _translate("Mese", "1"))
-        self.comboBox.setItemText(1, _translate("Mese", "99"))
-        self.comboBox.setItemText(2, _translate("Mese", "2"))
+        #self.comboBox.setItemText(0, _translate("Mese", "1"))
+        #self.comboBox.setItemText(1, _translate("Mese", "99"))
+        #self.comboBox.setItemText(2, _translate("Mese", "2"))
     
     def open_Setup(self):
         self.Dialog_Setup = QtWidgets.QDialog()
@@ -432,10 +452,13 @@ class Ui_Mese(object):
         self.period = 0
         self.pushButton_EnterallDecisions.setEnabled(False)
         self.pushButton_ReviewDecisions.setEnabled(False)
-        self.label_currentPeriod.setText("Period 0")
-
+        self.pushButton_View.setEnabled(False)
+        self.pushButton_Graph.setEnabled(False)
+        self.pushButton_Print.setEnabled(False)
         
+        self.retranslateUi(Mese)
         
+        self.label_ResultsforPeriod.setText("Results for Period ")
     
     def pushButton_EnterallDecisions_was_clicked(self):
         self.Dialog_SelectaCompany = QtWidgets.QDialog()
@@ -475,8 +498,11 @@ class Ui_Mese(object):
             self.period = literal_eval(check_file)["now_tick"]
             self.pushButton_EnterallDecisions.setEnabled(True)
             self.pushButton_ReviewDecisions.setEnabled(True)
-        self.label_currentPeriod.setText(f"Period {self.period}")    
-    
+            self.pushButton_View.setEnabled(True)
+            self.pushButton_Graph.setEnabled(True)
+            self.pushButton_Print.setEnabled(True)
+         
+        self.retranslateUi(Mese)
     #def pushButton_SelectPeriod_was_clicked(self):
         #pass
     
