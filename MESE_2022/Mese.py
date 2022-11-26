@@ -449,16 +449,18 @@ class Ui_Mese(object):
         self.Dialog_Restart_ui.setupUi(self.Dialog_Restart)
         self.Dialog_Restart.exec()
         
-        self.period = 0
-        self.pushButton_EnterallDecisions.setEnabled(False)
-        self.pushButton_ReviewDecisions.setEnabled(False)
-        self.pushButton_View.setEnabled(False)
-        self.pushButton_Graph.setEnabled(False)
-        self.pushButton_Print.setEnabled(False)
+        with open("result.txt", "r") as f:
+            if f.readline() == "":
+                self.period = 0
+                self.pushButton_EnterallDecisions.setEnabled(False)
+                self.pushButton_ReviewDecisions.setEnabled(False)
+                self.pushButton_View.setEnabled(False)
+                self.pushButton_Graph.setEnabled(False)
+                self.pushButton_Print.setEnabled(False)
         
-        self.retranslateUi(Mese)
+                self.retranslateUi(Mese)
         
-        self.label_ResultsforPeriod.setText("Results for Period ")
+                self.label_ResultsforPeriod.setText("Results for Period ")
     
     def pushButton_EnterallDecisions_was_clicked(self):
         self.Dialog_SelectaCompany = QtWidgets.QDialog()
