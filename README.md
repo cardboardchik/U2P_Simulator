@@ -7,7 +7,3 @@ I also added the old version of the program.
 
 
 To run the progtam, you need to find MESE.EXE and run it (only runs on 32-bit systems). I checked on Windows 7(32-bit), everything worked.
-
-A new version in development.
-
-Expected end day of development 20 July
