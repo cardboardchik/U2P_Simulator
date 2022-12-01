@@ -7,7 +7,7 @@ import subprocess
 import time
 from fpdf import FPDF
 import os
-import fitz
+from PyPDF2 import PdfMerger
 import shutil
 
 
@@ -2100,13 +2100,13 @@ class Ui_Dialog_Print(object):
         
         
         # merger PDF files
-        result_report = fitz.open()
+        merger = PdfMerger()
 
         for pdf in pdf_array:
-            with fitz.open(pdf) as mfile:
-                result_report.insert_pdf(mfile)
-    
-        result_report.save("report.pdf")
+            merger.append(pdf)
+
+        merger.write("report.pdf")
+        merger.close()
         
         
         # print report
