@@ -1,4 +1,6 @@
 
+## by karton4ik
+
 from PyQt6 import QtCore, QtGui, QtWidgets, QtPrintSupport
 from ast import literal_eval
 import win32print
