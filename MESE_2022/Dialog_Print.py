@@ -16,12 +16,6 @@ import shutil
 class Ui_Dialog_Print(object):
     def setupUi(self, Dialog_Print):
         
-        try:
-            os.remove('./report.pdf')
-            shutil.rmtree('./reports/')
-        except FileNotFoundError:
-            pass
-        
         Dialog_Print.setObjectName("Dialog_Print")
         Dialog_Print.resize(380, 300)
         Dialog_Print.setMinimumSize(QtCore.QSize(380, 300))
@@ -203,16 +197,22 @@ class Ui_Dialog_Print(object):
 
         if setup_len == 7:
             self.checkBox_8.setEnabled(False)
+            self.checkBox_8.setChecked(False)
             self.checkBox_status["Company_8"] = False
         elif setup_len == 6:
             self.checkBox_8.setEnabled(False)
             self.checkBox_7.setEnabled(False)
+            self.checkBox_8.setChecked(False)
+            self.checkBox_7.setChecked(False)
             self.checkBox_status["Company_8"] = False
             self.checkBox_status["Company_7"] = False
         elif setup_len == 5:
             self.checkBox_8.setEnabled(False)
             self.checkBox_7.setEnabled(False)
             self.checkBox_6.setEnabled(False)
+            self.checkBox_8.setChecked(False)
+            self.checkBox_7.setChecked(False)
+            self.checkBox_6.setChecked(False)
             self.checkBox_status["Company_8"] = False
             self.checkBox_status["Company_7"] = False
             self.checkBox_status["Company_6"] = False
@@ -221,6 +221,10 @@ class Ui_Dialog_Print(object):
             self.checkBox_7.setEnabled(False)
             self.checkBox_6.setEnabled(False)
             self.checkBox_5.setEnabled(False)
+            self.checkBox_8.setChecked(False)
+            self.checkBox_7.setChecked(False)
+            self.checkBox_6.setChecked(False)
+            self.checkBox_5.setChecked(False)
             self.checkBox_status["Company_8"] = False
             self.checkBox_status["Company_7"] = False
             self.checkBox_status["Company_6"] = False
@@ -231,6 +235,11 @@ class Ui_Dialog_Print(object):
             self.checkBox_6.setEnabled(False)
             self.checkBox_5.setEnabled(False)
             self.checkBox_4.setEnabled(False)
+            self.checkBox_8.setChecked(False)
+            self.checkBox_7.setChecked(False)
+            self.checkBox_6.setChecked(False)
+            self.checkBox_5.setChecked(False)
+            self.checkBox_4.setChecked(False)
             self.checkBox_status["Company_8"] = False
             self.checkBox_status["Company_7"] = False
             self.checkBox_status["Company_6"] = False
@@ -243,6 +252,12 @@ class Ui_Dialog_Print(object):
             self.checkBox_5.setEnabled(False)
             self.checkBox_4.setEnabled(False)
             self.checkBox_3.setEnabled(False)
+            self.checkBox_8.setChecked(False)
+            self.checkBox_7.setChecked(False)
+            self.checkBox_6.setChecked(False)
+            self.checkBox_5.setChecked(False)
+            self.checkBox_4.setChecked(False)
+            self.checkBox_3.setChecked(False)
             self.checkBox_status["Company_8"] = False
             self.checkBox_status["Company_7"] = False
             self.checkBox_status["Company_6"] = False
@@ -324,7 +339,14 @@ class Ui_Dialog_Print(object):
 
     def print(self):
         
+        try:
+            os.remove('report.pdf')
+            shutil.rmtree('./reports/')
+        except FileNotFoundError:
+            pass
+        
         def create_pdf(company_name, company_num, result, company_names):
+            
             pdf = FPDF()
             pdf.add_page()
 
@@ -1818,7 +1840,7 @@ class Ui_Dialog_Print(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=68.5, h=0, align="R", txt=f"{result['data']['mpi'][1]}   ", border=0)
             
-            if company_names_len != 2:
+            if company_names_len not in [2]:
                 # Company 3
                 pdf.set_xy(0, 245)
                 pdf.set_font("Arial", "", 12)
@@ -1861,7 +1883,7 @@ class Ui_Dialog_Print(object):
                 pdf.set_text_color(0, 0, 0)
                 pdf.cell(w=91, h=0, align="R", txt=f"{result['data']['mpi'][2]}   ", border=0)
             
-            if company_names_len != 3 or 2:
+            if company_names_len not in [3, 2]:
                 # Company 4
                 pdf.set_xy(0, 245)
                 pdf.set_font("Arial", "", 12)
@@ -1904,7 +1926,7 @@ class Ui_Dialog_Print(object):
                 pdf.set_text_color(0, 0, 0)
                 pdf.cell(w=113.5, h=0, align="R", txt=f"{result['data']['mpi'][3]}   ", border=0)
             
-            if company_names_len != 4 or 3 or 2:
+            if company_names_len not in [4, 3, 2]:
                 # Company 5
                 pdf.set_xy(0, 245)
                 pdf.set_font("Arial", "", 12)
@@ -1947,7 +1969,7 @@ class Ui_Dialog_Print(object):
                 pdf.set_text_color(0, 0, 0)
                 pdf.cell(w=136, h=0, align="R", txt=f"{result['data']['mpi'][4]}   ", border=0)
             
-            if company_names_len != 5 or 4 or 3 or 2:
+            if company_names_len not in [5, 4, 3, 2]:
                 # Company 6
                 pdf.set_xy(0, 245)
                 pdf.set_font("Arial", "", 12)
@@ -1990,7 +2012,7 @@ class Ui_Dialog_Print(object):
                 pdf.set_text_color(0, 0, 0)
                 pdf.cell(w=158.5, h=0, align="R", txt=f"{result['data']['mpi'][5]}   ", border=0)
             
-            if company_names_len != 6 or 5 or 4 or 3 or 2:
+            if company_names_len not in [6, 5, 4, 3, 2]:
                 # Company 7
                 pdf.set_xy(0, 245)
                 pdf.set_font("Arial", "", 12)
@@ -2033,7 +2055,7 @@ class Ui_Dialog_Print(object):
                 pdf.set_text_color(0, 0, 0)
                 pdf.cell(w=181, h=0, align="R", txt=f"{result['data']['mpi'][6]}   ", border=0)
             
-            if company_names_len != 7 or 6 or 5 or 4 or 3 or 2:
+            if company_names_len not in [7, 6, 5, 4, 3, 2]:
                 # Company 8
                 pdf.set_xy(0, 245)
                 pdf.set_font("Arial", "", 12)
@@ -2077,13 +2099,13 @@ class Ui_Dialog_Print(object):
                 pdf.cell(w=203.5, h=0, align="R", txt=f"{result['data']['mpi'][7]}   ", border=0)
 
                 # creation folder
-                try:
-                    os.makedirs('./reports')
-                except OSError:
-                    pass
+            try:
+                os.makedirs('./reports')
+            except OSError:
+                pass
 
 
-            pdf.output(f"./reports/{company_num + 1}.pdf", "F")
+            pdf.output(f"./reports/{company_num+1}.pdf", "F")
 
 
         result = literal_eval(open("result.txt", "r").readline())

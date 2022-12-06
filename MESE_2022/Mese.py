@@ -17,17 +17,17 @@ from Dialog_Contactus import Ui_Dialog_Contactus
 from ast import literal_eval
 import matplotlib.pyplot as mtbpt
 import numpy as np
+from os import system
 
 class Ui_Mese(object):
     
     def setupUi(self, Mese): 
         self.result = open("result.txt", "r").readline()
-        self.result_literal_eval = None
+        self.result_literal_eval = literal_eval(self.result)
         self.period = 0
         if self.result == "":
             self.period = 0
         else:
-            self.result_literal_eval = literal_eval(self.result)
             self.period = self.result_literal_eval["now_tick"]
         Mese.setObjectName("Mese")
         Mese.setEnabled(True)
@@ -453,11 +453,14 @@ class Ui_Mese(object):
                 self.pushButton_View.setEnabled(False)
                 self.pushButton_Graph.setEnabled(False)
                 self.pushButton_Print.setEnabled(False)
+                
+                self.pushButton_Setup.setEnabled(True)
+                self.pushButton_SetParameters.setEnabled(True)
         
                 self.retranslateUi(Mese)
         
                 self.label_ResultsforPeriod.setText("Results for Period ")
-    
+        
     def pushButton_EnterallDecisions_was_clicked(self):
         self.Dialog_SelectaCompany = QtWidgets.QDialog()
         self.Dialog_SelectaCompany_ui = Ui_Dialog_EnterallDecisions()
@@ -501,11 +504,32 @@ class Ui_Mese(object):
             self.pushButton_Print.setEnabled(True)
          
         self.retranslateUi(Mese)
+        
+        self.pushButton_Setup.setEnabled(False)
+        self.pushButton_SetParameters.setEnabled(False)
+        
+        sort_mpi = sorted(self.result_literal_eval["data"]["mpi"])
+        num = 1
+        winners = {
+            "first": "Company_1",
+            "second": "Company_2",
+            "third": "Company_3"
+        }
+        
+        for i in self.result_literal_eval["data"]["mpi"]: 
+            if i == sort_mpi[0]:
+                winners["first"] = str(num) * 3
+            else:
+                num += 1
+        
+        self.label_theFirstp.setText(winners["first"])
+        
+        
     #def pushButton_SelectPeriod_was_clicked(self):
         #pass
     
     def pushButton_View_was_clicked(self):
-        pass
+        system(r"report.pdf") # os.system
     
     def pushButton_Graph_was_clicked(self):
         pass

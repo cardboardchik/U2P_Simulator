@@ -2,7 +2,8 @@
 ## by karton4ik
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
+from os import remove
+from shutil import rmtree
 
 
 class Ui_Dialog_Restart(object):
@@ -59,6 +60,12 @@ class Ui_Dialog_Restart(object):
         open("logs.txt", "w").close()
         # "settings.txt" and "Dialog_Setup.txt" files don't need to be cleaned
         # файлы "settings.txt" и "Dialog_Setup.txt" не нуждаются в очистке 
+        
+        try:
+            remove('report.pdf')
+            rmtree('./reports/')
+        except FileNotFoundError:
+            pass
         
         
 

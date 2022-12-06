@@ -427,7 +427,7 @@ def exec(game):
     
     
     def fun_4(i):
-        # :)
+        # help me :)
         game["data"]["margin_unit_sold"][i] = round(game["data"]["profit"][i] / game["data"]["sold"][i], 2)
         game["data"]["total_cost_unit_sold"][i] = round(game["decisions"]["price"][i] - game["data"]["margin_unit_sold"][i], 2)
         
