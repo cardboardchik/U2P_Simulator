@@ -83,8 +83,11 @@ class Ui_Dialog_Contactus(object):
         self.label_github.setOpenExternalLinks(False)
         self.label_github.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse|QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         self.label_github.setObjectName("label_github")
-
+        self.label_github.setOpenExternalLinks(True)
         self.retranslateUi(Dialog_Contactus)
+        
+        
+        
         QtCore.QMetaObject.connectSlotsByName(Dialog_Contactus)
         
     def retranslateUi(self, Dialog_Contactus):
@@ -92,7 +95,7 @@ class Ui_Dialog_Contactus(object):
         Dialog_Contactus.setWindowTitle(_translate("Dialog_Contactus", "Contact us"))
         self.label_by.setText(_translate("Dialog_Contactus", "By karton4ik"))
         self.label_email.setText(_translate("Dialog_Contactus", "e-mail: tonchik.kartonchik@gmail.com"))
-        self.label_github.setText(_translate("Dialog_Contactus", "github: github.com/cardboardchik"))
+        self.label_github.setText(_translate("Dialog_Contactus", "github: <a href='https://github.com/cardboardchik/'>github.com/cardboardchik</a>"))
 
 
 if __name__ == "__main__":

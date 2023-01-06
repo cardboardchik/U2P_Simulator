@@ -1,5 +1,8 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from ast import literal_eval
+from Dialog_ClosePeriod import Ui_Dialog_ClosePeriod
+
 import engine
 
 class Ui_Dialog_ClosePeriod_Error(object):
@@ -48,26 +51,19 @@ class Ui_Dialog_ClosePeriod_Error(object):
         self.listWidget.setViewMode(QtWidgets.QListView.ViewMode.ListMode)
         self.listWidget.setSelectionRectVisible(False)
         self.listWidget.setObjectName("listWidget")
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
+        
+        self.file = literal_eval(open("Dialog_Setup.txt", "r").readline())
+        
+        for i in range(len(self.file)):
+            item = QtWidgets.QListWidgetItem()
+            self.listWidget.addItem(item)
 
         self.retranslateUi(Dialog_ClosePeriod_Error)
-        self.buttonBox.accepted.connect(Dialog_ClosePeriod_Error.accept) # type: ignore
-        self.buttonBox.rejected.connect(Dialog_ClosePeriod_Error.reject) # type: ignore
+        
+        self.buttonBox.accepted.connect(Dialog_ClosePeriod_Error.accept)
+        self.buttonBox.accepted.connect(self.yes_was_clicked)
+         
+        self.buttonBox.rejected.connect(Dialog_ClosePeriod_Error.reject) 
         QtCore.QMetaObject.connectSlotsByName(Dialog_ClosePeriod_Error)
         
         file = open("ClosePeriod_log.txt", "r").readline()
@@ -87,30 +83,25 @@ class Ui_Dialog_ClosePeriod_Error(object):
         self.listWidget.setSortingEnabled(False)
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
-        item = self.listWidget.item(0)
-        item.setText(_translate("Dialog_ClosePeriod_Error", "111"))
-        item = self.listWidget.item(1)
-        item.setText(_translate("Dialog_ClosePeriod_Error", "222"))
-        item = self.listWidget.item(2)
-        item.setText(_translate("Dialog_ClosePeriod_Error", "333"))
-        item = self.listWidget.item(3)
-        item.setText(_translate("Dialog_ClosePeriod_Error", "444"))
-        item = self.listWidget.item(4)
-        item.setText(_translate("Dialog_ClosePeriod_Error", "555"))
-        item = self.listWidget.item(5)
-        item.setText(_translate("Dialog_ClosePeriod_Error", "666"))
-        item = self.listWidget.item(6)
-        item.setText(_translate("Dialog_ClosePeriod_Error", "777"))
-        item = self.listWidget.item(7)
-        item.setText(_translate("Dialog_ClosePeriod_Error", "888"))
+        
+        for i in range(1, len(self.file) + 1):
+            try:
+                item = self.listWidget.item(i-1)
+                item.setText(_translate("Dialog_EnterallDecisions", self.file[f"Company_{i}"]))
+                
+            except KeyError:
+                pass
+            
         self.listWidget.setSortingEnabled(__sortingEnabled)
 
     
     def yes_was_clicked(self):
-        f = open("settings.txt", "r").readline()
         
-        #engine.init(engine.exec())
         
+        self.Dialog_ClosePeriod = QtWidgets.QDialog()
+        self.Dialog_ClosePeriod_ui = Ui_Dialog_ClosePeriod()
+        self.Dialog_ClosePeriod_ui.setupUi(self.Dialog_ClosePeriod)
+        self.Dialog_ClosePeriod.exec()
 
 if __name__ == "__main__":
     import sys

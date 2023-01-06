@@ -25,7 +25,7 @@ class Ui_Dialog_Change_Level_of_Play(object):
         self.buttonBox.setObjectName("buttonBox")
         self.radioButton_Price = QtWidgets.QRadioButton(Dialog_Change_Level_of_Play)
 
-        self.radioButton_Price.setEnabled(True)
+        self.radioButton_Price.setEnabled(False) #temporarily unavailable
 
         self.radioButton_Price.setGeometry(QtCore.QRect(30, 30, 61, 21))
         font = QtGui.QFont()
@@ -38,7 +38,7 @@ class Ui_Dialog_Change_Level_of_Play(object):
         self.radioButton_Price.setObjectName("radioButton_Price")
         self.radioButton_Price_Production = QtWidgets.QRadioButton(Dialog_Change_Level_of_Play)
 
-        self.radioButton_Price_Production.setEnabled(True)
+        self.radioButton_Price_Production.setEnabled(False) #temporarily unavailable
 
         self.radioButton_Price_Production.setGeometry(QtCore.QRect(30, 60, 151, 21))
         font = QtGui.QFont()
@@ -51,7 +51,7 @@ class Ui_Dialog_Change_Level_of_Play(object):
         self.radioButton_Price_Production.setObjectName("radioButton_Price_Production")
         self.radioButton_Price_Production_Marketing = QtWidgets.QRadioButton(Dialog_Change_Level_of_Play)
 
-        self.radioButton_Price_Production_Marketing.setEnabled(True)
+        self.radioButton_Price_Production_Marketing.setEnabled(False) #temporarily unavailable
 
         self.radioButton_Price_Production_Marketing.setGeometry(QtCore.QRect(30, 90, 241, 21))
         font = QtGui.QFont()
@@ -64,7 +64,7 @@ class Ui_Dialog_Change_Level_of_Play(object):
         self.radioButton_Price_Production_Marketing.setObjectName("radioButton_Price_Production_Marketing")
         self.radioButton_Price_Production_Marketing_CI = QtWidgets.QRadioButton(Dialog_Change_Level_of_Play)
 
-        self.radioButton_Price_Production_Marketing_CI.setEnabled(True)
+        self.radioButton_Price_Production_Marketing_CI.setEnabled(False) #temporarily unavailable
 
         self.radioButton_Price_Production_Marketing_CI.setGeometry(QtCore.QRect(30, 120, 391, 21))
         font = QtGui.QFont()

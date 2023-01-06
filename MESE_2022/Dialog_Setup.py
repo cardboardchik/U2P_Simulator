@@ -11,6 +11,9 @@ class Ui_Dialog_Setup(object):
         self.file = ast.literal_eval(open("Dialog_Setup.txt", "r").readline())
         Dialog_Setup.setObjectName("Dialog_Setup")
         Dialog_Setup.resize(310, 390)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("Images/setting.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        Dialog_Setup.setWindowIcon(icon)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_Setup)
         self.buttonBox.setGeometry(QtCore.QRect(-110, 350, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Orientation.Horizontal)
@@ -368,7 +371,7 @@ class Ui_Dialog_Setup(object):
         
     def retranslateUi(self, Dialog_Setup):
         _translate = QtCore.QCoreApplication.translate
-        Dialog_Setup.setWindowTitle(_translate("Dialog_Setup", "Dialog"))
+        Dialog_Setup.setWindowTitle(_translate("Dialog_Setup", "Setup"))
         self.radioButton_8.setText(_translate("Dialog_Setup", "8"))
         self.lineEdit_1.setText(_translate("Dialog_Setup", "111"))
         self.lineEdit_1.setPlaceholderText(_translate("Dialog_Setup", "Company Name"))

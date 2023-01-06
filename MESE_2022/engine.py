@@ -19,7 +19,7 @@ def init(count):
             "mk_limit": 15000 * count,
             "ci_limit": 15000 * count,
             "rd_limit": 15000 * count ,
-            "loan_limit": 30000 * count,
+            "loan_limit": 50000 * count,
             
             "prod_rate_initial": 0.8,
             "prod_rate_balanced": 0.8,

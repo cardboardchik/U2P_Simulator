@@ -3,6 +3,7 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 from Dialog_EnterDecisions import Ui_Dialog
+from ast import literal_eval
 
 
 class Ui_Dialog_ReviewDecisions(object):
@@ -33,24 +34,12 @@ class Ui_Dialog_ReviewDecisions(object):
         self.listWidget.setViewMode(QtWidgets.QListView.ViewMode.ListMode)
         self.listWidget.setSelectionRectVisible(False)
         self.listWidget.setObjectName("listWidget")
-        item1 = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item1)
         
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
+        self.file = literal_eval(open("Dialog_Setup.txt", "r").readline())
         
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
+        for i in range(len(self.file)):
+            item = QtWidgets.QListWidgetItem()
+            self.listWidget.addItem(item)
         
         
         self.listWidget.itemDoubleClicked.connect(self.listWidget_was_doubleClicked)
@@ -65,22 +54,15 @@ class Ui_Dialog_ReviewDecisions(object):
         self.listWidget.setSortingEnabled(False)
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
-        item = self.listWidget.item(0)
-        item.setText(_translate("Dialog_ReviewDecisions", "111"))
-        item = self.listWidget.item(1)
-        item.setText(_translate("Dialog_ReviewDecisions", "222"))
-        item = self.listWidget.item(2)
-        item.setText(_translate("Dialog_ReviewDecisions", "333"))
-        item = self.listWidget.item(3)
-        item.setText(_translate("Dialog_ReviewDecisions", "444"))
-        item = self.listWidget.item(4)
-        item.setText(_translate("Dialog_ReviewDecisions", "555"))
-        item = self.listWidget.item(5)
-        item.setText(_translate("Dialog_ReviewDecisions", "666"))
-        item = self.listWidget.item(6)
-        item.setText(_translate("Dialog_ReviewDecisions", "777"))
-        item = self.listWidget.item(7)
-        item.setText(_translate("Dialog_ReviewDecisions", "888"))
+        
+        for i in range(1, len(self.file) + 1):
+            try:
+                item = self.listWidget.item(i-1)
+                item.setText(_translate("Dialog_EnterallDecisions", self.file[f"Company_{i}"]))
+                
+            except KeyError:
+                pass
+        
         self.listWidget.setSortingEnabled(__sortingEnabled)
 
     def listWidget_was_doubleClicked(self, lstitem):

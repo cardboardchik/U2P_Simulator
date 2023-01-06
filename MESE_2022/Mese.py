@@ -14,20 +14,21 @@ from Dialog_ClosePeriod_Error import Ui_Dialog_ClosePeriod_Error
 from Dialog_ClosePeriod import Ui_Dialog_ClosePeriod
 from Dialog_Print import Ui_Dialog_Print
 from Dialog_Contactus import Ui_Dialog_Contactus
+
+from Dialog_Companies_Graph import Ui_Dialog_Graph
 from ast import literal_eval
-import matplotlib.pyplot as mtbpt
-import numpy as np
 from os import system
 
 class Ui_Mese(object):
     
     def setupUi(self, Mese): 
         self.result = open("result.txt", "r").readline()
-        self.result_literal_eval = literal_eval(self.result)
+        self.result_literal_eval = None
         self.period = 0
         if self.result == "":
             self.period = 0
         else:
+            self.result_literal_eval = literal_eval(self.result)
             self.period = self.result_literal_eval["now_tick"]
         Mese.setObjectName("Mese")
         Mese.setEnabled(True)
@@ -99,8 +100,10 @@ class Ui_Mese(object):
         self.label_ResultsforPeriod.setFont(font)
         
         self.result_period = self.period
-        if self.period - 1 <= -1:
+        if self.period - 1 == -1:
             self.result_period = ""
+        else:
+            self.result_period = self.period - 1
             
         self.label_ResultsforPeriod.setObjectName("label_ResultsforPeriod")
         
@@ -123,11 +126,7 @@ class Ui_Mese(object):
         self.pushButton_EnterallDecisions.setFont(font)
         self.pushButton_EnterallDecisions.setObjectName("pushButton_EnterallDecisions")
         self.pushButton_EnterallDecisions.clicked.connect(self.pushButton_EnterallDecisions_was_clicked)
-        
-        if self.period == 0:
-            self.pushButton_EnterallDecisions.setEnabled(False)
-        else:
-            self.pushButton_EnterallDecisions.setEnabled(True)
+
         
         self.pushButton_ReviewDecisions = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_ReviewDecisions.setGeometry(QtCore.QRect(310, 240, 161, 41))
@@ -137,11 +136,7 @@ class Ui_Mese(object):
         self.pushButton_ReviewDecisions.setFont(font)
         self.pushButton_ReviewDecisions.setObjectName("pushButton_ReviewDecisions")
         self.pushButton_ReviewDecisions.clicked.connect(self.pushButton_ReviewDecisions_was_clicked)
-        
-        if self.period == 0:
-            self.pushButton_ReviewDecisions.setEnabled(False)
-        else:
-            self.pushButton_ReviewDecisions.setEnabled(True)
+
         
         self.pushButton_ClosePeriod = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_ClosePeriod.setGeometry(QtCore.QRect(310, 320, 161, 41))
@@ -172,29 +167,10 @@ class Ui_Mese(object):
         self.pushButton_View.setFont(font)
         self.pushButton_View.setObjectName("pushButton_View")
         self.pushButton_View.clicked.connect(self.pushButton_View_was_clicked)
-        
-        if self.period == 0:
-            self.pushButton_View.setEnabled(False)
-        else:
-            self.pushButton_View.setEnabled(True)
 
-        
-        self.pushButton_Graph = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Graph.setGeometry(QtCore.QRect(570, 240, 161, 41))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_Graph.setFont(font)
-        self.pushButton_Graph.setObjectName("pushButton_Graph")
-        self.pushButton_Graph.clicked.connect(self.pushButton_Graph_was_clicked)
-        
-        if self.period == 0:
-            self.pushButton_Graph.setEnabled(False)
-        else:
-            self.pushButton_Graph.setEnabled(True)
-        
+
         self.pushButton_Print = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Print.setGeometry(QtCore.QRect(570, 320, 161, 41))
+        self.pushButton_Print.setGeometry(QtCore.QRect(570, 240, 161, 41))
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -202,20 +178,43 @@ class Ui_Mese(object):
         self.pushButton_Print.setObjectName("pushButton_Print")
         self.pushButton_Print.clicked.connect(self.pushButton_Print_was_clicked)
         
-        if self.period == 0:
-            self.pushButton_Print.setEnabled(False)
-        else:
-            self.pushButton_Print.setEnabled(True)
-        
         
         self.label_Options = QtWidgets.QLabel(self.centralwidget)
-        self.label_Options.setGeometry(QtCore.QRect(80, 370, 71, 31))
+        self.label_Options.setGeometry(QtCore.QRect(82, 370, 71, 31))
         font = QtGui.QFont()
         font.setFamily("Montserrat Medium")
         font.setPointSize(13)
         self.label_Options.setFont(font)
         self.label_Options.setObjectName("label_Options")
         
+        
+        self.label_Graph = QtWidgets.QLabel(self.centralwidget)
+        self.label_Graph.setGeometry(QtCore.QRect(365, 370, 71, 31))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Medium")
+        font.setPointSize(13)
+        self.label_Graph.setFont(font)
+        self.label_Graph.setObjectName("label_Graph")
+        
+        self.pushButton_Industrial_Graph = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_Industrial_Graph.setGeometry(QtCore.QRect(310, 410, 161, 41))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_Industrial_Graph.setFont(font)
+        self.pushButton_Industrial_Graph.setObjectName("pushButton_Industrial_Graph")
+        self.pushButton_Industrial_Graph.clicked.connect(self.pushButton_Industrial_Graph_was_clicked)
+
+            
+        self.pushButton_Companies_Graph = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_Companies_Graph.setGeometry(QtCore.QRect(310, 450, 161, 41))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_Companies_Graph.setFont(font)
+        self.pushButton_Companies_Graph.setObjectName("pushButton_Companies_Graph")
+        self.pushButton_Companies_Graph.clicked.connect(self.pushButton_Companies_Graph_was_clicked)
+
         
         self.pushButton_SetParameters = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_SetParameters.setGeometry(QtCore.QRect(40, 450, 161, 41))
@@ -238,17 +237,17 @@ class Ui_Mese(object):
         
         
         self.label_company = QtWidgets.QLabel(self.centralwidget)
-        self.label_company.setGeometry(QtCore.QRect(730, 480, 141, 31))
+        self.label_company.setGeometry(QtCore.QRect(730, 480, 140, 15))
         self.label_company.setObjectName("label_company")
         
         
         self.label_Version = QtWidgets.QLabel(self.centralwidget)
-        self.label_Version.setGeometry(QtCore.QRect(750, 0, 61, 20))
+        self.label_Version.setGeometry(QtCore.QRect(730, 0, 75, 15))
         self.label_Version.setObjectName("label_Version")
         
         
         self.label_currentPeriod = QtWidgets.QLabel(self.centralwidget)
-        self.label_currentPeriod.setGeometry(QtCore.QRect(40, 30, 151, 41))
+        self.label_currentPeriod.setGeometry(QtCore.QRect(40, 15, 151, 41))
         font = QtGui.QFont()
         font.setFamily("Montserrat SemiBold")
         font.setPointSize(18)
@@ -259,7 +258,7 @@ class Ui_Mese(object):
         
         
         self.img_theFirstp = QtWidgets.QLabel(self.centralwidget)
-        self.img_theFirstp.setGeometry(QtCore.QRect(10, 70, 20, 20))
+        self.img_theFirstp.setGeometry(QtCore.QRect(10, 69, 20, 20))
         self.img_theFirstp.setText("")
         self.img_theFirstp.setPixmap(QtGui.QPixmap("Images/medal.png"))
         self.img_theFirstp.setScaledContents(True)
@@ -267,7 +266,7 @@ class Ui_Mese(object):
         
         
         self.img_theSecondp = QtWidgets.QLabel(self.centralwidget)
-        self.img_theSecondp.setGeometry(QtCore.QRect(10, 100, 20, 20))
+        self.img_theSecondp.setGeometry(QtCore.QRect(10, 99, 20, 20))
         self.img_theSecondp.setText("")
         self.img_theSecondp.setPixmap(QtGui.QPixmap("Images/medal (1).png"))
         self.img_theSecondp.setScaledContents(True)
@@ -275,7 +274,7 @@ class Ui_Mese(object):
         
         
         self.img_theThirdp = QtWidgets.QLabel(self.centralwidget)
-        self.img_theThirdp.setGeometry(QtCore.QRect(10, 130, 20, 20))
+        self.img_theThirdp.setGeometry(QtCore.QRect(10, 129, 20, 20))
         self.img_theThirdp.setText("")
         self.img_theThirdp.setPixmap(QtGui.QPixmap("Images/medal (2).png"))
         self.img_theThirdp.setScaledContents(True)
@@ -285,7 +284,7 @@ class Ui_Mese(object):
         self.label_theFirstp = QtWidgets.QLabel(self.centralwidget)
         self.label_theFirstp.setGeometry(QtCore.QRect(40, 70, 91, 16))
         font = QtGui.QFont()
-        font.setFamily("Montserrat")
+        font.setFamily("Montserrat SemiBold")
         font.setPointSize(11)
         self.label_theFirstp.setFont(font)
         self.label_theFirstp.setObjectName("label_theFirstp")
@@ -294,7 +293,7 @@ class Ui_Mese(object):
         self.label_theSecondp = QtWidgets.QLabel(self.centralwidget)
         self.label_theSecondp.setGeometry(QtCore.QRect(40, 100, 91, 16))
         font = QtGui.QFont()
-        font.setFamily("Montserrat")
+        font.setFamily("Montserrat SemiBold")
         font.setPointSize(11)
         self.label_theSecondp.setFont(font)
         self.label_theSecondp.setObjectName("label_theSecondp")
@@ -303,7 +302,7 @@ class Ui_Mese(object):
         self.label_theThirdp = QtWidgets.QLabel(self.centralwidget)
         self.label_theThirdp.setGeometry(QtCore.QRect(40, 130, 81, 16))
         font = QtGui.QFont()
-        font.setFamily("Montserrat")
+        font.setFamily("Montserrat SemiBold")
         font.setPointSize(11)
         self.label_theThirdp.setFont(font)
         self.label_theThirdp.setObjectName("label_theThirdp")
@@ -349,14 +348,17 @@ class Ui_Mese(object):
         self.action_Rus.setCheckable(True)
         self.action_Rus.setObjectName("action_Rus")
         self.action_Rus.triggered.connect(self.action_Rus_was_clicked)
+        self.action_Rus.setEnabled(False) #temporarily unavailable
         
         self.actionDark = QtGui.QAction(Mese)
         self.actionDark.setCheckable(True)
         self.actionDark.setObjectName("actionDark")
         self.actionDark.triggered.connect(self.actionDark_was_clicked)
+        self.actionDark.setEnabled(False) #temporarily unavailable
         
         self.actionLight = QtGui.QAction(Mese)
         self.actionLight.setCheckable(True)
+        self.actionLight.setChecked(True)
         self.actionLight.setObjectName("actionLight")
         self.actionLight.triggered.connect(self.actionLight_was_clicked)
         
@@ -385,10 +387,32 @@ class Ui_Mese(object):
         #self.comboBox.addItem("")
         #self.comboBox.addItem("")
         #self.comboBox.addItem("")
-        
-        
-
         self.retranslateUi(Mese)
+        if self.period == 0:
+            self.pushButton_EnterallDecisions.setEnabled(False)
+            self.pushButton_ReviewDecisions.setEnabled(False)
+            self.pushButton_View.setEnabled(False)
+            self.pushButton_Print.setEnabled(False)
+            self.pushButton_Industrial_Graph.setEnabled(False)
+            self.pushButton_Companies_Graph.setEnabled(False)
+            self.pushButton_SetParameters.setEnabled(False)
+            
+            self.pushButton_Setup.setEnabled(True)
+            self.pushButton_ChangeLevelOfPlay.setEnabled(True)
+
+        else:
+            self.pushButton_EnterallDecisions.setEnabled(True)
+            self.pushButton_ReviewDecisions.setEnabled(True)
+            self.pushButton_View.setEnabled(True)
+            self.pushButton_Print.setEnabled(True)
+            self.pushButton_Industrial_Graph.setEnabled(True)
+            self.pushButton_Companies_Graph.setEnabled(True)
+            self.pushButton_SetParameters.setEnabled(True)
+            
+            self.pushButton_Setup.setEnabled(False)
+            self.pushButton_ChangeLevelOfPlay.setEnabled(False)
+            self.place()
+            
         QtCore.QMetaObject.connectSlotsByName(Mese)
 
         open("ClosePeriod_log.txt", "w").close()
@@ -408,17 +432,19 @@ class Ui_Mese(object):
         self.pushButton_ClosePeriod.setText(_translate("Mese", "Close Period"))
         #self.pushButton_SelectPeriod.setText(_translate("Mese", "Select Period"))
         self.pushButton_View.setText(_translate("Mese", "View"))
-        self.pushButton_Graph.setText(_translate("Mese", "Graph"))
+        self.pushButton_Industrial_Graph.setText(_translate("Mese", "Industrial Graph"))
+        self.pushButton_Companies_Graph.setText(_translate("Mese", "Companies Graph"))
         self.pushButton_Print.setText(_translate("Mese", "Print"))
         self.label_Options.setText(_translate("Mese", "Options"))
+        self.label_Graph.setText(_translate("Mese", "Graph"))
         self.pushButton_SetParameters.setText(_translate("Mese", "Set Parameters"))
         self.pushButton_ChangeLevelOfPlay.setText(_translate("Mese", "Change Level of Play"))
-        self.label_company.setText(_translate("Mese", "2022 TON corp."))
-        self.label_Version.setText(_translate("Mese", "v0.1 Alpha"))
+        self.label_company.setText(_translate("Mese", "2023 TON corp."))
+        self.label_Version.setText(_translate("Mese", "v. 1.0 Alpha-2"))
         self.label_currentPeriod.setText(_translate("Mese", f"Period {self.period}"))
-        self.label_theFirstp.setText(_translate("Mese", "TONCHIK"))
-        self.label_theSecondp.setText(_translate("Mese", "TONCHIK"))
-        self.label_theThirdp.setText(_translate("Mese", "TONCHIK"))
+        self.label_theFirstp.setText(_translate("Mese", "TON corp"))
+        self.label_theSecondp.setText(_translate("Mese", "TON corp"))
+        self.label_theThirdp.setText(_translate("Mese", "TON corp"))
         self.menuOptions.setTitle(_translate("Mese", "Options"))
         self.menuLanguage.setTitle(_translate("Mese", "Language"))
         self.menuTheme.setTitle(_translate("Mese", "Theme"))
@@ -451,11 +477,13 @@ class Ui_Mese(object):
                 self.pushButton_EnterallDecisions.setEnabled(False)
                 self.pushButton_ReviewDecisions.setEnabled(False)
                 self.pushButton_View.setEnabled(False)
-                self.pushButton_Graph.setEnabled(False)
+                self.pushButton_Companies_Graph.setEnabled(False)
+                self.pushButton_Industrial_Graph.setEnabled(False)
                 self.pushButton_Print.setEnabled(False)
                 
                 self.pushButton_Setup.setEnabled(True)
-                self.pushButton_SetParameters.setEnabled(True)
+                self.pushButton_ChangeLevelOfPlay.setEnabled(True)
+                self.pushButton_SetParameters.setEnabled(False)
         
                 self.retranslateUi(Mese)
         
@@ -474,15 +502,18 @@ class Ui_Mese(object):
         self.Dialog_SelectaCompany_Review.exec()
     
     def pushButton_ClosePeriod_was_clicked(self):
+        
         log_file = open("ClosePeriod_log.txt", "r").readline()
         length = len(log_file.split(" ")) - 1
-        if length == 8 or self.period == 0:
+        player_count = len(literal_eval(open("Dialog_Setup.txt", "r").readline()))
+        
+        if self.period == 0 or length == player_count:
             self.Dialog_ClosePeriod = QtWidgets.QDialog()
             self.Dialog_ClosePeriod_ui = Ui_Dialog_ClosePeriod()
             self.Dialog_ClosePeriod_ui.setupUi(self.Dialog_ClosePeriod)
             self.Dialog_ClosePeriod.exec()
             
-            
+            self.retranslateUi(Mese) 
             
         else:     
             self.Dialog_ClosePeriod_Error = QtWidgets.QDialog()
@@ -495,44 +526,39 @@ class Ui_Mese(object):
         if check_file == "":
             self.period = 0
             
-        else:   
+        else:
+               
             self.period = literal_eval(check_file)["now_tick"]
             self.pushButton_EnterallDecisions.setEnabled(True)
             self.pushButton_ReviewDecisions.setEnabled(True)
             self.pushButton_View.setEnabled(True)
-            self.pushButton_Graph.setEnabled(True)
+            self.pushButton_Companies_Graph.setEnabled(True)
+            self.pushButton_Industrial_Graph.setEnabled(True)
             self.pushButton_Print.setEnabled(True)
-         
-        self.retranslateUi(Mese)
-        
-        self.pushButton_Setup.setEnabled(False)
-        self.pushButton_SetParameters.setEnabled(False)
-        
-        sort_mpi = sorted(self.result_literal_eval["data"]["mpi"])
-        num = 1
-        winners = {
-            "first": "Company_1",
-            "second": "Company_2",
-            "third": "Company_3"
-        }
-        
-        for i in self.result_literal_eval["data"]["mpi"]: 
-            if i == sort_mpi[0]:
-                winners["first"] = str(num) * 3
-            else:
-                num += 1
-        
-        self.label_theFirstp.setText(winners["first"])
-        
-        
+            self.pushButton_Setup.setEnabled(False)
+            self.pushButton_ChangeLevelOfPlay.setEnabled(False)
+            self.pushButton_SetParameters.setEnabled(True)
+            
+            self.retranslateUi(Mese)
+            
+            self.place()
+      
+        self.label_ResultsforPeriod.setText(f"Results for Period {self.period - 1}")    
+
     #def pushButton_SelectPeriod_was_clicked(self):
         #pass
     
     def pushButton_View_was_clicked(self):
         system(r"report.pdf") # os.system
     
-    def pushButton_Graph_was_clicked(self):
+    def pushButton_Industrial_Graph_was_clicked(self):
         pass
+    
+    def pushButton_Companies_Graph_was_clicked(self):
+        self.Dialog_Companies_Graph = QtWidgets.QDialog()
+        self.Dialog_Companies_Graph_ui = Ui_Dialog_Graph()
+        self.Dialog_Companies_Graph_ui.setupUi(self.Dialog_Companies_Graph)
+        self.Dialog_Companies_Graph.exec()
     
     def pushButton_Print_was_clicked(self):
         self.Dialog_Print = QtWidgets.QDialog()
@@ -571,6 +597,48 @@ class Ui_Mese(object):
         self.Dialog_Contactus_ui = Ui_Dialog_Contactus()
         self.Dialog_Contactus_ui.setupUi(self.Dialog_Contactus)
         self.Dialog_Contactus.exec()
+        
+    def place(self):
+        self.f_result_p = literal_eval(open("result.txt", "r").readline())
+        sort_mpi = sorted(self.f_result_p["data"]["mpi"], reverse=True)
+
+        self.winners = {
+            "first": "Company_1",
+            "second": "Company_2",
+            "third": "Company_3"
+        }
+        num_1 = 1
+            
+        for i in self.f_result_p["data"]["mpi"]: 
+            if i == sort_mpi[0]:
+                self.winners["first"] = f"Company_{num_1}"
+                continue
+            num_1 += 1
+        num_2 = 1    
+        for i in self.f_result_p["data"]["mpi"]: 
+            if i == sort_mpi[1]:
+                self.winners["second"] = f"Company_{num_2}"
+                continue
+            num_2 += 1
+            
+        try:
+            num_3 = 1  
+            for i in self.f_result_p["data"]["mpi"]:   
+                if i == sort_mpi[2]:
+                    self.winners["third"] = f"Company_{num_3}"
+                    continue
+                num_3 += 1
+        except IndexError:
+            self.winners["third"] = ""
+                
+        f = literal_eval(open("Dialog_Setup.txt", "r").readline())
+
+        self.label_theFirstp.setText(f[self.winners["first"]])
+        self.label_theSecondp.setText(f[self.winners["second"]])
+        if self.winners["third"] == "":
+            self.label_theThirdp.setText("")
+        else:
+            self.label_theThirdp.setText(f[self.winners["third"]])
 
 
 

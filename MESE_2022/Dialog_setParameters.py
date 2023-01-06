@@ -316,6 +316,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_TaxRate.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_TaxRate.setClearButtonEnabled(False)
         self.lineEdit_TaxRate.setObjectName("lineEdit_TaxRate")
+        self.lineEdit_TaxRate.setValidator(QtGui.QIntValidator(0, 99))
+        
         self.label_TaxRate_unit = QtWidgets.QLabel(Dialog_setParameters)
         self.label_TaxRate_unit.setGeometry(QtCore.QRect(222, 220, 16, 20))
         font = QtGui.QFont()
@@ -329,7 +331,7 @@ class Ui_Dialog_setParameters(object):
         font.setFamily("Montserrat Medium")
         font.setPointSize(10)
         self.label_InterestRate.setFont(font)
-        self.label_InterestRate.setObjectName("label_InterestRate")
+        self.label_InterestRate.setObjectName("label_InterestRate")    
         self.label_InterestRate_unit = QtWidgets.QLabel(Dialog_setParameters)
         self.label_InterestRate_unit.setGeometry(QtCore.QRect(222, 240, 16, 20))
         font = QtGui.QFont()
@@ -351,6 +353,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_InterestRate.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_InterestRate.setClearButtonEnabled(False)
         self.lineEdit_InterestRate.setObjectName("lineEdit_InterestRate")
+        self.lineEdit_InterestRate.setValidator(QtGui.QIntValidator(0, 99))
+        
         self.label_LoanLimit = QtWidgets.QLabel(Dialog_setParameters)
         self.label_LoanLimit.setGeometry(QtCore.QRect(10, 260, 110, 20))
         font = QtGui.QFont()
@@ -379,6 +383,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_LoanLimit.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_LoanLimit.setClearButtonEnabled(False)
         self.lineEdit_LoanLimit.setObjectName("lineEdit_LoanLimit")
+        self.lineEdit_LoanLimit.setValidator(QtGui.QIntValidator(0, 999999))
+        
         self.label_MaxPrice = QtWidgets.QLabel(Dialog_setParameters)
         self.label_MaxPrice.setGeometry(QtCore.QRect(10, 280, 110, 20))
         font = QtGui.QFont()
@@ -407,6 +413,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_MaxPrice.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_MaxPrice.setClearButtonEnabled(False)
         self.lineEdit_MaxPrice.setObjectName("lineEdit_MaxPrice")
+        self.lineEdit_MaxPrice.setValidator(QtGui.QIntValidator(0, 9999))
+        
         self.label_MaxMarketing = QtWidgets.QLabel(Dialog_setParameters)
         self.label_MaxMarketing.setGeometry(QtCore.QRect(10, 300, 110, 20))
         font = QtGui.QFont()
@@ -435,6 +443,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_MaxMarketing.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_MaxMarketing.setClearButtonEnabled(False)
         self.lineEdit_MaxMarketing.setObjectName("lineEdit_MaxMarketing")
+        self.lineEdit_MaxMarketing.setValidator(QtGui.QIntValidator(0, 999999))
+        
         self.label_MaxCapInv = QtWidgets.QLabel(Dialog_setParameters)
         self.label_MaxCapInv.setGeometry(QtCore.QRect(10, 320, 110, 20))
         font = QtGui.QFont()
@@ -463,6 +473,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_MaxCapInv.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_MaxCapInv.setClearButtonEnabled(False)
         self.lineEdit_MaxCapInv.setObjectName("lineEdit_MaxCapInv")
+        self.lineEdit_MaxCapInv.setValidator(QtGui.QIntValidator(0, 999999))
+        
         self.label_MaxRandD = QtWidgets.QLabel(Dialog_setParameters)
         self.label_MaxRandD.setGeometry(QtCore.QRect(10, 340, 110, 20))
         font = QtGui.QFont()
@@ -491,6 +503,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_MaxRandD.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_MaxRandD.setClearButtonEnabled(False)
         self.lineEdit_MaxRandD.setObjectName("lineEdit_MaxRandD")
+        self.lineEdit_MaxRandD.setValidator(QtGui.QIntValidator(0, 999999))
+        
         self.label_RandD_unit = QtWidgets.QLabel(Dialog_setParameters)
         self.label_RandD_unit.setGeometry(QtCore.QRect(472, 260, 16, 20))
         font = QtGui.QFont()
@@ -547,6 +561,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_RandD.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_RandD.setClearButtonEnabled(False)
         self.lineEdit_RandD.setObjectName("lineEdit_RandD")
+        self.lineEdit_RandD.setValidator(QtGui.QIntValidator(0, 99))
+        
         self.lineEdit_Price = QtWidgets.QLineEdit(Dialog_setParameters)
         self.lineEdit_Price.setGeometry(QtCore.QRect(410, 240, 60, 20))
         font = QtGui.QFont()
@@ -561,6 +577,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_Price.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_Price.setClearButtonEnabled(False)
         self.lineEdit_Price.setObjectName("lineEdit_Price")
+        self.lineEdit_Price.setValidator(QtGui.QIntValidator(0, 99))
+        
         self.lineEdit_Marketing = QtWidgets.QLineEdit(Dialog_setParameters)
         self.lineEdit_Marketing.setGeometry(QtCore.QRect(410, 220, 60, 20))
         font = QtGui.QFont()
@@ -575,6 +593,8 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_Marketing.setCursorMoveStyle(QtCore.Qt.CursorMoveStyle.LogicalMoveStyle)
         self.lineEdit_Marketing.setClearButtonEnabled(False)
         self.lineEdit_Marketing.setObjectName("lineEdit_Marketing")
+        self.lineEdit_Marketing.setValidator(QtGui.QIntValidator(0, 99))
+        
         self.label_MarketShare = QtWidgets.QLabel(Dialog_setParameters)
         self.label_MarketShare.setGeometry(QtCore.QRect(320, 180, 101, 21))
         font = QtGui.QFont()
@@ -628,11 +648,6 @@ class Ui_Dialog_setParameters(object):
         self.lineEdit_Marketing.textChanged.connect(self.Max100)
         
         self.pushButton_ResetSettings.clicked.connect(self.pushButton_ResetSettings_was_clicked)
-        
-        #MAX100
-        
-            
-        
         
         
         if self.file["DemandChange"] >= 0:
@@ -740,59 +755,89 @@ class Ui_Dialog_setParameters(object):
             self.label_DemandChange_int.setText(f"+{i}%")
         else:
             self.label_DemandChange_int.setText(f"{i}%")
-        self.file["DemandChange"] = i
+        self.file["DemandChange"] = int(i)
            
     def horizontalScrollBar_RandDImpact_valueChanged(self, i):
         if i >= 0:
             self.label_RandDImpact_int.setText(f"+{i}%")
         else:
             self.label_RandDImpact_int.setText(f"{i}%")
-        self.file["RandDImpact"] = i
+        self.file["RandDImpact"] = int(i)
            
     def horizontalScrollBar_PriceImpact_valueChanged(self, i):
         if i >= 0:
             self.label_PriceImpact_int.setText(f"+{i}%")
         else:
             self.label_PriceImpact_int.setText(f"{i}%")
-        self.file["PriceImpact"] = i
+        self.file["PriceImpact"] = int(i)
                   
     def horizontalScrollBar_MarketingImpact_valueChanged(self, i):
         if i >= 0:
             self.label_MarketingImpact_int.setText(f"+{i}%")
         else:
             self.label_MarketingImpact_int.setText(f"{i}%")   
-        self.file["MarketingImpact"] = i
+        self.file["MarketingImpact"] = int(i)
         
         
     def lineEdit_TaxRate_text_Changed(self, i):
-        self.file["TaxRate"] = i
+        if i == '':
+            i = 0
+            
+        self.file["TaxRate"] = int(i)
 
     def lineEdit_InterestRate_text_Changed(self, i):
-        self.file["InterestRate"] = i
+        if i == '':
+            i = 0
+            
+        self.file["InterestRate"] = int(i)
     
     def lineEdit_LoanLimit_text_Changed(self, i):
-        self.file["LoanLimit"] = i
+        if i == '':
+            i = 0
+            
+        self.file["LoanLimit"] = int(i)
     
     def lineEdit_MaxPrice_text_Changed(self, i):
-        self.file["MaxPrice"] = i
+        if i == '':
+            i = 0
+            
+        self.file["MaxPrice"] = int(i)
     
     def lineEdit_MaxMarketing_text_Changed(self, i):
-        self.file["MaxMarketing"] = i
+        if i == '':
+            i = 0
+            
+        self.file["MaxMarketing"] = int(i)
     
     def lineEdit_MaxCapInv_text_Changed(self, i):
-        self.file["MaxCapInv"] = i
+        if i == '':
+            i = 0
+            
+        self.file["MaxCapInv"] = int(i)
     
     def lineEdit_MaxRandD_text_Changed(self, i):
-        self.file["MaxRandD"] = i
+        if i == '':
+            i = 0
+            
+        self.file["MaxRandD"] = int(i)
     
     def lineEdit_RandD_text_Changed(self, i):
-        self.file["RandD"] = i
+        if i == '':
+            i = 0
+            
+        self.file["RandD"] = int(i)
     
     def lineEdit_Price_text_Changed(self, i):
-        self.file["Price"] = i
+        if i == '':
+            i = 0
+            
+        self.file["Price"] = int(i)
     
     def lineEdit_Marketing_text_Changed(self, i):
-        self.file["Marketing"] = i
+        if i == '':
+            i = 0
+            
+        self.file["Marketing"] = int(i)
         
     def pushButton_ResetSettings_was_clicked(self):
         self.label_DemandChange_int.setText("+0%")
@@ -801,7 +846,7 @@ class Ui_Dialog_setParameters(object):
         self.label_MarketingImpact_int.setText("+0%")
         self.lineEdit_TaxRate.setText("25")
         self.lineEdit_InterestRate.setText("5")
-        self.lineEdit_LoanLimit.setText("30000")
+        self.lineEdit_LoanLimit.setText("50000")
         self.lineEdit_MaxPrice.setText("99")
         self.lineEdit_MaxMarketing.setText("15000")
         self.lineEdit_MaxCapInv.setText("15000")
@@ -820,7 +865,7 @@ class Ui_Dialog_setParameters(object):
             "MarketingImpact": 0,
             "TaxRate": 25,
             "InterestRate": 5,
-            "LoanLimit": 30000,
+            "LoanLimit": 50000,
             "MaxPrice": 99,
             "MaxMarketing": 15000,
             "MaxCapInv": 15000,
@@ -846,8 +891,10 @@ class Ui_Dialog_setParameters(object):
                 return i
         if int(zero(self.file["RandD"])) + int(zero(self.file["Price"])) + int(zero(self.file["Marketing"])) > 100:
             self.label_MAX100.setStyleSheet("color: red;")
+            self.buttonBox.setEnabled(False)
         else:
             self.label_MAX100.setStyleSheet("color: dark;")
+            self.buttonBox.setEnabled(True)
     
     def save_was_clicked(self):
         f    = open("settings.txt", "w")
