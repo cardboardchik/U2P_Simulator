@@ -128,7 +128,6 @@ class Ui_Dialog_ClosePeriod(object):
         
                 i += 1
                                
-            print (result)
             result_2 = engine.exec(result_literal_eval)
             file_pre_result.write(str(result_2))
             
@@ -1588,7 +1587,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 265)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=46, h=0, align="R", txt=f"{round(result['data']['share'][0], 3) * 100}%", border=0)
+            pdf.cell(w=46, h=0, align="R", txt=f"{round(result['data']['share'][0] * 100, 1)}%", border=0)
             
             # MPI for Company 1
             pdf.set_xy(0, 270)
@@ -1631,7 +1630,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 265)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=68.5, h=0, align="R", txt=f"{round(result['data']['share'][1], 3) * 100}%", border=0)
+            pdf.cell(w=68.5, h=0, align="R", txt=f"{round(result['data']['share'][1] * 100, 1)}%", border=0)
             
             # MPI for Company 2
             pdf.set_xy(0, 270)
@@ -1674,7 +1673,7 @@ class Ui_Dialog_ClosePeriod(object):
                 pdf.set_xy(0, 265)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=91, h=0, align="R", txt=f"{round(result['data']['share'][2], 3) * 100}%", border=0)
+                pdf.cell(w=91, h=0, align="R", txt=f"{round(result['data']['share'][2] * 100, 1)}%", border=0)
             
                 # MPI for Company 3
                 pdf.set_xy(0, 270)
@@ -1717,7 +1716,7 @@ class Ui_Dialog_ClosePeriod(object):
                 pdf.set_xy(0, 265)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=113.5, h=0, align="R", txt=f"{round(result['data']['share'][3], 3) * 100}%", border=0)
+                pdf.cell(w=113.5, h=0, align="R", txt=f"{round(result['data']['share'][3] * 100, 1)}%", border=0)
             
                 # MPI for Company 4
                 pdf.set_xy(0, 270)
@@ -1760,7 +1759,7 @@ class Ui_Dialog_ClosePeriod(object):
                 pdf.set_xy(0, 265)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=136, h=0, align="R", txt=f"{round(result['data']['share'][4], 3) * 100}%", border=0)
+                pdf.cell(w=136, h=0, align="R", txt=f"{round(result['data']['share'][4] * 100, 1)}%", border=0)
             
                 # MPI for Company 5
                 pdf.set_xy(0, 270)
@@ -1803,7 +1802,7 @@ class Ui_Dialog_ClosePeriod(object):
                 pdf.set_xy(0, 265)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=158.5, h=0, align="R", txt=f"{round(result['data']['share'][5], 3) * 100}%", border=0)
+                pdf.cell(w=158.5, h=0, align="R", txt=f"{round(result['data']['share'][5] * 100, 1)}%", border=0)
             
                 # MPI for Company 6
                 pdf.set_xy(0, 270)
@@ -1846,7 +1845,7 @@ class Ui_Dialog_ClosePeriod(object):
                 pdf.set_xy(0, 265)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=181, h=0, align="R", txt=f"{round(result['data']['share'][6], 3) * 100}%", border=0)
+                pdf.cell(w=181, h=0, align="R", txt=f"{round(result['data']['share'][6] * 100, 1)}%", border=0)
             
                 # MPI for Company 7
                 pdf.set_xy(0, 270)
@@ -1889,7 +1888,7 @@ class Ui_Dialog_ClosePeriod(object):
                 pdf.set_xy(0, 265)
                 pdf.set_font("Arial", "", 12)
                 pdf.set_text_color(0, 0, 0)
-                pdf.cell(w=203.5, h=0, align="R", txt=f"{round(result['data']['share'][7], 3) * 100}%", border=0)
+                pdf.cell(w=203.5, h=0, align="R", txt=f"{round(result['data']['share'][7] * 100, 1)}%", border=0)
 
                 # MPI for Company 8
                 pdf.set_xy(0, 270)

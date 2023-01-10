@@ -1,9 +1,9 @@
+# force close
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 from ast import literal_eval
 from Dialog_ClosePeriod import Ui_Dialog_ClosePeriod
 
-import engine
 
 class Ui_Dialog_ClosePeriod_Error(object):
     def setupUi(self, Dialog_ClosePeriod_Error):
@@ -11,6 +11,11 @@ class Ui_Dialog_ClosePeriod_Error(object):
         Dialog_ClosePeriod_Error.resize(200, 300)
         Dialog_ClosePeriod_Error.setMinimumSize(QtCore.QSize(200, 300))
         Dialog_ClosePeriod_Error.setMaximumSize(QtCore.QSize(200, 300))
+        
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("Images/setting.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        Dialog_ClosePeriod_Error.setWindowIcon(icon)
+        
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_ClosePeriod_Error)
         self.buttonBox.setGeometry(QtCore.QRect(19, 260, 161, 32))
         font = QtGui.QFont()
@@ -76,8 +81,9 @@ class Ui_Dialog_ClosePeriod_Error(object):
         
 
     def retranslateUi(self, Dialog_ClosePeriod_Error):
+        period = literal_eval(open('result.txt', 'r').readline())
         _translate = QtCore.QCoreApplication.translate
-        Dialog_ClosePeriod_Error.setWindowTitle(_translate("Dialog_ClosePeriod_Error", "Close Period 0"))
+        Dialog_ClosePeriod_Error.setWindowTitle(_translate("Dialog_ClosePeriod_Error", f"Close Period {period['now_tick']}"))
         self.label_txt_1.setText(_translate("Dialog_ClosePeriod_Error", "There are missing decisions."))
         self.label_txt_2.setText(_translate("Dialog_ClosePeriod_Error", " Do you really want to do it?"))
         self.listWidget.setSortingEnabled(False)

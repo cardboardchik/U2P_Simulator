@@ -64,6 +64,8 @@ class Ui_Dialog_Restart(object):
         try:
             remove('report.pdf')
             rmtree('./reports/')
+            remove('report_for_print.pdf')
+            
         except FileNotFoundError:
             pass
         

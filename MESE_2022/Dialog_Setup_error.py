@@ -11,7 +11,7 @@ class Ui_Dialog_Setup_error(object):
         Dialog_Setup_error.setMinimumSize(QtCore.QSize(350, 150))
         Dialog_Setup_error.setMaximumSize(QtCore.QSize(350, 150))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("Images/setting.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("Images/setup_error.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Dialog_Setup_error.setWindowIcon(icon)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_Setup_error)
         self.buttonBox.setGeometry(QtCore.QRect(-58, 115, 311, 30))
@@ -46,7 +46,7 @@ class Ui_Dialog_Setup_error(object):
         self.label_photo = QtWidgets.QLabel(Dialog_Setup_error)
         self.label_photo.setGeometry(QtCore.QRect(0, 10, 111, 111))
         self.label_photo.setText("")
-        self.label_photo.setPixmap(QtGui.QPixmap("Images/a7e.png"))
+        self.label_photo.setPixmap(QtGui.QPixmap("Images/setup_error.png"))
         self.label_photo.setScaledContents(True)
         self.label_photo.setObjectName("label_photo")
 

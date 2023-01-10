@@ -14,6 +14,10 @@ class Ui_Dialog(object):
         Dialog.setMinimumSize(QtCore.QSize(600, 410))
         Dialog.setMaximumSize(QtCore.QSize(600, 410))
         
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("Images/setting.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        Dialog.setWindowIcon(icon)
+        
         self.f = open("logs.txt", "r").readline()
         self.result = literal_eval(open("result.txt", "r").readline())
         self.setup = literal_eval(open("Dialog_Setup.txt", "r").readline())

@@ -16,7 +16,7 @@ class Ui_Dialog_Contactus(object):
         self.label_photo = QtWidgets.QLabel(Dialog_Contactus)
         self.label_photo.setGeometry(QtCore.QRect(0, 0, 1000, 666))
         self.label_photo.setText("")
-        self.label_photo.setPixmap(QtGui.QPixmap("Images/hF5JKdsCvFA.jpg"))
+        self.label_photo.setPixmap(QtGui.QPixmap("Images/contact_us.png"))
         self.label_photo.setScaledContents(True)
         self.label_photo.setObjectName("label_photo")
         self.label_by = QtWidgets.QLabel(Dialog_Contactus)
