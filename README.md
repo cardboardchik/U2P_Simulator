@@ -1,6 +1,6 @@
 
-# UPMCD
-UPMCD can be called an adaptation of MESE for modern operating systems, they are based on similar mathematical models, but there are some changes. UPMCD was created by <a href='https://github.com/cardboardchik'>karton4ik</a> as a replacement for Junior Achievement's MESE
+# U2P
+U2P can be called an adaptation of MESE for modern operating systems, they are based on similar mathematical models, but there are some changes. U2P was created by <a href='https://github.com/cardboardchik'>karton4ik</a> as a replacement for Junior Achievement's MESE
 
 # About MESE or Management and Economic Simulator Exercise
 
@@ -11,6 +11,19 @@ MESE was created in the 1980s. It was widely used by JA (Junior Achievement) in 
 MESE dosen't run on 64-bit sistems. I added the <a href='https://github.com/cardboardchik/Mese_2022/tree/main/mese_old_ver'>old version of the program</a>.
 
 To run the old version of the program, you need to find MESE.EXE and run it (only runs on 32-bit systems). I checked on Windows 7(32-bit), everything worked.
+
+# Difference between U2P and MESE
+<ul>
+  <li>Support for modern OC;</li>
+  <li>Game modes. Now the moderator does not have to configure the situation manually, he can select one of the suggested modes. Of course, it will still be possible to set up as in the old version, in the advanced settings section;</li>
+  <li>More detailed graphs. The MESE lacked the ability to compare companies with each other, and there was also no choice of period range. In U2P, these features are present;</li>
+  <li>Saving past games. It is now possible to save unfinished games, and continue them later. (in progress);</li>
+  <li>Minor changes to the main window. Firstly, the display of the first three commands by number of MPI was added. Second, the Graph button has "moved" to a separate section, as it is now independent of the game period. And a few more minor changes;</li>
+  <li>Adding languages other than English. The process of adding Russian is currently underway;</li>
+</ul>
+
+# How to play in U2P
+
 
 # Minimum system requirements
 <ul>
