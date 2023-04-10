@@ -6,22 +6,22 @@ from Dialog_EnterDecisions import Ui_Dialog
 from ast import literal_eval
 
 
-class Ui_Dialog_ReviewDecisions(object):
-    def setupUi(self, Dialog_ReviewDecisions):
-        Dialog_ReviewDecisions.setObjectName("Dialog_ReviewDecisions")
-        Dialog_ReviewDecisions.resize(200, 300)
-        Dialog_ReviewDecisions.setMinimumSize(QtCore.QSize(200, 300))
-        Dialog_ReviewDecisions.setMaximumSize(QtCore.QSize(200, 300))
+class Ui_Dialog_SelectCompany_Review(object):
+    def setupUi(self, Dialog_SelectCompany_Review):
+        Dialog_SelectCompany_Review.setObjectName("Dialog_SelectCompany_Review")
+        Dialog_SelectCompany_Review.resize(200, 300)
+        Dialog_SelectCompany_Review.setMinimumSize(QtCore.QSize(200, 300))
+        Dialog_SelectCompany_Review.setMaximumSize(QtCore.QSize(200, 300))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("Images/setting.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        Dialog_ReviewDecisions.setWindowIcon(icon)
-        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_ReviewDecisions)
-        self.buttonBox.setGeometry(QtCore.QRect(17, 260, 161, 32))
+        Dialog_SelectCompany_Review.setWindowIcon(icon)
+        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_SelectCompany_Review)
+        self.buttonBox.setGeometry(QtCore.QRect(18, 260, 120, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Orientation.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel|QtWidgets.QDialogButtonBox.StandardButton.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel)
         self.buttonBox.setObjectName("buttonBox")
-        self.listWidget = QtWidgets.QListWidget(Dialog_ReviewDecisions)
-        self.listWidget.setGeometry(QtCore.QRect(10, 10, 180, 240))
+        self.listWidget = QtWidgets.QListWidget(Dialog_SelectCompany_Review)
+        self.listWidget.setGeometry(QtCore.QRect(10, 10, 180, 190))
         font = QtGui.QFont()
         font.setFamily("Montserrat Medium")
         font.setPointSize(10)
@@ -35,6 +35,16 @@ class Ui_Dialog_ReviewDecisions(object):
         self.listWidget.setSelectionRectVisible(False)
         self.listWidget.setObjectName("listWidget")
         
+        self.lable_hint = QtWidgets.QLabel(Dialog_SelectCompany_Review)
+        self.lable_hint.setGeometry(QtCore.QRect(5, 200, 190, 60))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Medium")
+        font.setPointSize(9)
+        self.lable_hint.setFont(font)
+        self.lable_hint.setText("To enter a solution for a company, you need to double-click on the company for which you want to enter a solution")
+        self.lable_hint.setWordWrap(True)
+        self.lable_hint.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        
         self.file = literal_eval(open("Dialog_Setup.txt", "r").readline())
         
         for i in range(len(self.file)):
@@ -43,14 +53,14 @@ class Ui_Dialog_ReviewDecisions(object):
         
         
         self.listWidget.itemDoubleClicked.connect(self.listWidget_was_doubleClicked)
-        self.retranslateUi(Dialog_ReviewDecisions)
-        self.buttonBox.accepted.connect(Dialog_ReviewDecisions.accept) # type: ignore
-        self.buttonBox.rejected.connect(Dialog_ReviewDecisions.reject) # type: ignore
-        QtCore.QMetaObject.connectSlotsByName(Dialog_ReviewDecisions)
+        self.retranslateUi(Dialog_SelectCompany_Review)
+        #self.buttonBox.accepted.connect(Dialog_SelectCompany_Review.accept) # type: ignore
+        self.buttonBox.rejected.connect(Dialog_SelectCompany_Review.reject) # type: ignore
+        QtCore.QMetaObject.connectSlotsByName(Dialog_SelectCompany_Review)
 
-    def retranslateUi(self, Dialog_ReviewDecisions):
+    def retranslateUi(self, Dialog_SelectCompany_Review):
         _translate = QtCore.QCoreApplication.translate
-        Dialog_ReviewDecisions.setWindowTitle(_translate("Dialog_ReviewDecisions", "Select a Company"))
+        Dialog_SelectCompany_Review.setWindowTitle(_translate("Dialog_SelectCompany_Review", "Select a Company"))
         self.listWidget.setSortingEnabled(False)
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
@@ -75,6 +85,8 @@ class Ui_Dialog_ReviewDecisions(object):
         self.Dialog_EnterDecisions_ui.setupUi(self.Dialog_EnterDecisions)
         self.Dialog_EnterDecisions.exec()
         
+    
+        
         
             
         
@@ -82,8 +94,8 @@ class Ui_Dialog_ReviewDecisions(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog_ReviewDecisions = QtWidgets.QDialog()
-    ui = Ui_Dialog_ReviewDecisions()
-    ui.setupUi(Dialog_ReviewDecisions)
-    Dialog_ReviewDecisions.show()
+    Dialog_SelectCompany_Review = QtWidgets.QDialog()
+    ui = Ui_Dialog_SelectCompany_Review()
+    ui.setupUi(Dialog_SelectCompany_Review)
+    Dialog_SelectCompany_Review.show()
     sys.exit(app.exec())

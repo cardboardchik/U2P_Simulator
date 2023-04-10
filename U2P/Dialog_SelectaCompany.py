@@ -16,12 +16,12 @@ class Ui_Dialog_EnterallDecisions(object):
         icon.addPixmap(QtGui.QPixmap("Images/setting.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Dialog_EnterallDecisions.setWindowIcon(icon)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog_EnterallDecisions)
-        self.buttonBox.setGeometry(QtCore.QRect(17, 260, 161, 32))
+        self.buttonBox.setGeometry(QtCore.QRect(18, 260, 120, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Orientation.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel|QtWidgets.QDialogButtonBox.StandardButton.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel)
         self.buttonBox.setObjectName("buttonBox")
         self.listWidget = QtWidgets.QListWidget(Dialog_EnterallDecisions)
-        self.listWidget.setGeometry(QtCore.QRect(10, 10, 180, 240))
+        self.listWidget.setGeometry(QtCore.QRect(10, 10, 180, 190))
         font = QtGui.QFont()
         font.setFamily("Montserrat Medium")
         font.setPointSize(10)
@@ -35,6 +35,16 @@ class Ui_Dialog_EnterallDecisions(object):
         self.listWidget.setSelectionRectVisible(False)
         self.listWidget.setObjectName("listWidget")
         
+        self.lable_hint = QtWidgets.QLabel(Dialog_EnterallDecisions)
+        self.lable_hint.setGeometry(QtCore.QRect(5, 200, 190, 60))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat Medium")
+        font.setPointSize(9)
+        self.lable_hint.setFont(font)
+        self.lable_hint.setText("To enter a solution for a company, you need to double-click on the company for which you want to enter a solution")
+        self.lable_hint.setWordWrap(True)
+        self.lable_hint.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        
         for i in range(len(self.file)):
             item = QtWidgets.QListWidgetItem()
             self.listWidget.addItem(item)
@@ -43,7 +53,7 @@ class Ui_Dialog_EnterallDecisions(object):
         
         self.listWidget.itemDoubleClicked.connect(self.listWidget_was_doubleClicked)
         self.retranslateUi(Dialog_EnterallDecisions)
-        self.buttonBox.accepted.connect(Dialog_EnterallDecisions.accept) # type: ignore
+        #self.buttonBox.accepted.connect(Dialog_EnterallDecisions.accept) # type: ignore
         self.buttonBox.rejected.connect(Dialog_EnterallDecisions.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog_EnterallDecisions)
         

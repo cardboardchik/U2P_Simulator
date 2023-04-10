@@ -11,7 +11,7 @@ from Dialog_Restart import Ui_Dialog_Restart
 from Dialog_Change_Level_of_Play import Ui_Dialog_Change_Level_of_Play
 from Dialog_setParameters import Ui_Dialog_setParameters
 from Dialog_SelectaCompany import Ui_Dialog_EnterallDecisions
-from Dialog_SelectCompany_Review import Ui_Dialog_ReviewDecisions
+from Dialog_SelectCompany_Review import Ui_Dialog_SelectCompany_Review
 from Dialog_ClosePeriod_Error import Ui_Dialog_ClosePeriod_Error
 from Dialog_ClosePeriod import Ui_Dialog_ClosePeriod
 from Dialog_Print import Ui_Dialog_Print
@@ -321,11 +321,10 @@ class Ui_Mese(object):
         
         u2p.setCentralWidget(self.centralwidget)
         
-        self.statusbar = QtWidgets.QStatusBar(u2p)
-        self.statusbar.setObjectName("statusbar")
         
         
-        u2p.setStatusBar(self.statusbar)
+        
+    
         
         self.menubar = QtWidgets.QMenuBar(u2p)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 811, 21))
@@ -508,7 +507,7 @@ class Ui_Mese(object):
     
     def pushButton_ReviewDecisions_was_clicked(self):
         self.Dialog_SelectaCompany_Review = QtWidgets.QDialog()
-        self.Dialog_SelectaCompany_Review_ui = Ui_Dialog_ReviewDecisions()
+        self.Dialog_SelectaCompany_Review_ui = Ui_Dialog_SelectCompany_Review()
         self.Dialog_SelectaCompany_Review_ui.setupUi(self.Dialog_SelectaCompany_Review)
         self.Dialog_SelectaCompany_Review.exec()
     
