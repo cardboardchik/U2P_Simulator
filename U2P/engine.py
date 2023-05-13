@@ -16,56 +16,56 @@ def init(count):
         "settings": {
             "price_max": 99,
             "price_min": 2,
-            "mk_limit": 15000 * count,
-            "ci_limit": 15000 * count,
-            "rd_limit": 15000 * count ,
-            "loan_limit": 50000 * count,
+            "mk_limit": 120000, #15000 * count
+            "ci_limit": 120000, # 15000 * count
+            "rd_limit": 120000 , # 15000 * count
+            "loan_limit": 400000, # 50000 * count
             
-            "prod_rate_initial": 0.8,
+            "prod_rate_initial": 0.75,
             "prod_rate_balanced": 0.8,
             "prod_rate_pow": 2,
-            "prod_cost_factor_rate_over": 63,
-            "prod_cost_factor_rate_under": 63,
+            "prod_cost_factor_rate_over": 69,
+            "prod_cost_factor_rate_under": 138,
             "prod_cost_factor_size": 15,
             "prod_cost_factor_const": 3,
 
             "unit_fee": 40,
             "depreciation_rate": 0.05,
 
-            "initial_cash": 1750 * count,
-            "initial_loan": 7280 * count,
-            "initial_capital": 21000 * count,
+            "initial_cash": 14700, # 1837.5 * count
+            "initial_loan": 58240, # 7280 * count
+            "initial_capital": 168000, # 21000 * 8
 
-            "interest_rate_cash": 0.025,
-            "interest_rate_loan": 0.05,
+            "interest_rate_cash": 0.0125,
+            "interest_rate_loan": 0.035,
             "inventory_fee": 1,
             "tax_rate": 0.25,
 
-            "mk_overload": 2100 * count,
+            "mk_overload": 16800, #2100 * 8
             "mk_compression": 0.25,
 
-            "demand": 70 * count,
+            "demand": 500, # 62.5 * 8
             "demand_price": 1,
-            "demand_mk": 5,
+            "demand_mk": 5.3,
             "demand_rd": 1,
 
             "demand_ref_price": 30,
-            "demand_ref_mk": 1050 * count,
-            "demand_ref_rd": 420 * count,
+            "demand_ref_mk": 8400, # 1050 * 8
+            "demand_ref_rd": 3150, #393.75 * 8
             "demand_pow_price": 1,
             "demand_pow_mk": 0.5,
             "demand_pow_rd": 1,
 
-            "share_price": 0.4,
-            "share_mk": 0.3,
-            "share_rd": 0.3,
+            "share_price": 0.7,
+            "share_mk": 0.15,
+            "share_rd": 0.15,
             "share_pow_price": 3,
             "share_pow_mk": 1.5,
             "share_pow_rd": 1,
 
             "price_overload": 40,
 
-            "mpi_retern_factor": 1617 * count,
+            "mpi_retern_factor": 11155, # 1394.375 * count
             "mpi_factor_a": 50,
             "mpi_factor_b": 10,
             "mpi_factor_c": 10,
@@ -225,6 +225,7 @@ def exec(game):
     
     def fun_1(i):
         
+        
         game["decisions"]["price"][i] = minmax(
             game["decisions"]["price"][i],
             game["settings"]["price_min"], game["settings"]["price_max"]
@@ -258,7 +259,6 @@ def exec(game):
             #game["decisions"]["rd"][i] = 0
             
             
-        #goooooooooooooooooooooooo! :)
         
         game["data"]["prod"][i] = game["decisions"]["prod_rate"][i] * game["data"]["size"][i]
         game["data"]["prod_over"][i] = game["decisions"]["prod_rate"][i] - game["settings"]["prod_rate_balanced"]
@@ -427,7 +427,7 @@ def exec(game):
     
     
     def fun_4(i):
-        # help me :)
+
         game["data"]["margin_unit_sold"][i] = round(game["data"]["profit"][i] / game["data"]["sold"][i], 2)
         game["data"]["total_cost_unit_sold"][i] = round(game["decisions"]["price"][i] - game["data"]["margin_unit_sold"][i], 2)
         
@@ -436,30 +436,31 @@ def exec(game):
         
         
         
-        game["data"]["mpi_a"][i] = game["settings"]["mpi_factor_a"] * game["player_count"] * (
+        game["data"]["mpi_a"][i] = round(game["settings"]["mpi_factor_a"] * game["player_count"] * (
             game["data"]["retern"][i] / game["now_tick"] / game["settings"]["mpi_retern_factor"]
-        )
-        game["data"]["mpi_b"][i] = game["settings"]["mpi_factor_b"] * game["player_count"] * (
+        ))
+        game["data"]["mpi_b"][i] = round(game["settings"]["mpi_factor_b"] * game["player_count"] * (
             (game["data"]["history_rd"][i] + game["data"]["history_mk"][i]) / (sum_history_rd + sum_history_mk)
-        )
-        game["data"]["mpi_c"][i] = game["settings"]["mpi_factor_c"] * game["player_count"] * (
+        ))
+        game["data"]["mpi_c"][i] = round(game["settings"]["mpi_factor_c"] * game["player_count"] * (
             game["data"]["size"][i] / sum_size
-        )
-        game["data"]["mpi_d"][i] = game["settings"]["mpi_factor_d"] * (
+        ))
+        game["data"]["mpi_d"][i] = round(game["settings"]["mpi_factor_d"] * (
             1 - abs(game["data"]["prod_over"][i])
-        )
-        game["data"]["mpi_e"][i] = game["settings"]["mpi_factor_e"] * game["player_count"] * (
+        ))
+        game["data"]["mpi_e"][i] = round(game["settings"]["mpi_factor_e"] * game["player_count"] * (
             div(
                 game["data"]["sold"][i],
                 sum_sold,
                 0
             )
-        )
+        ))
         
-    
         game["data"]["mpi_f"][i] = game["settings"]["mpi_factor_f"]
         
-        game["data"]["mpi"][i] = round(game["data"]["mpi_a"][i] + game["data"]["mpi_b"][i] + game["data"]["mpi_c"][i] + game["data"]["mpi_d"][i] + game["data"]["mpi_e"][i] + game["data"]["mpi_f"][i])
+        game["data"]["mpi"][i] = round(game["data"]["mpi_a"][i] + game["data"]["mpi_b"][i] + 
+                                       game["data"]["mpi_c"][i] + game["data"]["mpi_d"][i] + 
+                                       game["data"]["mpi_e"][i] + game["data"]["mpi_f"][i])
     each(fun_4)
 
     return game

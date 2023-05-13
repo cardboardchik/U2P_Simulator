@@ -789,7 +789,7 @@ class Ui_Dialog_setParameters(object):
         if i == '':
             i = 0
             
-        self.file["InterestRate"] = int(i)
+        self.file["InterestRate"] = float(i)
     
     def lineEdit_LoanLimit_text_Changed(self, i):
         if i == '':
@@ -845,7 +845,7 @@ class Ui_Dialog_setParameters(object):
         self.label_RandDImpact_int.setText("+0%")
         self.label_MarketingImpact_int.setText("+0%")
         self.lineEdit_TaxRate.setText("25")
-        self.lineEdit_InterestRate.setText("5")
+        self.lineEdit_InterestRate.setText("2.5")
         self.lineEdit_LoanLimit.setText("50000")
         self.lineEdit_MaxPrice.setText("99")
         self.lineEdit_MaxMarketing.setText("15000")
@@ -864,7 +864,7 @@ class Ui_Dialog_setParameters(object):
             "PriceImpact": 0,
             "MarketingImpact": 0,
             "TaxRate": 25,
-            "InterestRate": 5,
+            "InterestRate": 2.5,
             "LoanLimit": 50000,
             "MaxPrice": 99,
             "MaxMarketing": 15000,

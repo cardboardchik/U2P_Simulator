@@ -7,10 +7,8 @@ import win32print
 import win32api
 import subprocess
 import time
-from fpdf import FPDF
-import os
 from PyPDF2 import PdfMerger
-import shutil
+
 
 
 class Ui_Dialog_Print(object):

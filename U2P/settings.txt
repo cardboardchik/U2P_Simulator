@@ -1,1 +1,1 @@
-{'DemandChange': 0, 'RandDImpact': 0, 'PriceImpact': 0, 'MarketingImpact': 0, 'TaxRate': 25, 'InterestRate': 5, 'LoanLimit': 50000, 'MaxPrice': 99, 'MaxMarketing': 15000, 'MaxCapInv': 15000, 'MaxRandD': 15000, 'RandD': 30, 'Price': 40, 'Marketing': 30}
+{'DemandChange': 0, 'RandDImpact': 0, 'PriceImpact': 0, 'MarketingImpact': 0, 'TaxRate': 25, 'InterestRate': 2.5, 'LoanLimit': 50000, 'MaxPrice': 99, 'MaxMarketing': 15000, 'MaxCapInv': 15000, 'MaxRandD': 15000, 'RandD': 30, 'Price': 40, 'Marketing': 30}

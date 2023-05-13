@@ -148,7 +148,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf = FPDF()
             pdf.add_page()
 
-            # Company Report for NNN Period N
+            # Company Report for Company_x Period N
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 13)
             pdf.set_text_color(0, 0, 0)
@@ -565,11 +565,14 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=145, align="L", txt="Factory Capacity", border=0)
 
+            Net_Investment = round(result['decisions']['ci'][company_num] - result['data']['depreciation'][company_num])
+            Net_Investment_int_units = round(Net_Investment / result["settings"]["unit_fee"])
+
             # Factory Capacity_INT
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=145, align="R", txt=str(round(result['data']['size'][company_num])), border=0)
+            pdf.cell(w=185, h=145, align="R", txt=str(round(result['data']['size'][company_num]) - Net_Investment_int_units), border=0)
 
             # Factory Capacity_unit of measurement
             pdf.set_xy(184, 0)
@@ -788,6 +791,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="C", txt="Investment Report", border=0)
 
+            Net_Investment = round(result['decisions']['ci'][company_num] - result['data']['depreciation'][company_num])
 
             # Factory Size
             pdf.set_xy(110, 147.5)
@@ -799,13 +803,14 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 147.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=170, h=0, align="R", txt=f"{round(result['data']['capital'][company_num])} $", border=0)
+            pdf.cell(w=170, h=0, align="R", txt=f"{round(result['data']['capital'][company_num]) - Net_Investment} $", border=0)
+
 
             # Factory Size_int_units
             pdf.set_xy(0, 147.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=190, h=0, align="R", txt=str(round(result['data']['size'][company_num])), border=0)
+            pdf.cell(w=190, h=0, align="R", txt=str(round(result['data']['size'][company_num]) - Net_Investment_int_units), border=0)
 
             # Factory Size_unit of measurement
             pdf.set_xy(189, 147.5)
@@ -820,7 +825,6 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Net Investment", border=0)
 
-            Net_Investment = round(result['decisions']['ci'][company_num] - result['data']['depreciation'][company_num])
             
             # Net Investment_int_$
             pdf.set_xy(0, 152.5)
@@ -828,7 +832,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=170, h=0, align="R", txt=f"{Net_Investment} $", border=0)
 
-            Net_Investment_int_units = round(Net_Investment / result["settings"]["unit_fee"])
+            
             
             # Net Investment_int_units
             pdf.set_xy(0, 152.5)
@@ -856,7 +860,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Size Next Period", border=0)
 
-            Size_Next_Period = round(result["data"]["capital"][company_num] + Net_Investment)
+            Size_Next_Period = round(result["data"]["capital"][company_num])
             
             # Size Next Period_int_$
             pdf.set_xy(0, 162.5)
