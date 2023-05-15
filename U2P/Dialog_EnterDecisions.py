@@ -470,11 +470,11 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         self.data = {
             "company": self.f[0:-1],
-            "UnitPrice": 30,
-            "Production": 393,
-            "Marketing": 1050,
-            "CI": 1050,
-            "RandD": 393
+            "UnitPrice": self.result['decisions']['price'][self.company_num],
+            "Production": self.result['data']['prod'][self.company_num],
+            "Marketing": self.result['decisions']['mk'][self.company_num],
+            "CI": self.result['decisions']['ci'][self.company_num],
+            "RandD": self.result['decisions']['rd'][self.company_num]
             }
         
         self.change_Production(self.result['data']['prod'][self.company_num])

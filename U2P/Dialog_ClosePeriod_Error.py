@@ -97,7 +97,7 @@ class Ui_Dialog_ClosePeriod_Error(object):
                 
             except KeyError:
                 pass
-            
+           
         self.listWidget.setSortingEnabled(__sortingEnabled)
 
     
