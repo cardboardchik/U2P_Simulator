@@ -316,13 +316,15 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=125, align="R", txt="###  $", border=0)
+            pdf.cell(w=80, h=125, align="R", txt=f"-{round(result['data']['layoff_charge'][company_num])}  $", border=0)
 
             # Layoff Charge_%
+            sales_percent -= (result['data']['layoff_charge'][company_num] / result['data']['sales'][company_num]) * 100
+            
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=100, h=125, align="R", txt="###%", border=0)
+            pdf.cell(w=100, h=125, align="R", txt=f"{round((result['data']['layoff_charge'][company_num] / result['data']['sales'][company_num]) * 100)}%", border=0)
 
 
             # Inventory Charge
@@ -670,7 +672,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=185, h=185, align="R", txt="###", border=0)
+            pdf.cell(w=185, h=185, align="R", txt=f"{round(result['data']['employees'][company_num])}", border=0)
 
             # Employees_unit of measurement
             pdf.set_xy(184, 0)
@@ -1249,7 +1251,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 217.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=0, align="R", txt="###    ", border=0)
+            pdf.cell(w=80, h=0, align="R", txt=f"{round(sum(result['data']['employees']))}    ", border=0)
 
             # Employment_%
             pdf.set_xy(0, 217.5)
@@ -1268,7 +1270,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 222.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=0, align="R", txt="###  $", border=0)
+            pdf.cell(w=80, h=0, align="R", txt=f"{round(sum(result['data']['sales']) / sum(result['data']['employees']))}  $", border=0)
 
             # Sales/Employee_%
             pdf.set_xy(0, 222.5)
@@ -1287,7 +1289,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 227.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=0, align="R", txt="###    ", border=0)
+            pdf.cell(w=80, h=0, align="R", txt=f"{round(sum(result['data']['prod']) / sum(result['data']['employees']))}    ", border=0)
 
             # Units/Employee_%
             pdf.set_xy(0, 227.5)
@@ -1301,12 +1303,12 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Cap. Investment", border=0)
-
+            
             # Cap. Investment_int
             pdf.set_xy(0, 232.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=0, align="R", txt="###  $", border=0)
+            pdf.cell(w=80, h=0, align="R", txt=f"{round(sum(result['data']['capital']))}  $", border=0)
 
             # Cap. Investment_%
             pdf.set_xy(0, 232.5)
@@ -1325,7 +1327,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 237.5)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=0, align="R", txt="### %", border=0)
+            pdf.cell(w=80, h=0, align="R", txt=f"{round((sum(result['decisions']['prod_rate']) / result['player_count']) * 100)} %", border=0)
 
             # Capacity Util._%
             pdf.set_xy(0, 237.5)
