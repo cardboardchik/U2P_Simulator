@@ -248,7 +248,7 @@ class Ui_Mese(object):
         
         
         self.label_company = QtWidgets.QLabel(self.centralwidget)
-        self.label_company.setGeometry(QtCore.QRect(730, 480, 140, 15))
+        self.label_company.setGeometry(QtCore.QRect(755, 15, 140, 15))
         self.label_company.setObjectName("label_company")
         
         
@@ -409,6 +409,9 @@ class Ui_Mese(object):
             
             self.pushButton_Setup.setEnabled(True)
             self.pushButton_ChangeLevelOfPlay.setEnabled(True)
+            
+            self.pushButton_ClosePeriod.setText("Start")
+            self.pushButton_ClosePeriod.setStyleSheet("background-color: green")
 
         else:
             self.pushButton_EnterallDecisions.setEnabled(True)
@@ -421,6 +424,10 @@ class Ui_Mese(object):
             
             self.pushButton_Setup.setEnabled(False)
             self.pushButton_ChangeLevelOfPlay.setEnabled(False)
+            
+            self.pushButton_ClosePeriod.setText("Close Period")
+            self.pushButton_ClosePeriod.setStyleSheet("background-color: gray")
+            
             self.place()
             
         QtCore.QMetaObject.connectSlotsByName(u2p)
@@ -449,7 +456,7 @@ class Ui_Mese(object):
         self.label_Graph.setText(_translate("u2p", "Graph"))
         self.pushButton_SetParameters.setText(_translate("u2p", "Set Parameters"))
         self.pushButton_ChangeLevelOfPlay.setText(_translate("u2p", "Change Level of Play"))
-        self.label_company.setText(_translate("u2p", "2023 TON corp."))
+        self.label_company.setText(_translate("u2p", "U2P 2023"))
         self.label_Version.setText(_translate("u2p", "Offline v. 1.0 Alpha-2"))
         self.label_currentPeriod.setText(_translate("u2p", f"Period {self.period}"))
         self.label_theFirstp.setText(_translate("u2p", "TON corp"))
@@ -494,9 +501,12 @@ class Ui_Mese(object):
                 self.pushButton_Setup.setEnabled(True)
                 self.pushButton_ChangeLevelOfPlay.setEnabled(True)
                 self.pushButton_SetParameters.setEnabled(False)
-        
+                
                 self.retranslateUi(u2p)
-        
+                
+                self.pushButton_ClosePeriod.setText("Start")
+                self.pushButton_ClosePeriod.setStyleSheet("background-color: green")
+                
                 self.label_ResultsforPeriod.setText("Results for Period ")
         
     def pushButton_EnterallDecisions_was_clicked(self):
@@ -535,6 +545,7 @@ class Ui_Mese(object):
         
         if check_file == "":
             self.period = 0
+            self.pushButton_ClosePeriod.setText("Start")
             
         else:
                
@@ -548,6 +559,9 @@ class Ui_Mese(object):
             self.pushButton_Setup.setEnabled(False)
             self.pushButton_ChangeLevelOfPlay.setEnabled(False)
             self.pushButton_SetParameters.setEnabled(True)
+            
+            self.pushButton_ClosePeriod.setText("Close Period")
+            self.pushButton_ClosePeriod.setStyleSheet("background-color: gray")
             
             self.retranslateUi(u2p)
             
