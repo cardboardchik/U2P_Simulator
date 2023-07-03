@@ -564,10 +564,10 @@ class Ui_Dialog(object):
         
         if self.result['data']['size'][self.company_num] < int(i):
             self.label_Capacity__.setStyleSheet("color: red;")
-            self.buttonBox.setEnabled(False)
+            #self.buttonBox.setEnabled(False)
         else:
             self.label_Capacity__.setStyleSheet("color: black;")
-            self.buttonBox.setEnabled(True)
+            #self.buttonBox.setEnabled(True)
         
         if (-1 * (-self.decisions['prod_cost'] + self.decisions['marketing_cost'] + self.decisions['net_investment'] + self.decisions['RandD_cost'])) <= (self.result['data']['cash'][self.company_num] + self.result['data']['depreciation'][self.company_num]):
             self.label_ReamainingCash_int.setText(f"{int((self.result['data']['cash'][self.company_num] + self.result['data']['depreciation'][self.company_num]) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost']))}")
@@ -578,9 +578,9 @@ class Ui_Dialog(object):
             
         if (self.result['data']['cash'][self.company_num] + ((self.result['settings']['loan_limit'] // self.result['player_count']) - self.result['data']['loan'][self.company_num])) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost']) < 0:
             self.label_Credit_Limit.setText(f"You have exceeded your credit limit by {(self.result['data']['cash'][self.company_num] + ((self.result['settings']['loan_limit'] // self.result['player_count']) - self.result['data']['loan'][self.company_num])) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost'])}$!")
-            self.buttonBox.setEnabled(False)
+            #self.buttonBox.setEnabled(False)
         else:
-            self.buttonBox.setEnabled(True)
+            #self.buttonBox.setEnabled(True)
             self.label_Credit_Limit.setText("")
             
         
@@ -609,9 +609,9 @@ class Ui_Dialog(object):
         
         if (self.result['data']['cash'][self.company_num] + ((self.result['settings']['loan_limit'] // self.result['player_count']) - self.result['data']['loan'][self.company_num])) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost']) < 0:
             self.label_Credit_Limit.setText(f"You have exceeded your credit limit by {(self.result['data']['cash'][self.company_num] + ((self.result['settings']['loan_limit'] // self.result['player_count']) - self.result['data']['loan'][self.company_num])) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost'])}$!")
-            self.buttonBox.setEnabled(False)
+            #self.buttonBox.setEnabled(False)
         else:
-            self.buttonBox.setEnabled(True)
+            #self.buttonBox.setEnabled(True)
             self.label_Credit_Limit.setText("")
            
     def change_CI(self, i):
@@ -636,9 +636,9 @@ class Ui_Dialog(object):
         
         if (self.result['data']['cash'][self.company_num] + ((self.result['settings']['loan_limit'] // self.result['player_count']) - self.result['data']['loan'][self.company_num])) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost']) < 0:
             self.label_Credit_Limit.setText(f"You have exceeded your credit limit by {(self.result['data']['cash'][self.company_num] + ((self.result['settings']['loan_limit'] // self.result['player_count']) - self.result['data']['loan'][self.company_num])) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost'])}$!")
-            self.buttonBox.setEnabled(False)
+           # self.buttonBox.setEnabled(False)
         else:
-            self.buttonBox.setEnabled(True)
+            #self.buttonBox.setEnabled(True)
             self.label_Credit_Limit.setText("")
         
     def change_RandD(self, i):
@@ -664,10 +664,10 @@ class Ui_Dialog(object):
         #credit limit
         if (self.result['data']['cash'][self.company_num] + ((self.result['settings']['loan_limit'] // self.result['player_count']) - self.result['data']['loan'][self.company_num])) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost']) < 0:
             self.label_Credit_Limit.setText(f"You have exceeded your credit limit by {(self.result['data']['cash'][self.company_num] + ((self.result['settings']['loan_limit'] // self.result['player_count']) - self.result['data']['loan'][self.company_num])) - (self.decisions['prod_cost'] - self.decisions['marketing_cost'] - self.decisions['net_investment'] - self.decisions['RandD_cost'])}$!")
-            self.buttonBox.setEnabled(False)
+            #self.buttonBox.setEnabled(False)
         else:
             self.label_Credit_Limit.setText("")
-            self.buttonBox.setEnabled(True)
+            #self.buttonBox.setEnabled(True)
         
     def save(self):
         open("logs.txt", "a").write("T")

@@ -202,15 +202,15 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=80, h=65, align="R", txt=f"-{round(result['data']['goods_cost_predicted'][company_num])}  $", border=0)
+            pdf.cell(w=80, h=65, align="R", txt=f"-{round(result['data']['goods_cost'][company_num])}  $", border=0)
 
             # COGS_%
-            sales_percent -= (result['data']['goods_cost_predicted'][company_num] / result['data']['sales'][company_num]) * 100
+            sales_percent -= (result['data']['goods_cost'][company_num] / result['data']['sales'][company_num]) * 100
             
             pdf.set_xy(0, 0)
             pdf.set_font("Arial", "", 12)
             pdf.set_text_color(0, 0, 0)
-            pdf.cell(w=100, h=65, align="R", txt=f"{round((result['data']['goods_cost_predicted'][company_num] / result['data']['sales'][company_num]) * 100)}%", border=0)
+            pdf.cell(w=100, h=65, align="R", txt=f"{round((result['data']['goods_cost'][company_num] / result['data']['sales'][company_num]) * 100)}%", border=0)
 
 
             # line
@@ -219,7 +219,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=71, align="L", txt="_________________", border=0)
 
-            gross_margin = round(result["data"]["sales"][company_num] - result['data']['goods_cost_predicted'][company_num])
+            gross_margin = round(result["data"]["sales"][company_num] - result['data']['goods_cost'][company_num])
             # Gross Margin
             pdf.set_xy(5, 0)
             pdf.set_font("Arial", "", 12)
@@ -1156,7 +1156,7 @@ class Ui_Dialog_ClosePeriod(object):
             pdf.set_text_color(0, 0, 0)
             pdf.cell(w=0, h=0, align="L", txt="Total Produced", border=0)
             
-            Total_Produced = round(sum(result['data']['goods_predicted']))
+            Total_Produced = round(sum(result['data']['goods']))
 
             # Total Produced_int
             pdf.set_xy(0, 190)

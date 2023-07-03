@@ -283,11 +283,11 @@ def exec(game):
 
         game["data"]["prod_cost"][i] = game["data"]["prod_cost_unit"][i] * game["data"]["prod"][i]
         
-        game["data"]["goods"][i] = game["data"]["inventory"][i] + game["data"]["prod"][i] * game["delta"]
-        game["data"]["goods_predicted"][i] = math.trunc(game["data"]["inventory"][i] + game["data"]["prod"][i])
-        game["data"]["goods_cost"][i] = game["data"]["goods_cost_inventory"][i] + game["data"]["prod_cost"][i] * game["delta"]
-        game["data"]["goods_cost_predicted"][i] = round(game["data"]["goods_cost_inventory"][i] + game["data"]["prod_cost"][i], 1)
-        game["data"]["goods_max_sales"][i] = round(game["decisions"]["price"][i] * game["data"]["goods_predicted"][i], 1)
+        game["data"]["goods"][i] = game["data"]["inventory"][i] + game["data"]["prod"][i] #* game["delta"]
+        #game["data"]["goods_predicted"][i] = math.trunc(game["data"]["inventory"][i] + game["data"]["prod"][i])
+        game["data"]["goods_cost"][i] = game["data"]["goods_cost_inventory"][i] + game["data"]["prod_cost"][i] #* game["delta"]
+        #game["data"]["goods_cost_predicted"][i] = round(game["data"]["goods_cost_inventory"][i] + game["data"]["prod_cost"][i], 1)
+        game["data"]["goods_max_sales"][i] = round(game["decisions"]["price"][i] * game["data"]["goods"][i], 1)
         
         game["data"]["depreciation"][i] = round(game["settings"]["depreciation_rate"] * game["data"]["capital"][i], 1)
         game["data"]["capital"][i] += round(game["decisions"]["ci"][i] - game["data"]["depreciation"][i], 1)# * game["delta"]
@@ -329,7 +329,7 @@ def exec(game):
     sum_history_rd = sum(game["data"]["history_rd"])
         
     game["data"]["average_price_given"] = round(sum(game["decisions"]["price"]) / game["player_count"], 2)
-    game["data"]["average_price_planned"] = round(div(sum(game["data"]["goods_max_sales"]), sum(game["data"]["goods_predicted"]), game["data"]["average_price_given"]), 2)
+    game["data"]["average_price_planned"] = round(div(sum(game["data"]["goods_max_sales"]), sum(game["data"]["goods"]), game["data"]["average_price_given"]), 2)
     game["data"]["average_price_mixed"] = round(game["settings"]["demand_price"] * game["data"]["average_price_planned"] + (1 - game["settings"]["demand_price"]) * game["data"]["average_price"], 2)
     
         
@@ -389,8 +389,8 @@ def exec(game):
         game["data"]["share_compressed"][i] = min(game["data"]["share"][i] * game["settings"]["price_overload"] / game["decisions"]["price"][i], game["data"]["share"][i])
         
         game["data"]["orders"][i] = math.trunc(game["data"]["orders_demand"] * game["data"]["share_compressed"][i])
-        game["data"]["sold"][i] = math.trunc(min(game["data"]["orders"][i], game["data"]["goods_predicted"][i]))
-        game["data"]["inventory"][i] = math.trunc(game["data"]["goods_predicted"][i] - game["data"]["sold"][i])
+        game["data"]["sold"][i] = math.trunc(min(game["data"]["orders"][i], game["data"]["goods"][i]))
+        game["data"]["inventory"][i] = math.trunc(game["data"]["goods"][i] - game["data"]["sold"][i])
         game["data"]["unfilled"][i] = math.trunc(game["data"]["orders"][i] - game["data"]["sold"][i])
         
         #goods
@@ -400,7 +400,7 @@ def exec(game):
             game["data"]["goods"][i],
             0
         ), 1)
-        game["data"]["goods_cost_inventory"][i] = round(game["data"]["goods_cost"][i] - game["data"]["goods_cost_sold"][i] * game["delta"], 1)
+        game["data"]["goods_cost_inventory"][i] = round(game["data"]["goods_cost"][i] - game["data"]["goods_cost_sold"][i], 1)
         
         #cash Flow
         
@@ -416,7 +416,7 @@ def exec(game):
         game["data"]["tax_charge"][i] = max(round(game["settings"]["tax_rate"] * game["data"]["profit_before_tax"][i], 1), 0)
         game["data"]["profit"][i] = round(game["data"]["profit_before_tax"][i] - game["data"]["tax_charge"][i], 2)
         
-        game["data"]["balance"][i] = round(game["data"]["balance_early"][i] + game["data"]["loan_early"][i] + game["data"]["sales"][i] - game["data"]["depreciation"][i] + game["data"]["interest"][i] - game["data"]["inventory_charge"][i] - game["data"]["tax_charge"][i] - game["data"]["layoff_charge"][i], 1) #game["data"]["cash"][i] - game["data"]["loan"][i] + game["data"]["loan_early"][i] + game["data"]["profit"][i] - game["decisions"]["ci"][i] + game["data"]["depreciation"][i] + game["data"]["goods_cost_sold"][i] - game["data"]["prod_cost"][i]
+        game["data"]["balance"][i] = round(game["data"]["cash"][i] - game["data"]["loan"][i] + game["data"]["loan_early"][i] + game["data"]["profit"][i] - game["decisions"]["ci"][i] + game["data"]["depreciation"][i] + game["data"]["goods_cost_sold"][i] - game["data"]["prod_cost"][i] - game["data"]["layoff_charge"][i], 1) #game["data"]["cash"][i] - game["data"]["loan"][i] + game["data"]["loan_early"][i] + game["data"]["profit"][i] - game["decisions"]["ci"][i] + game["data"]["depreciation"][i] + game["data"]["goods_cost_sold"][i] - game["data"]["prod_cost"][i]
         
         game["data"]["loan"][i] = round(max(game["data"]["loan_early"][i], game["data"]["loan_early"][i] - game["data"]["balance"][i]), 1)
         game["data"]["cash"][i] = round(max(game["data"]["balance"][i], 0), 1)

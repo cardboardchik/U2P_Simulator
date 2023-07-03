@@ -53,9 +53,9 @@ class Ui_Mese(object):
         
         
         self.logo = QtWidgets.QLabel(self.centralwidget)
-        self.logo.setGeometry(QtCore.QRect(510, 325, 300, 155))
+        self.logo.setGeometry(QtCore.QRect(510, 325, 299, 166))
         self.logo.setText("")
-        self.logo.setPixmap(QtGui.QPixmap("Images/logo_full.png"))
+        self.logo.setPixmap(QtGui.QPixmap("Images/u2p_sim_full_logo.svg"))
         self.logo.setScaledContents(True)
         self.logo.setObjectName("logo")
         
@@ -253,7 +253,7 @@ class Ui_Mese(object):
         
         
         self.label_Version = QtWidgets.QLabel(self.centralwidget)
-        self.label_Version.setGeometry(QtCore.QRect(730, 0, 75, 15))
+        self.label_Version.setGeometry(QtCore.QRect(690, 0, 115, 15))
         self.label_Version.setObjectName("label_Version")
         
         
@@ -450,7 +450,7 @@ class Ui_Mese(object):
         self.pushButton_SetParameters.setText(_translate("u2p", "Set Parameters"))
         self.pushButton_ChangeLevelOfPlay.setText(_translate("u2p", "Change Level of Play"))
         self.label_company.setText(_translate("u2p", "2023 TON corp."))
-        self.label_Version.setText(_translate("u2p", "v. 1.0 Alpha-2"))
+        self.label_Version.setText(_translate("u2p", "Offline v. 1.0 Alpha-2"))
         self.label_currentPeriod.setText(_translate("u2p", f"Period {self.period}"))
         self.label_theFirstp.setText(_translate("u2p", "TON corp"))
         self.label_theSecondp.setText(_translate("u2p", "TON corp"))
