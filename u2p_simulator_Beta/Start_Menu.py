@@ -1,13 +1,12 @@
 ## by karton4ik
 
+#python -m PyQt6.uic.pyuic -x [FILENAME].ui -o [FILENAME].py
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-            
-        
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(750, 500)
         MainWindow.setMinimumSize(QtCore.QSize(750, 500))
