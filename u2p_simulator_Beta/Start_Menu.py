@@ -4,6 +4,8 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+from Dialog_Create_New_Game import Ui_Dialog_create_new_game
+from Dialog_saved_games import Ui_Dialog_saved_games
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -35,7 +37,6 @@ class Ui_MainWindow(object):
         self.label_login_in_your_account.setGeometry(QtCore.QRect(195, 169, 360, 40))
         self.label_login_in_your_account.setStyleSheet("color: #1E1E1E;\n"
 "text-align: center;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "font-family: Montserrat ExtraBold;\n"
 "font-size: 30px;\n"
 "font-style: normal;\n"
@@ -51,7 +52,6 @@ class Ui_MainWindow(object):
 "\n"
 "color: #1E1E1E;\n"
 "text-align: center;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "font-family: Montserrat ExtraBold;\n"
 "font-size: 16px;\n"
 "font-style: normal;\n"
@@ -69,7 +69,6 @@ class Ui_MainWindow(object):
 "\n"
 "color: #1E1E1E;\n"
 "text-align: center;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "font-family: Montserrat ExtraBold;\n"
 "font-size: 16px;\n"
 "font-style: normal;\n"
@@ -84,7 +83,6 @@ class Ui_MainWindow(object):
         self.label_login_login.setGeometry(QtCore.QRect(265, 226, 220, 20))
         self.label_login_login.setStyleSheet("color: #1E1E1E;\n"
 "text-align: center;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "font-family: Montserrat ExtraBold;\n"
 "font-size: 18px;\n"
 "font-style: normal;\n"
@@ -96,7 +94,6 @@ class Ui_MainWindow(object):
         self.label_login_password.setGeometry(QtCore.QRect(265, 300, 220, 20))
         self.label_login_password.setStyleSheet("color: #1E1E1E;\n"
 "text-align: center;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "font-family: Montserrat ExtraBold;\n"
 "font-size: 18px;\n"
 "font-style: normal;\n"
@@ -108,7 +105,6 @@ class Ui_MainWindow(object):
         self.pushButton_login_exit.setGeometry(QtCore.QRect(389, 396, 196, 55))
         font = QtGui.QFont()
         font.setFamily("Montserrat ExtraBold")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(99)
@@ -143,7 +139,6 @@ class Ui_MainWindow(object):
         self.pushButton_login_login.setGeometry(QtCore.QRect(165, 396, 196, 55))
         font = QtGui.QFont()
         font.setFamily("Montserrat ExtraBold")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(99)
@@ -183,7 +178,6 @@ class Ui_MainWindow(object):
 "\n"
 "color: #1E1E1E;\n"
 "text-align: center;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "font-family: Montserrat ExtraBold;\n"
 "font-size: 15px;\n"
 "font-style: normal;\n"
@@ -191,6 +185,8 @@ class Ui_MainWindow(object):
 "line-height: 24px;")
         self.label_login_sub.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_login_sub.setObjectName("label_login_sub")
+        self.label_login_sub.setOpenExternalLinks(True)
+        
         self.label_login_background = QtWidgets.QLabel(self.widget_login)
         self.label_login_background.setGeometry(QtCore.QRect(0, 0, 750, 500))
         self.label_login_background.setText("")
@@ -229,7 +225,6 @@ class Ui_MainWindow(object):
         self.pushButton_main_exit.setGeometry(QtCore.QRect(384, 375, 196, 55))
         font = QtGui.QFont()
         font.setFamily("Montserrat ExtraBold")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(99)
@@ -317,11 +312,6 @@ class Ui_MainWindow(object):
 "border-radius: 5px;\n"
 "border: 3px solid rgb(0, 0, 0);\n"
 "color: rgb(0, 0, 0);\n"
-"display: flex;\n"
-"justify-content: center;\n"
-"align-items: center;\n"
-"gap: 8px;\n"
-"flex-shrink: 0;\n"
 "padding-top: -1px;\n"
 "\n"
 "}\n"
@@ -595,7 +585,6 @@ class Ui_MainWindow(object):
         self.label_settings_profile_name.setGeometry(QtCore.QRect(16, 210, 388, 80))
         self.label_settings_profile_name.setStyleSheet("color: #000;\n"
 "font-family: Montserrat ExtraBold;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "text-align: center;\n"
 "font-size: 28px;\n"
 "font-style: normal;\n"
@@ -608,7 +597,6 @@ class Ui_MainWindow(object):
         self.label_settings_profile_username.setGeometry(QtCore.QRect(16, 285, 388, 31))
         self.label_settings_profile_username.setStyleSheet("color: rgba(0, 0, 0, 0.65);\n"
 "font-family: Montserrat ExtraBold;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "text-align: center;\n"
 "font-size: 24px;\n"
 "font-style: normal;\n"
@@ -621,7 +609,6 @@ class Ui_MainWindow(object):
         self.label_settings_profile_email.setGeometry(QtCore.QRect(16, 315, 388, 31))
         self.label_settings_profile_email.setStyleSheet("color: rgba(0, 0, 0, 0.65);\n"
 "font-family: Montserrat ExtraBold;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "text-align: center;\n"
 "font-size: 24px;\n"
 "font-style: normal;\n"
@@ -634,7 +621,6 @@ class Ui_MainWindow(object):
         self.label_settings_profile_sub_end.setGeometry(QtCore.QRect(16, 350, 388, 61))
         self.label_settings_profile_sub_end.setStyleSheet("color: #000;\n"
 "font-family: Montserrat ExtraBold;\n"
-"font-feature-settings: \'clig\' off, \'liga\' off;\n"
 "text-align: center;\n"
 "font-size: 24px;\n"
 "font-style: normal;\n"
@@ -731,7 +717,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QComboBox#comboBox_settings_interface_language::down-arrow{\n"
-"    image: url();\n"
+"    image: url(images/Chevron_Down.svg);\n"
 "}")
         self.comboBox_settings_interface_language.setObjectName("comboBox_settings_interface_language")
         self.comboBox_settings_interface_language.addItem("")
@@ -758,7 +744,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QComboBox#comboBox_settings_interface_theme::down-arrow{\n"
-"    image: url();\n"
+"    image: url(images/Chevron_Down.svg);\n"
 "}")
         self.comboBox_settings_interface_theme.setObjectName("comboBox_settings_interface_theme")
         self.comboBox_settings_interface_theme.addItem("")
@@ -847,6 +833,8 @@ class Ui_MainWindow(object):
 "background-color: rgba(0, 0, 0, 0);")
         self.label_settings_about_conctact.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight|QtCore.Qt.AlignmentFlag.AlignTrailing|QtCore.Qt.AlignmentFlag.AlignVCenter)
         self.label_settings_about_conctact.setObjectName("label_settings_about_conctact")
+        self.label_settings_about_conctact.setOpenExternalLinks(True)
+        
         self.label_settings_about_version = QtWidgets.QLabel(self.widget_settings_about)
         self.label_settings_about_version.setGeometry(QtCore.QRect(160, 450, 241, 41))
         self.label_settings_about_version.setStyleSheet("color: #000;\n"
@@ -871,18 +859,25 @@ class Ui_MainWindow(object):
         
         #connections login
         self.pushButton_login_login.clicked.connect(self.login)
+        self.pushButton_login_exit.clicked.connect(self.exit)
         
         #connections main
+        self.pushButton_main_new_game.clicked.connect(self.pushButton_main_new_game_was_clicked)
         self.pushButton_main_settings.clicked.connect(self.pushButton_main_settings_was_clicked)
+        self.pushButton_main_download_game.clicked.connect(self.pushButton_main_download_game_was_clicked)
+        self.pushButton_main_exit.clicked.connect(self.exit)
+        
         
         #connections settings
         self.pushButton_settings_menu_home.clicked.connect(self.pushButton_settings_menu_home_was_clicked)
         self.pushButton_settings_menu_profile.clicked.connect(self.pushButton_settings_menu_profile_was_clicked)
+        
+        self.pushButton_settings_profile_logout.clicked.connect(self.logout)
+        
         self.pushButton_settings_menu_interface.clicked.connect(self.pushButton_settings_menu_interface_was_clicked)
+        self.pushButton_settings_menu_other.clicked.connect(self.pushButton_settings_menu_other_was_clicked)
+        self.pushButton_settings_menu_about.clicked.connect(self.pushButton_settings_menu_about_was_clicked)
         
-        
-        
-
         
         #def settings
         self.widget_login.show() #show
@@ -906,7 +901,7 @@ class Ui_MainWindow(object):
         self.label_login_password.setText(_translate("MainWindow", "Пароль"))
         self.pushButton_login_exit.setText(_translate("MainWindow", "Выход"))
         self.pushButton_login_login.setText(_translate("MainWindow", "Войти"))
-        self.label_login_sub.setText(_translate("MainWindow", "Приобрести подписку вы можете на сайте u2p.kz"))
+        self.label_login_sub.setText(_translate("MainWindow", "Приобрести подписку вы можете на сайте <a href='https://u2p.kz'>u2p.kz</a>"))
         self.pushButton_main_exit.setText(_translate("MainWindow", "Выход"))
         self.pushButton_main_new_game.setText(_translate("MainWindow", "Новая игра"))
         self.pushButton_main_settings.setText(_translate("MainWindow", " Настройки"))
@@ -917,7 +912,7 @@ class Ui_MainWindow(object):
         self.label_settings_menu_other.setText(_translate("MainWindow", "Другие"))
         self.label_settings_menu_about.setText(_translate("MainWindow", "О программе"))
         self.label_settings_profile_.setText(_translate("MainWindow", "Профиль"))
-        self.label_settings_profile_name.setText(_translate("MainWindow", "<html><head/><body><p>Школа<br>                                                                                                                            Предпринимателей</p></body></html>"))
+        self.label_settings_profile_name.setText(_translate("MainWindow", "<html><head/><body><p>Школа<br>Предпринимателей</p></body></html>"))
         self.label_settings_profile_username.setText(_translate("MainWindow", "schoolshp"))
         self.label_settings_profile_email.setText(_translate("MainWindow", "schoolshp@gmail.com"))
         self.label_settings_profile_sub_end.setText(_translate("MainWindow", "Дата окончания подписки:\n"
@@ -936,7 +931,7 @@ class Ui_MainWindow(object):
 "при поддержке"))
         self.label_settings_about_contact_text.setText(_translate("MainWindow", "Контакты"))
         self.label_settings_about_version_text.setText(_translate("MainWindow", "Версия"))
-        self.label_settings_about_conctact.setText(_translate("MainWindow", "u2p.kz"))
+        self.label_settings_about_conctact.setText(_translate("MainWindow", '<a href="https://u2p.kz">u2p.kz</a>'))
         self.label_settings_about_version.setText(_translate("MainWindow", "1.1 closed beta"))
 
 
@@ -945,6 +940,33 @@ class Ui_MainWindow(object):
     def login(self):
         self.widget_login.hide()
         self.widget_main.show()
+        
+    def logout(self):
+        self.widget_login.show() #show
+        self.widget_main.hide()
+        self.widget_settings.hide()
+        self.widget_settings_profile.show() #show
+        self.widget_settings_about.hide()
+        self.widget_settings_interface.hide()
+        self.widget_settings_other.hide()
+        
+    def exit(self):
+        MainWindow.close()
+    
+    
+    def pushButton_main_new_game_was_clicked(self):
+        self.Dialog_Create_New_Game = QtWidgets.QDialog()
+        self.Dialog_Create_New_Game_ui = Ui_Dialog_create_new_game()
+        self.Dialog_Create_New_Game_ui.setupUi(self.Dialog_Create_New_Game)
+        self.Dialog_Create_New_Game.exec()
+        
+    def pushButton_main_download_game_was_clicked(self):
+        self.Dialog_saved_games = QtWidgets.QDialog()
+        self.Dialog_saved_games_ui = Ui_Dialog_saved_games()
+        self.Dialog_saved_games_ui.setupUi(self.Dialog_saved_games)
+        self.Dialog_saved_games.exec()
+    
+    
     
     def pushButton_main_settings_was_clicked(self):
         self.widget_main.hide()
@@ -966,33 +988,91 @@ class Ui_MainWindow(object):
                 "background: #404040;\n"
                 "}")
         self.frame_settings_menu_interface.setStyleSheet("QFrame#frame_settings_menu_interface{\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_other.setStyleSheet("QFrame#frame_settings_menu_other{\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_about.setStyleSheet("QFrame#frame_settings_menu_about{\n"
                 "border-top: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        
+ 
+    def pushButton_settings_menu_interface_was_clicked(self):
+        self.widget_settings_about.hide()
+        self.widget_settings_interface.show()
+        self.widget_settings_other.hide()
+        self.widget_settings_profile.hide()
+        
+        self.frame_settings_menu_profile.setStyleSheet("QFrame#frame_settings_menu_profile{\n"
+                "border-top: 1px solid #FFF;\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_interface.setStyleSheet("QFrame#frame_settings_menu_interface{\n"
                 "border-bottom: 1px solid #FFF;\n"
                 "background: #404040;\n"
                 "}")
         self.frame_settings_menu_other.setStyleSheet("QFrame#frame_settings_menu_other{\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_about.setStyleSheet("QFrame#frame_settings_menu_about{\n"
                 "border-top: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        
+        
+    def pushButton_settings_menu_other_was_clicked(self):
+        self.widget_settings_about.hide()
+        self.widget_settings_interface.hide()
+        self.widget_settings_other.show()
+        self.widget_settings_profile.hide()
+        
+        self.frame_settings_menu_profile.setStyleSheet("QFrame#frame_settings_menu_profile{\n"
+                "border-top: 1px solid #FFF;\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_interface.setStyleSheet("QFrame#frame_settings_menu_interface{\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_other.setStyleSheet("QFrame#frame_settings_menu_other{\n"
                 "border-bottom: 1px solid #FFF;\n"
                 "background: #404040;\n"
                 "}")
         self.frame_settings_menu_about.setStyleSheet("QFrame#frame_settings_menu_about{\n"
                 "border-top: 1px solid #FFF;\n"
-                "border-bottom: 1px solid #FFF;\n"
-                "background: #404040;\n"
+                "background: rgba(0, 0, 0, 0);\n"
                 "}")
         
- 
-    def pushButton_settings_menu_interface_was_clicked(self):
-        self.widget_settings.hide()
-        self.widget_main.show()
+    def pushButton_settings_menu_about_was_clicked(self):
+        self.widget_settings_about.show()
+        self.widget_settings_interface.hide()
+        self.widget_settings_other.hide()
+        self.widget_settings_profile.hide()
         
-    def pushButton_settings_menu_home_was_clicked(self):
-        self.widget_settings.hide()
-        self.widget_main.show()
-        
-    def pushButton_settings_menu_home_was_clicked(self):
-        self.widget_settings.hide()
-        self.widget_main.show()       
+        self.frame_settings_menu_profile.setStyleSheet("QFrame#frame_settings_menu_profile{\n"
+                "border-top: 1px solid #FFF;\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_interface.setStyleSheet("QFrame#frame_settings_menu_interface{\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_other.setStyleSheet("QFrame#frame_settings_menu_other{\n"
+                "border-bottom: 1px solid #FFF;\n"
+                "background: rgba(0, 0, 0, 0);\n"
+                "}")
+        self.frame_settings_menu_about.setStyleSheet("QFrame#frame_settings_menu_about{\n"
+                "border-top: 1px solid #FFF;\n"
+                "background: #404040;\n"
+                "}")      
           
 
         

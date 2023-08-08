@@ -230,8 +230,6 @@
 	
 
 }
-
-
 #comboBox_language::drop-down{
 border: 0px;
 border-radius: 5px;
@@ -262,7 +260,7 @@ border-radius: 5px;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../Downloads/Flag_of_Russia.svg</normaloff>../../../../../../Downloads/Flag_of_Russia.svg</iconset>
+        <normaloff>../../../Downloads/Flag_of_Russia.svg</normaloff>../../../Downloads/Flag_of_Russia.svg</iconset>
       </property>
      </item>
      <item>
@@ -271,7 +269,7 @@ border-radius: 5px;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../../Downloads/Flag_of_the_United_Kingdom_(3-5).svg</normaloff>../../../../../../Downloads/Flag_of_the_United_Kingdom_(3-5).svg</iconset>
+        <normaloff>../../../Downloads/Flag_of_the_United_Kingdom_(3-5).svg</normaloff>../../../Downloads/Flag_of_the_United_Kingdom_(3-5).svg</iconset>
       </property>
      </item>
     </widget>
@@ -1261,7 +1259,7 @@ background-color:rgba(239, 0, 9, 1);
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/arrow_up.svg</pixmap>
+      <pixmap>../../../Downloads/arrow_up.svg</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_company_arrow_num_1">
@@ -1305,7 +1303,7 @@ background-color: rgb(255, 255, 255, 0);</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/arrow_up.svg</pixmap>
+      <pixmap>../../../Downloads/arrow_up.svg</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_company_arrow_num_2">
@@ -1349,7 +1347,7 @@ background-color: rgb(255, 255, 255, 0);</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/arrow_up.svg</pixmap>
+      <pixmap>../../../Downloads/arrow_up.svg</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_company_arrow_num_3">
@@ -1393,7 +1391,7 @@ background-color: rgb(255, 255, 255, 0);</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/arrow_up.svg</pixmap>
+      <pixmap>../../../Downloads/arrow_up.svg</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_company_arrow_num_4">
@@ -1437,7 +1435,7 @@ background-color: rgb(255, 255, 255, 0);</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/arrow_up.svg</pixmap>
+      <pixmap>../../../Downloads/arrow_up.svg</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_company_arrow_num_5">
@@ -1481,7 +1479,7 @@ background-color: rgb(255, 255, 255, 0);</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/arrow_up.svg</pixmap>
+      <pixmap>../../../Downloads/arrow_up.svg</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_company_arrow_num_6">
@@ -1525,7 +1523,7 @@ background-color: rgb(255, 255, 255, 0);</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/arrow_up.svg</pixmap>
+      <pixmap>../../../Downloads/arrow_up.svg</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_company_arrow_num_7">
@@ -1569,7 +1567,7 @@ background-color: rgb(255, 255, 255, 0);</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>../../../../../../Downloads/arrow_up.svg</pixmap>
+      <pixmap>../../../Downloads/arrow_up.svg</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_company_arrow_num_8">

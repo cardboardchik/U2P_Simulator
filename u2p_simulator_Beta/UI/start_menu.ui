@@ -803,6 +803,28 @@ line-height: 24px; /* 75% */</string>
         <pixmap>../Images/House_01.svg</pixmap>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_settings_menu_home">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>330</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frame_settings_menu_profile">
       <property name="geometry">
@@ -873,6 +895,28 @@ background-color: rgba(0, 0, 0, 0);</string>
         <pixmap>../Images/person-circle.svg</pixmap>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_settings_menu_profile">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>330</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frame_settings_menu_interface">
       <property name="geometry">
@@ -936,6 +980,28 @@ background-color: rgba(0, 0, 0, 0);</string>
        </property>
        <property name="pixmap">
         <pixmap>../Images/Slider_03.svg</pixmap>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_settings_menu_interface">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>330</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
        </property>
       </widget>
      </widget>
@@ -1003,6 +1069,28 @@ background-color: rgba(0, 0, 0, 0);</string>
         <pixmap>../Images/More_Horizontal.svg</pixmap>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_settings_menu_other">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>330</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frame_settings_menu_about">
       <property name="geometry">
@@ -1066,6 +1154,28 @@ background-color: rgba(0, 0, 0, 0);</string>
        </property>
        <property name="pixmap">
         <pixmap>../Images/Info.svg</pixmap>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_settings_menu_about">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>330</width>
+         <height>60</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
        </property>
       </widget>
      </widget>
@@ -1721,8 +1831,8 @@ background-color: rgba(0, 0, 0, 0);</string>
     <zorder>widget_settings_profile</zorder>
    </widget>
    <zorder>widget_main</zorder>
-   <zorder>widget_settings</zorder>
    <zorder>widget_login</zorder>
+   <zorder>widget_settings</zorder>
   </widget>
  </widget>
  <resources/>
