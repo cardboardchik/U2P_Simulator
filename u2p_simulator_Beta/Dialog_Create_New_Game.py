@@ -3,6 +3,8 @@
 
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+import sqlite3 as sq
+from datetime import datetime
 
 class Ui_Dialog_create_new_game(object):
     def setupUi(self, Dialog_create_new_game):
@@ -499,7 +501,27 @@ class Ui_Dialog_create_new_game(object):
         self.pushButton_create.clicked.connect(self.create_new_game)
         self.pushButton_cancel.clicked.connect(Dialog_create_new_game.reject) #close
         
+        self.lineEdit_game_name.textChanged.connect(self.lineEdit_game_name__txtChanged)
+        
+        self.lineEdit_company_name_1.textChanged.connect(self.lineEdit_company_name_1_txtChanged)
+        self.lineEdit_company_name_2.textChanged.connect(self.lineEdit_company_name_2_txtChanged)
+        self.lineEdit_company_name_3.textChanged.connect(self.lineEdit_company_name_3_txtChanged)
+        self.lineEdit_company_name_4.textChanged.connect(self.lineEdit_company_name_4_txtChanged)
+        self.lineEdit_company_name_5.textChanged.connect(self.lineEdit_company_name_5_txtChanged)
+        self.lineEdit_company_name_6.textChanged.connect(self.lineEdit_company_name_6_txtChanged)
+        self.lineEdit_company_name_7.textChanged.connect(self.lineEdit_company_name_7_txtChanged)
+        self.lineEdit_company_name_8.textChanged.connect(self.lineEdit_company_name_8_txtChanged)
 
+
+        #data
+        self.game_name = ""
+        self.script = ""
+        
+        
+        self.companies_names = {
+                
+        }
+        
         self.retranslateUi(Dialog_create_new_game)
         QtCore.QMetaObject.connectSlotsByName(Dialog_create_new_game)
 
@@ -539,11 +561,49 @@ class Ui_Dialog_create_new_game(object):
         self.pushButton_cancel.setText(_translate("Dialog_create_new_game", "Отмена"))
         self.pushButton_create.setText(_translate("Dialog_create_new_game", "Создать"))
 
-        
+
+    def lineEdit_game_name__txtChanged(self, name):
+        self.game_name = str(name)
+
+    def lineEdit_company_name_1_txtChanged(self, name):
+        self.companies_names["Company_1"] = str(name)
+
+    def lineEdit_company_name_2_txtChanged(self, name):
+        self.companies_names["Company_2"] = str(name)
+
+    def lineEdit_company_name_3_txtChanged(self, name):
+        self.companies_names["Company_3"] = str(name)
+
+    def lineEdit_company_name_4_txtChanged(self, name):
+        self.companies_names["Company_4"] = str(name)
+
+    def lineEdit_company_name_5_txtChanged(self, name):
+        self.companies_names["Company_5"] = str(name)
+
+    def lineEdit_company_name_6_txtChanged(self, name):
+        self.companies_names["Company_6"] = str(name)
+
+    def lineEdit_company_name_7_txtChanged(self, name):
+        self.companies_names["Company_7"] = str(name)
+
+    def lineEdit_company_name_8_txtChanged(self, name):
+        self.companies_names["Company_8"] = str(name)
+    
+    
         
     def create_new_game(self):
-        pass
-        
+        current_time = str(datetime.now().strftime("%d-%m-%Y %H:%M"))
+        self.companies_names = str(self.companies_names)
+        print(self.companies_names, current_time)
+        periods = ""
+        # connect to db
+        with sq.connect("db.sqlite3") as con_db:
+            cur_db = con_db.cursor()
+            
+            try:
+                cur_db.execute(f"""INSERT INTO games VALUES("{self.game_name}", "{current_time}", "{periods}", "{self.companies_names}", "{self.script}")""")
+            except sq.IntegrityError:
+                print("игра с таким названием уже существует")
 
 if __name__ == "__main__":
     import sys
