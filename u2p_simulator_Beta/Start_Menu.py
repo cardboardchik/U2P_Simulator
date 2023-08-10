@@ -893,7 +893,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "U2P Simulator - ###"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "U2P Simulator - Вход в аккаунт"))
         self.label_login_in_your_account.setText(_translate("MainWindow", "Войдите в аккаунт"))
         self.lineEdit_login_login.setPlaceholderText(_translate("MainWindow", "Login"))
         self.lineEdit_login_password.setPlaceholderText(_translate("MainWindow", "Password"))
@@ -940,6 +940,7 @@ class Ui_MainWindow(object):
     def login(self):
         self.widget_login.hide()
         self.widget_main.show()
+        MainWindow.setWindowTitle("U2P Simulator - Начальное меню")
         
     def logout(self):
         self.widget_login.show() #show
@@ -949,6 +950,7 @@ class Ui_MainWindow(object):
         self.widget_settings_about.hide()
         self.widget_settings_interface.hide()
         self.widget_settings_other.hide()
+        MainWindow.setWindowTitle("U2P Simulator - Вход в аккаунт")
         
     def exit(self):
         MainWindow.close()
@@ -970,11 +972,13 @@ class Ui_MainWindow(object):
     
     def pushButton_main_settings_was_clicked(self):
         self.widget_main.hide()
-        self.widget_settings.show()    
+        self.widget_settings.show()
+        MainWindow.setWindowTitle("U2P Simulator - Настройки")    
         
     def pushButton_settings_menu_home_was_clicked(self):
         self.widget_settings.hide()
         self.widget_main.show()
+        MainWindow.setWindowTitle("U2P Simulator - Начальное меню")
         
     def pushButton_settings_menu_profile_was_clicked(self):
         self.widget_settings_about.hide()

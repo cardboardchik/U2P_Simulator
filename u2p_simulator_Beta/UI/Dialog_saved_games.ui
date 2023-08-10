@@ -35,7 +35,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg</normaloff>../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg</iconset>
+    <normaloff>../../../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg</normaloff>../../../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background:#fff;</string>
@@ -71,7 +71,7 @@ background:#DCDCDC;</string>
       <x>16</x>
       <y>16</y>
       <width>585</width>
-      <height>376</height>
+      <height>491</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -177,7 +177,7 @@ QTableView::item {
      <bool>true</bool>
     </property>
     <property name="rowCount">
-     <number>15</number>
+     <number>1</number>
     </property>
     <attribute name="horizontalHeaderVisible">
      <bool>true</bool>
@@ -211,32 +211,6 @@ QTableView::item {
       <string>New Row</string>
      </property>
     </row>
-    <row>
-     <property name="text">
-      <string>New Row</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>New Row</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>New Row</string>
-     </property>
-    </row>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
     <column>
      <property name="text">
       <string>Название</string>
@@ -293,30 +267,6 @@ QTableView::item {
     <item row="0" column="2">
      <property name="text">
       <string>12</string>
-     </property>
-    </item>
-    <item row="1" column="3">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="textAlignment">
-      <set>AlignCenter</set>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg</normaloff>../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg</iconset>
-     </property>
-    </item>
-    <item row="1" column="4">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="textAlignment">
-      <set>AlignCenter</set>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg</normaloff>../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg</iconset>
      </property>
     </item>
    </widget>

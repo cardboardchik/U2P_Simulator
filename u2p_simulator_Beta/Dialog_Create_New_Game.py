@@ -6,6 +6,8 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 import sqlite3 as sq
 from datetime import datetime
 
+import engine
+
 class Ui_Dialog_create_new_game(object):
     def setupUi(self, Dialog_create_new_game):
         Dialog_create_new_game.setObjectName("Dialog_create_new_game")
@@ -515,7 +517,7 @@ class Ui_Dialog_create_new_game(object):
 
         #data
         self.game_name = ""
-        self.script = ""
+        self.script = [{'DemandChange': 0, 'RandDImpact': 0, 'PriceImpact': 0, 'MarketingImpact': 0, 'TaxRate': 25, 'InterestRate': 2.5, 'LoanLimit': 50000, 'MaxPrice': 99, 'MaxMarketing': 15000, 'MaxCapInv': 15000, 'MaxRandD': 15000, 'RandD': 30, 'Price': 40, 'Marketing': 30}]
         
         
         self.companies_names = {
@@ -593,9 +595,9 @@ class Ui_Dialog_create_new_game(object):
         
     def create_new_game(self):
         current_time = str(datetime.now().strftime("%d-%m-%Y %H:%M"))
-        self.companies_names = str(self.companies_names)
+        
         print(self.companies_names, current_time)
-        periods = ""
+        periods = [engine.exec(engine.init(len(self.companies_names)))]
         # connect to db
         with sq.connect("db.sqlite3") as con_db:
             cur_db = con_db.cursor()
