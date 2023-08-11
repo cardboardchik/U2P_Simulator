@@ -26,8 +26,8 @@ class Ui_Dialog_saved_games(object):
         icon.addPixmap(QtGui.QPixmap("UI\\../../../../../Pictures/Лого_u2p/vector (svg)/icon_logo.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Dialog_saved_games.setWindowIcon(icon)
         Dialog_saved_games.setStyleSheet("background:#fff;")
-        Dialog_saved_games.setSizeGripEnabled(False)
-        Dialog_saved_games.setModal(False)
+        #Dialog_saved_games.setSizeGripEnabled(False)
+        #Dialog_saved_games.setModal(False)
         self.frame_saved_games = QtWidgets.QFrame(Dialog_saved_games)
         self.frame_saved_games.setGeometry(QtCore.QRect(16, 60, 618, 558))
         self.frame_saved_games.setStyleSheet("border-radius: 20px;\n"
@@ -297,11 +297,12 @@ class Ui_Dialog_saved_games(object):
         
         
     def start_button(self, n): #n=row
-        self.Game_MainWindow = QtWidgets.QMainWindow()
-        self.Game_MainWindow_ui = Ui_u2p()
-        self.Game_MainWindow_ui.setupUi(self.Game_MainWindow)
+        self.Game_Dialog = QtWidgets.QDialog()
+        self.Game_Dialog_ui = Ui_u2p()
+        self.Game_Dialog_ui.setupUi(self.Game_Dialog)
         self.Dialog_saved_games.hide()
-        self.Game_MainWindow.show()
+        #self.Game_Dialog.show()
+        self.Game_Dialog.exec()
         
         
 

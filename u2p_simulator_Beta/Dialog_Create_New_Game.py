@@ -6,10 +6,13 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 import sqlite3 as sq
 from datetime import datetime
 
+from U2P_main import Ui_u2p
+
 import engine
 
 class Ui_Dialog_create_new_game(object):
     def setupUi(self, Dialog_create_new_game):
+        self.Dialog_create_new_game = Dialog_create_new_game #idk
         Dialog_create_new_game.setObjectName("Dialog_create_new_game")
         Dialog_create_new_game.resize(900, 620)
         Dialog_create_new_game.setMinimumSize(QtCore.QSize(900, 620))
@@ -499,6 +502,20 @@ class Ui_Dialog_create_new_game(object):
         self.pushButton_create.setObjectName("pushButton_create")
         
         
+        self.label_error_the_same_game_names = QtWidgets.QLabel(self.frame_game_name)
+        self.label_error_the_same_game_names.setGeometry(QtCore.QRect(0, 25, 554, 40))
+        self.label_error_the_same_game_names.setStyleSheet("color: #FF0000;\n"
+            "text-align: center;\n"
+            "background-color:rgba(0, 0, 0, 0);\n"
+            "font-family: Montserrat ExtraBold;\n"
+            "font-size: 16px;\n"
+            "font-style: normal;\n"
+            "font-weight: 800;\n"
+            "line-height: 24px;")
+        self.label_error_the_same_game_names.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label_error_the_same_game_names.setText("Игра с таким названием уже существует")
+        self.label_error_the_same_game_names.hide()
+        
         #connections
         self.pushButton_create.clicked.connect(self.create_new_game)
         self.pushButton_cancel.clicked.connect(Dialog_create_new_game.reject) #close
@@ -549,7 +566,7 @@ class Ui_Dialog_create_new_game(object):
         self.lineEdit_company_name_7.setPlaceholderText(_translate("Dialog_create_new_game", "Может быть пустым"))
         self.lineEdit_company_name_8.setPlaceholderText(_translate("Dialog_create_new_game", "Может быть пустым"))
         self.label_game_name.setText(_translate("Dialog_create_new_game", "Названиe игры"))
-        self.lineEdit_game_name.setPlaceholderText(_translate("Dialog_create_new_game", "Игра 999"))
+        self.lineEdit_game_name.setPlaceholderText(_translate("Dialog_create_new_game", "Название игры"))
         self.label_game_level.setText(_translate("Dialog_create_new_game", "Уровень игры"))
         self.comboBox_game_level.setItemText(0, _translate("Dialog_create_new_game", "Цена, Производство, Маркетинг, Кап. Инв., R&D"))
         self.comboBox_game_level.setItemText(1, _translate("Dialog_create_new_game", "Цена, Производство, Маркетинг, Кап. Инв"))
@@ -566,6 +583,7 @@ class Ui_Dialog_create_new_game(object):
 
     def lineEdit_game_name__txtChanged(self, name):
         self.game_name = str(name)
+        self.label_error_the_same_game_names.hide()
 
     def lineEdit_company_name_1_txtChanged(self, name):
         self.companies_names["Company_1"] = str(name)
@@ -594,19 +612,53 @@ class Ui_Dialog_create_new_game(object):
     
         
     def create_new_game(self):
-        current_time = str(datetime.now().strftime("%d-%m-%Y %H:%M"))
+        if len(self.companies_names) >= 2 and self.game_name != "":   
+            current_time = str(datetime.now().strftime("%d-%m-%Y %H:%M"))
         
-        print(self.companies_names, current_time)
-        periods = [engine.exec(engine.init(len(self.companies_names)))]
-        # connect to db
-        with sq.connect("db.sqlite3") as con_db:
+            print(self.companies_names, current_time)
+            periods = [engine.exec(engine.init(len(self.companies_names)))]
+            # connect to db
+            con_db = sq.connect("db.sqlite3")
             cur_db = con_db.cursor()
             
             try:
                 cur_db.execute(f"""INSERT INTO games VALUES("{self.game_name}", "{current_time}", "{periods}", "{self.companies_names}", "{self.script}")""")
+                con_db.commit()
+                con_db.close()
+        
+                self.Game_Dialog = QtWidgets.QDialog()
+                self.Game_Dialog_ui = Ui_u2p()
+                self.Game_Dialog_ui.setupUi(self.Game_Dialog)
+                self.Dialog_create_new_game.hide()
+                self.Game_Dialog.exec()
             except sq.IntegrityError:
                 print("игра с таким названием уже существует")
-
+                self.label_error_the_same_game_names.show()
+                
+                    
+        else:
+            if len(self.companies_names) <= 2:
+                style_lineEdit_error = ("border-radius: 12px;\n"
+                        "border: 2px solid #EF0009;\n"
+                        "padding-top: -1px;\n"
+                        "\n"
+                        "color: #1E1E1E;\n"
+                        "text-align: center;\n"
+                        "font-family: Montserrat ExtraBold;\n"
+                        "font-size: 16px;\n"
+                        "font-style: normal;\n"
+                        "font-weight: 800;\n"
+                        "line-height: 24px;\n"
+                        "\n"
+                        "padding-top: -1px;")
+                self.lineEdit_company_name_1.setStyleSheet(style_lineEdit_error)
+                self.lineEdit_company_name_2.setStyleSheet(style_lineEdit_error)
+                
+            if self.game_name == "":
+                self.lineEdit_game_name.setStyleSheet(style_lineEdit_error)
+            
+                
+                
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

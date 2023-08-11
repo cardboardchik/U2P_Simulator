@@ -3,9 +3,9 @@
 #python -m PyQt6.uic.pyuic -x [FILENAME].ui -o [FILENAME].py
 
 from PyQt6 import QtCore, QtGui, QtWidgets
-
-from Dialog_Create_New_Game import Ui_Dialog_create_new_game
 from Dialog_saved_games import Ui_Dialog_saved_games
+from Dialog_Create_New_Game import Ui_Dialog_create_new_game
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -967,9 +967,7 @@ class Ui_MainWindow(object):
         self.Dialog_saved_games_ui = Ui_Dialog_saved_games()
         self.Dialog_saved_games_ui.setupUi(self.Dialog_saved_games)
         self.Dialog_saved_games.exec()
-    
-    
-    
+
     def pushButton_main_settings_was_clicked(self):
         self.widget_main.hide()
         self.widget_settings.show()
@@ -1077,12 +1075,7 @@ class Ui_MainWindow(object):
                 "border-top: 1px solid #FFF;\n"
                 "background: #404040;\n"
                 "}")      
-          
-
-        
-
-
-    
+  
     
     
 if __name__ == "__main__":

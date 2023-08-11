@@ -8,11 +8,14 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
+
+
 class Ui_u2p(object):
         
     def setupUi(self, u2p):
+
         u2p.setObjectName("u2p")
-        u2p.setWindowModality(QtCore.Qt.WindowModality.NonModal)
+        #u2p.setWindowModality(QtCore.Qt.WindowModality.NonModal)
         u2p.resize(810, 540)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -42,12 +45,12 @@ class Ui_u2p(object):
         u2p.setToolTip("")
         u2p.setToolTipDuration(-1)
         u2p.setAutoFillBackground(False)
-        u2p.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
-        u2p.setAnimated(True)
-        u2p.setDocumentMode(False)
-        u2p.setTabShape(QtWidgets.QTabWidget.TabShape.Rounded)
-        u2p.setDockNestingEnabled(False)
-        u2p.setUnifiedTitleAndToolBarOnMac(False)
+        #u2p.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonIconOnly)
+        #u2p.setAnimated(True)
+        #u2p.setDocumentMode(False)
+        #u2p.setTabShape(QtWidgets.QTabWidget.TabShape.Rounded)
+        #u2p.setDockNestingEnabled(False)
+        #u2p.setUnifiedTitleAndToolBarOnMac(False)
         
         self.centralwidget = QtWidgets.QWidget(parent=u2p)
         self.centralwidget.setEnabled(True)
@@ -1097,12 +1100,12 @@ class Ui_u2p(object):
         self.line_5.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
         self.line_5.setObjectName("line_5")
         
-        u2p.setCentralWidget(self.centralwidget)
+        #u2p.setCentralWidget(self.centralwidget)
         
-        self.menubar = QtWidgets.QMenuBar(parent=u2p)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 810, 21))
-        self.menubar.setObjectName("menubar")
-        u2p.setMenuBar(self.menubar)
+        #self.menubar = QtWidgets.QMenuBar(parent=u2p)
+        #self.menubar.setGeometry(QtCore.QRect(0, 0, 810, 21))
+        #self.menubar.setObjectName("menubar")
+        #u2p.setMenuBar(self.menubar)
         
         
         #connections
@@ -1183,7 +1186,7 @@ class Ui_u2p(object):
 
     def close_game(self):
         pass
-
+  
     def pushButton_EnterallDecisions_was_clicked(self):
         pass
 
@@ -1206,15 +1209,16 @@ class Ui_u2p(object):
         pass
 
     def pushButton_ClosePeriod_was_clicked(self):
-        pass
-        
-        
+        pass        
+
+
         
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    u2p = QtWidgets.QMainWindow()
+    u2p = QtWidgets.QDialog()
     ui = Ui_u2p()
     ui.setupUi(u2p)
     u2p.show()
+    
     sys.exit(app.exec())
