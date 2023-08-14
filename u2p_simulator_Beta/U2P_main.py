@@ -1188,7 +1188,7 @@ class Ui_u2p(object):
 
     
     def save_game(self):
-        self.frame_compan_list.hide()
+        pass
 
     def close_game(self):
         pass
@@ -1246,10 +1246,6 @@ class Ui_u2p(object):
         self.label_company_upi_7.setText(str(sorted_company_upi_dict[6][1]))
         self.label_company_name_8.setText(str(sorted_company_upi_dict[7][0]))
         self.label_company_upi_8.setText(str(sorted_company_upi_dict[7][1]))
-
-
-
-
 
 
 

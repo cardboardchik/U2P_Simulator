@@ -1,6 +1,4 @@
 
-## by Karton4ik
-
 import math
 
 
@@ -477,5 +475,3 @@ def exec(game):
     each(fun_4)
 
     return game
-
-#by Karton4ik
