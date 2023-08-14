@@ -5,6 +5,7 @@
 #python -m PyQt6.uic.pyuic -x [FILENAME].ui -o [FILENAME].py
 
 
+from ast import literal_eval
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
@@ -12,8 +13,9 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_u2p(object):
         
-    def setupUi(self, u2p):
-
+    def setupUi(self, u2p, game_data_db):
+        self.game_data_db = game_data_db
+        
         u2p.setObjectName("u2p")
         #u2p.setWindowModality(QtCore.Qt.WindowModality.NonModal)
         u2p.resize(810, 540)
@@ -520,17 +522,17 @@ class Ui_u2p(object):
         self.label_company_upi_4.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_company_upi_4.setObjectName("label_company_upi_4")
         
-        self.label_company_upi = QtWidgets.QLabel(parent=self.frame_compan_list)
-        self.label_company_upi.setGeometry(QtCore.QRect(221, 167, 50, 30))
+        self.label_company_upi_3 = QtWidgets.QLabel(parent=self.frame_compan_list)
+        self.label_company_upi_3.setGeometry(QtCore.QRect(221, 167, 50, 30))
         font = QtGui.QFont()
         font.setFamily("Montserrat ExtraBold")
         font.setPointSize(18)
         font.setBold(True)
         font.setWeight(75)
-        self.label_company_upi.setFont(font)
-        self.label_company_upi.setStyleSheet("color: rgb(255, 255, 255);")
-        self.label_company_upi.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_company_upi.setObjectName("label_company_upi")
+        self.label_company_upi_3.setFont(font)
+        self.label_company_upi_3.setStyleSheet("color: rgb(255, 255, 255);")
+        self.label_company_upi_3.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label_company_upi_3.setObjectName("label_company_upi_3")
         
         self.label_company_upi_6 = QtWidgets.QLabel(parent=self.frame_compan_list)
         self.label_company_upi_6.setGeometry(QtCore.QRect(221, 287, 50, 30))
@@ -740,20 +742,20 @@ class Ui_u2p(object):
         self.label_company_arrow_num_8.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.label_company_arrow_num_8.setObjectName("label_company_arrow_num_8")
         
-        self.label_2 = QtWidgets.QLabel(parent=self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(16, 119, 492, 35))
+        self.label_current_period = QtWidgets.QLabel(parent=self.centralwidget)
+        self.label_current_period.setGeometry(QtCore.QRect(16, 119, 492, 35))
         font = QtGui.QFont()
         font.setFamily("Montserrat ExtraBold")
         font.setPointSize(20)
         font.setBold(True)
         font.setWeight(75)
-        self.label_2.setFont(font)
-        self.label_2.setStyleSheet(
+        self.label_current_period.setFont(font)
+        self.label_current_period.setStyleSheet(
                 "color: rgb(255, 255, 255);\n"
                 "background-color: rgba(255, 255, 255, 0);")
-        self.label_2.setMidLineWidth(1)
-        self.label_2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-        self.label_2.setObjectName("label_2")
+        self.label_current_period.setMidLineWidth(1)
+        self.label_current_period.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.label_current_period.setObjectName("label_current_period")
         
         self.frame_decisions = QtWidgets.QFrame(parent=self.centralwidget)
         self.frame_decisions.setGeometry(QtCore.QRect(16, 160, 239, 245))
@@ -1107,6 +1109,10 @@ class Ui_u2p(object):
         #self.menubar.setObjectName("menubar")
         #u2p.setMenuBar(self.menubar)
         
+        #set game data
+        self.label.setText(game_data_db[-1][0]) #game_name
+        self.label_current_period.setText(f"Период {literal_eval(game_data_db[0][2])[-1]['now_tick']}")
+        self.top_company_list()
         
         #connections
         self.pushButton_savegame.clicked.connect(self.save_game)
@@ -1128,7 +1134,7 @@ class Ui_u2p(object):
         _translate = QtCore.QCoreApplication.translate
         u2p.setWindowTitle(_translate("u2p", "U2P Simulator"))
         self.label_account_name.setText(_translate("u2p", "Школа<br> Предпринимателей"))
-        self.label.setText(_translate("u2p", "Игра №99999"))
+        # self.label.setText(_translate("u2p", "Игра №99999"))
         self.pushButton_savegame.setText(_translate("u2p", "Сохранить игру"))
         self.pushButton_closegame.setText(_translate("u2p", "Закончить игру"))
         self.label_company_list.setText(_translate("u2p", "Список компаний"))
@@ -1142,22 +1148,22 @@ class Ui_u2p(object):
         self.label_company_place_6.setText(_translate("u2p", "6."))
         self.label_company_place_7.setText(_translate("u2p", "7."))
         self.label_company_place_8.setText(_translate("u2p", "8."))
-        self.label_company_name_2.setText(_translate("u2p", "PQRLLC"))
-        self.label_company_name_3.setText(_translate("u2p", "GHIComp"))
-        self.label_company_name_7.setText(_translate("u2p", "XYZInc"))
-        self.label_company_name_6.setText(_translate("u2p", "JKLIndus"))
-        self.label_company_name_4.setText(_translate("u2p", "DEFLtd"))
-        self.label_company_name_1.setText(_translate("u2p", "QRSCo"))
-        self.label_company_name_5.setText(_translate("u2p", "ABCCorp"))
-        self.label_company_name_8.setText(_translate("u2p", "MNOGroup"))
-        self.label_company_upi_2.setText(_translate("u2p", "350"))
-        self.label_company_upi_1.setText(_translate("u2p", "380"))
-        self.label_company_upi_4.setText(_translate("u2p", "290"))
-        self.label_company_upi.setText(_translate("u2p", "300"))
-        self.label_company_upi_6.setText(_translate("u2p", "190"))
-        self.label_company_upi_5.setText(_translate("u2p", "230"))
-        self.label_company_upi_8.setText(_translate("u2p", "120"))
-        self.label_company_upi_7.setText(_translate("u2p", "160"))
+        # self.label_company_name_2.setText(_translate("u2p", "PQRLLC"))
+        # self.label_company_name_3.setText(_translate("u2p", "GHIComp"))
+        # self.label_company_name_7.setText(_translate("u2p", "XYZInc"))
+        # self.label_company_name_6.setText(_translate("u2p", "JKLIndus"))
+        # self.label_company_name_4.setText(_translate("u2p", "DEFLtd"))
+        # self.label_company_name_1.setText(_translate("u2p", "QRSCo"))
+        # self.label_company_name_5.setText(_translate("u2p", "ABCCorp"))
+        # self.label_company_name_8.setText(_translate("u2p", "MNOGroup"))
+        # self.label_company_upi_2.setText(_translate("u2p", "350"))
+        # self.label_company_upi_1.setText(_translate("u2p", "380"))
+        # self.label_company_upi_4.setText(_translate("u2p", "290"))
+        # self.label_company_upi_3.setText(_translate("u2p", "300"))
+        # self.label_company_upi_6.setText(_translate("u2p", "190"))
+        # self.label_company_upi_5.setText(_translate("u2p", "230"))
+        # self.label_company_upi_8.setText(_translate("u2p", "120"))
+        # self.label_company_upi_7.setText(_translate("u2p", "160"))
         self.label_company_arrow_num_1.setText(_translate("u2p", "1"))
         self.label_company_arrow_num_2.setText(_translate("u2p", "1"))
         self.label_company_arrow_num_3.setText(_translate("u2p", "1"))
@@ -1166,7 +1172,7 @@ class Ui_u2p(object):
         self.label_company_arrow_num_6.setText(_translate("u2p", "1"))
         self.label_company_arrow_num_7.setText(_translate("u2p", "1"))
         self.label_company_arrow_num_8.setText(_translate("u2p", "1"))
-        self.label_2.setText(_translate("u2p", "Период №99"))
+        #self.label_current_period.setText(_translate("u2p", "Период №99"))
         self.label_decisions.setText(_translate("u2p", "Решения"))
         self.pushButton_EnterallDecisions.setText(_translate("u2p", "Ввод решений"))
         self.pushButton_ReviewDecisions.setText(_translate("u2p", "Правка решений"))
@@ -1209,7 +1215,42 @@ class Ui_u2p(object):
         pass
 
     def pushButton_ClosePeriod_was_clicked(self):
-        pass        
+        pass    
+
+    def top_company_list(self):
+        company_upi_dict = {}
+        companies_name = literal_eval(self.game_data_db[-1][3])
+        data_periods = literal_eval(self.game_data_db[-1][2])
+        n = 1
+        for i in data_periods[-1]["data"]["upi"]:
+            company_upi_dict[companies_name[f"Company_{n}"]] = i
+            n += 1
+        sorted_company_upi_dict = list(sorted(company_upi_dict.items(), key=lambda x:x[1], reverse=True))
+        
+        for i in range(8 - len(sorted_company_upi_dict)):
+            sorted_company_upi_dict.append(("", ""))
+                
+        self.label_company_name_1.setText(str(sorted_company_upi_dict[0][0]))
+        self.label_company_upi_1.setText(str(sorted_company_upi_dict[0][1]))
+        self.label_company_name_2.setText(str(sorted_company_upi_dict[1][0]))
+        self.label_company_upi_2.setText(str(sorted_company_upi_dict[1][1]))
+        self.label_company_name_3.setText(str(sorted_company_upi_dict[2][0]))
+        self.label_company_upi_3.setText(str(sorted_company_upi_dict[2][1]))
+        self.label_company_name_4.setText(str(sorted_company_upi_dict[3][0]))
+        self.label_company_upi_4.setText(str(sorted_company_upi_dict[3][1]))
+        self.label_company_name_5.setText(str(sorted_company_upi_dict[4][0]))
+        self.label_company_upi_5.setText(str(sorted_company_upi_dict[4][1]))
+        self.label_company_name_6.setText(str(sorted_company_upi_dict[5][0]))
+        self.label_company_upi_6.setText(str(sorted_company_upi_dict[5][1]))
+        self.label_company_name_7.setText(str(sorted_company_upi_dict[6][0]))
+        self.label_company_upi_7.setText(str(sorted_company_upi_dict[6][1]))
+        self.label_company_name_8.setText(str(sorted_company_upi_dict[7][0]))
+        self.label_company_upi_8.setText(str(sorted_company_upi_dict[7][1]))
+
+
+
+
+
 
 
         

@@ -101,37 +101,7 @@ class Ui_Dialog_saved_games(object):
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(5)
         
-        # connect to db
-        with sq.connect("db.sqlite3") as con_db:
-                cur_db = con_db.cursor()
-                cur_db.execute("select rowid, * from games")
-                
-                self.result = cur_db.fetchall()
-                result_len = len(self.result)
-                
-                
-                self.tableWidget.setRowCount(result_len)
-
-                for row in range(result_len):
-                    self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(self.result[row][1])) #name
-                    self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(self.result[row][2])) #date
-                    self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(str(len(literal_eval(self.result[row][3]))))) #len(periods)
-                    
-                    pb_delete = QtWidgets.QPushButton()
-                    icon1 = QtGui.QIcon()
-                    icon1.addPixmap(QtGui.QPixmap("UI\\../Images/delete_button.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-                    pb_delete.setIcon(icon1)
-                    pb_delete.setIconSize(QtCore.QSize(23, 23))
-                    pb_delete.clicked.connect(partial(self.delete_button, n=row))
-                    self.tableWidget.setCellWidget(row, 3, pb_delete)
-                    
-                    pb_start = QtWidgets.QPushButton()
-                    icon2 = QtGui.QIcon()
-                    icon2.addPixmap(QtGui.QPixmap("UI\\../Images/play_button.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-                    pb_start.setIcon(icon2)
-                    pb_start.setIconSize(QtCore.QSize(23, 23))
-                    pb_start.clicked.connect(partial(self.start_button, n=row))
-                    self.tableWidget.setCellWidget(row, 4, pb_start)
+        self.table_view()
                     
                     
         # item = QtWidgets.QTableWidgetItem()
@@ -248,14 +218,14 @@ class Ui_Dialog_saved_games(object):
         self.tableWidget.setColumnWidth(4, 12)
         header = self.tableWidget.horizontalHeader()
         
-        header.setDefaultSectionSize(165)
+        header.setDefaultSectionSize(110)
         
         header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
         header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
         header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.Fixed)
         header.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
         header.setSectionResizeMode(4, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
-        
+
     
         #connections
         self.pushButton_cancel.clicked.connect(Dialog_saved_games.reject)
@@ -283,27 +253,63 @@ class Ui_Dialog_saved_games(object):
     def delete_button(self, n): #n=row
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-        msgBox.setText("Вы точно хотите безвозратно удалить эту игру?") #add current name game
+        msgBox.setText("Вы точно хотите безвозратно удалить эту игру?") #need to add current name game :)
         msgBox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-
         returnValue = msgBox.exec()
         
         if returnValue == QtWidgets.QMessageBox.StandardButton.Yes:
-
             with sq.connect("db.sqlite3") as con_db:
                 cur_db = con_db.cursor()
                 cur_db.execute(f"DELETE from games where rowid={self.result[n][0]}")
-                self.tableWidget.removeRow(n)
-        
+                #self.tableWidget.removeRow(n)
+            
+            self.table_view() #refresh table
         
     def start_button(self, n): #n=row
         self.Game_Dialog = QtWidgets.QDialog()
         self.Game_Dialog_ui = Ui_u2p()
-        self.Game_Dialog_ui.setupUi(self.Game_Dialog)
+        
+        with sq.connect("db.sqlite3") as con_db:
+                cur_db = con_db.cursor()
+                game_data_db = cur_db.execute(f"SELECT * from games where rowid={self.result[n][0]}").fetchall()
+        
+        self.Game_Dialog_ui.setupUi(self.Game_Dialog, game_data_db) #game_data_db
         self.Dialog_saved_games.hide()
         #self.Game_Dialog.show()
         self.Game_Dialog.exec()
         
+    def table_view(self):
+        # connect to db
+        with sq.connect("db.sqlite3") as con_db:
+                cur_db = con_db.cursor()
+                cur_db.execute("select rowid, * from games")
+                
+                self.result = cur_db.fetchall()
+                result_len = len(self.result)
+                
+                
+                self.tableWidget.setRowCount(result_len)
+
+                for row in range(result_len):
+                    self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(self.result[row][1])) #name
+                    self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(self.result[row][2])) #date
+                    self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(str(len(literal_eval(self.result[row][3]))))) #len(periods)
+                    
+                    pb_delete = QtWidgets.QPushButton()
+                    icon1 = QtGui.QIcon()
+                    icon1.addPixmap(QtGui.QPixmap("UI\\../Images/delete_button.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+                    pb_delete.setIcon(icon1)
+                    pb_delete.setIconSize(QtCore.QSize(23, 23))
+                    pb_delete.clicked.connect(partial(self.delete_button, n=row))
+                    self.tableWidget.setCellWidget(row, 3, pb_delete)
+                    
+                    pb_start = QtWidgets.QPushButton()
+                    icon2 = QtGui.QIcon()
+                    icon2.addPixmap(QtGui.QPixmap("UI\\../Images/play_button.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+                    pb_start.setIcon(icon2)
+                    pb_start.setIconSize(QtCore.QSize(23, 23))
+                    pb_start.clicked.connect(partial(self.start_button, n=row))
+                    self.tableWidget.setCellWidget(row, 4, pb_start)
         
 
 

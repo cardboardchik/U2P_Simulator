@@ -7,6 +7,7 @@ import sqlite3 as sq
 from datetime import datetime
 
 from U2P_main import Ui_u2p
+from Dialog_Setup_error import Ui_Dialog_Setup_error
 
 import engine
 
@@ -516,6 +517,26 @@ class Ui_Dialog_create_new_game(object):
         self.label_error_the_same_game_names.setText("Игра с таким названием уже существует")
         self.label_error_the_same_game_names.hide()
         
+        self.lineEdit_company_name_1.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{8}")))
+        self.lineEdit_company_name_2.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{8}")))
+        self.lineEdit_company_name_3.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{8}")))
+        self.lineEdit_company_name_4.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{8}")))
+        self.lineEdit_company_name_5.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{8}")))
+        self.lineEdit_company_name_6.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{8}")))
+        self.lineEdit_company_name_7.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{8}")))
+        self.lineEdit_company_name_8.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{8}")))
+        self.lineEdit_game_name.setValidator(QtGui.QRegularExpressionValidator(QtCore.QRegularExpression("[A-Za-z0-9]{10}")))
+        
+        
+        self.lineEdit_company_name_2.setEnabled(False)
+        self.lineEdit_company_name_3.setEnabled(False)
+        self.lineEdit_company_name_4.setEnabled(False)
+        self.lineEdit_company_name_5.setEnabled(False)
+        self.lineEdit_company_name_6.setEnabled(False)
+        self.lineEdit_company_name_7.setEnabled(False)
+        self.lineEdit_company_name_8.setEnabled(False)
+        
+        
         #connections
         self.pushButton_create.clicked.connect(self.create_new_game)
         self.pushButton_cancel.clicked.connect(Dialog_create_new_game.reject) #close
@@ -587,24 +608,31 @@ class Ui_Dialog_create_new_game(object):
 
     def lineEdit_company_name_1_txtChanged(self, name):
         self.companies_names["Company_1"] = str(name)
+        self.lineEdit_company_name_2.setEnabled(True)
 
     def lineEdit_company_name_2_txtChanged(self, name):
         self.companies_names["Company_2"] = str(name)
+        self.lineEdit_company_name_3.setEnabled(True)
 
     def lineEdit_company_name_3_txtChanged(self, name):
         self.companies_names["Company_3"] = str(name)
+        self.lineEdit_company_name_4.setEnabled(True)
 
     def lineEdit_company_name_4_txtChanged(self, name):
         self.companies_names["Company_4"] = str(name)
+        self.lineEdit_company_name_5.setEnabled(True)
 
     def lineEdit_company_name_5_txtChanged(self, name):
         self.companies_names["Company_5"] = str(name)
+        self.lineEdit_company_name_6.setEnabled(True)
 
     def lineEdit_company_name_6_txtChanged(self, name):
         self.companies_names["Company_6"] = str(name)
+        self.lineEdit_company_name_7.setEnabled(True)
 
     def lineEdit_company_name_7_txtChanged(self, name):
         self.companies_names["Company_7"] = str(name)
+        self.lineEdit_company_name_8.setEnabled(True)
 
     def lineEdit_company_name_8_txtChanged(self, name):
         self.companies_names["Company_8"] = str(name)
@@ -613,28 +641,47 @@ class Ui_Dialog_create_new_game(object):
         
     def create_new_game(self):
         if len(self.companies_names) >= 2 and self.game_name != "":   
-            current_time = str(datetime.now().strftime("%d-%m-%Y %H:%M"))
-        
-            print(self.companies_names, current_time)
-            periods = [engine.exec(engine.init(len(self.companies_names)))]
-            # connect to db
-            con_db = sq.connect("db.sqlite3")
-            cur_db = con_db.cursor()
             
-            try:
-                cur_db.execute(f"""INSERT INTO games VALUES("{self.game_name}", "{current_time}", "{periods}", "{self.companies_names}", "{self.script}")""")
-                con_db.commit()
-                con_db.close()
-        
-                self.Game_Dialog = QtWidgets.QDialog()
-                self.Game_Dialog_ui = Ui_u2p()
-                self.Game_Dialog_ui.setupUi(self.Game_Dialog)
-                self.Dialog_create_new_game.hide()
-                self.Game_Dialog.exec()
-            except sq.IntegrityError:
-                print("игра с таким названием уже существует")
-                self.label_error_the_same_game_names.show()
+            #check the same company name
+            def check_same_company_name(data):
+                for i in range(1, len(self.companies_names) + 1):
+                    for j in range(1, len(self.companies_names) + 1):
+                        if i != j:
+                            if data[f"Company_{i}"] == data[f"Company_{j}"]:
+                                return True
+                return False
+            
+            if check_same_company_name(self.companies_names):
+                self.Dialog_Setup_error = QtWidgets.QDialog()
+                self.Dialog_Setup_error_ui = Ui_Dialog_Setup_error()
+                self.Dialog_Setup_error_ui.setupUi(self.Dialog_Setup_error)
+                self.Dialog_Setup_error.exec()
+            else:
+                current_time = str(datetime.now().strftime("%d-%m-%Y %H:%M"))
+                periods = [engine.exec(engine.init(len(self.companies_names)))]
+                # connect to db
+                con_db = sq.connect("db.sqlite3")
+                cur_db = con_db.cursor()
                 
+                try:
+                    print(self.companies_names)
+                    cur_db.execute(f"""INSERT INTO games VALUES("{self.game_name}", "{current_time}", "{periods}", "{self.companies_names}", "{self.script}")""")
+                    con_db.commit()
+                    con_db.close()
+            
+                    self.Game_Dialog = QtWidgets.QDialog()
+                    self.Game_Dialog_ui = Ui_u2p()
+                    
+                    with sq.connect("db.sqlite3") as con_db:
+                            cur_db = con_db.cursor()
+                            game_data_db = cur_db.execute("SELECT * FROM games ORDER BY rowid DESC LIMIT 1").fetchall()  #select the last record
+                    
+                    self.Game_Dialog_ui.setupUi(self.Game_Dialog, game_data_db) #game_data_db
+                    self.Dialog_create_new_game.hide()
+                    self.Game_Dialog.exec()
+                    
+                except sq.IntegrityError:
+                    self.label_error_the_same_game_names.show()
                     
         else:
             if len(self.companies_names) <= 2:
