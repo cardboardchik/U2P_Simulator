@@ -8,6 +8,8 @@
 from ast import literal_eval
 from PyQt6 import QtCore, QtGui, QtWidgets
 
+from Dialog_Enter_decisions_select_company import Ui_Dialog_Enter_decisions_select_company
+
 
 
 
@@ -1194,7 +1196,10 @@ class Ui_u2p(object):
         pass
   
     def pushButton_EnterallDecisions_was_clicked(self):
-        pass
+        self.EnterallDecisions = QtWidgets.QDialog()
+        self.EnterallDecisions_ui = Ui_Dialog_Enter_decisions_select_company()
+        self.EnterallDecisions_ui.setupUi(self.EnterallDecisions, self.game_data_db)
+        self.EnterallDecisions.exec()
 
     def pushButton_ReviewDecisions_was_clicked(self):
         pass

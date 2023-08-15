@@ -1,9 +1,14 @@
 
+from ast import literal_eval
+from functools import partial
+import sqlite3 as sq
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
 class Ui_Dialog_Enter_decisions_select_company(object):
-    def setupUi(self, Dialog_Enter_decisions_select_company):
+    def setupUi(self, Dialog_Enter_decisions_select_company, data):
+        self.data = data
+        
         Dialog_Enter_decisions_select_company.setObjectName("Dialog_Enter_decisions_select_company")
         Dialog_Enter_decisions_select_company.resize(300, 420)
         Dialog_Enter_decisions_select_company.setMinimumSize(QtCore.QSize(300, 420))
@@ -50,23 +55,15 @@ class Ui_Dialog_Enter_decisions_select_company(object):
         self.tableWidget.setCornerButtonEnabled(True)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(2)
-        self.tableWidget.setRowCount(3)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(2, item)
+
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setItem(0, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setItem(1, 0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setItem(2, 0, item)
+        
+        self.companies_list()
+        
+
         self.tableWidget.horizontalHeader().setVisible(False)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(150)
         self.tableWidget.horizontalHeader().setHighlightSections(False)
@@ -78,7 +75,6 @@ class Ui_Dialog_Enter_decisions_select_company(object):
         self.pushButton_cancel.setGeometry(QtCore.QRect(88, 375, 125, 35))
         font = QtGui.QFont()
         font.setFamily("Montserrat ExtraBold")
-        font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(99)
@@ -116,27 +112,42 @@ class Ui_Dialog_Enter_decisions_select_company(object):
         Dialog_Enter_decisions_select_company.setWindowTitle(_translate("Dialog_Enter_decisions_select_company", "Dialog"))
         self.label.setText(_translate("Dialog_Enter_decisions_select_company", "Ввод решений"))
         self.tableWidget.setSortingEnabled(False)
-        item = self.tableWidget.verticalHeaderItem(0)
-        item.setText(_translate("Dialog_Enter_decisions_select_company", "New Row"))
-        item = self.tableWidget.verticalHeaderItem(1)
-        item.setText(_translate("Dialog_Enter_decisions_select_company", "New Row"))
-        item = self.tableWidget.verticalHeaderItem(2)
-        item.setText(_translate("Dialog_Enter_decisions_select_company", "New Row"))
+        # item = self.tableWidget.verticalHeaderItem(0)
+        # item.setText(_translate("Dialog_Enter_decisions_select_company", "New Row"))
+        # item = self.tableWidget.verticalHeaderItem(1)
+        # item.setText(_translate("Dialog_Enter_decisions_select_company", "New Row"))
+        # item = self.tableWidget.verticalHeaderItem(2)
+        # item.setText(_translate("Dialog_Enter_decisions_select_company", "New Row"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Dialog_Enter_decisions_select_company", "New Column"))
         item = self.tableWidget.horizontalHeaderItem(1)
         item.setText(_translate("Dialog_Enter_decisions_select_company", "New Column"))
         __sortingEnabled = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
-        item = self.tableWidget.item(0, 0)
-        item.setText(_translate("Dialog_Enter_decisions_select_company", "AAAAAAAA"))
-        item = self.tableWidget.item(1, 0)
-        item.setText(_translate("Dialog_Enter_decisions_select_company", "dsad"))
-        item = self.tableWidget.item(2, 0)
-        item.setText(_translate("Dialog_Enter_decisions_select_company", "dasasd"))
+        # item = self.tableWidget.item(0, 0)
+        # item.setText(_translate("Dialog_Enter_decisions_select_company", "AAAAAAAA"))
+        # item = self.tableWidget.item(1, 0)
+        # item.setText(_translate("Dialog_Enter_decisions_select_company", "dsad"))
+        # item = self.tableWidget.item(2, 0)
+        # item.setText(_translate("Dialog_Enter_decisions_select_company", "dasasd"))
         self.tableWidget.setSortingEnabled(__sortingEnabled)
         self.pushButton_cancel.setText(_translate("Dialog_Enter_decisions_select_company", "Закрыть"))
 
+    def companies_list(self):
+        companies = literal_eval(self.data[-1][3])
+        len_companies = len(companies)
+        self.tableWidget.setRowCount(len_companies)
+
+        for row in range(len_companies):
+            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(companies[f"Company_{row + 1}"])) #name
+            
+            pb_enter = QtWidgets.QPushButton()
+            pb_enter.setText("Ввести")
+            pb_enter.clicked.connect(partial(self.enter_button, n=row))
+            self.tableWidget.setCellWidget(row, 1, pb_enter)
+
+    def enter_button(self, n):
+        print(n)
 
 if __name__ == "__main__":
     import sys
@@ -146,3 +157,5 @@ if __name__ == "__main__":
     ui.setupUi(Dialog_Enter_decisions_select_company)
     Dialog_Enter_decisions_select_company.show()
     sys.exit(app.exec())
+
+
