@@ -65,17 +65,18 @@ class Ui_Dialog_Enter_decisions_select_company(object):
         
 
         self.tableWidget.horizontalHeader().setVisible(False)
-        self.tableWidget.horizontalHeader().setDefaultSectionSize(150)
+        #self.tableWidget.horizontalHeader().setDefaultSectionSize(150)
         self.tableWidget.horizontalHeader().setHighlightSections(False)
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
         #self.tableWidget.horizontalHeader().setMinimumSectionSize(40)
         self.tableWidget.verticalHeader().setVisible(False)
         self.tableWidget.verticalHeader().setDefaultSectionSize(40)
         self.tableWidget.verticalHeader().setHighlightSections(False)
         
         header = self.tableWidget.horizontalHeader()
-        header.setDefaultSectionSize(150)
+        header.setDefaultSectionSize(160)
         
-        header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.Fixed)
 
         #header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.Fixed)
         
@@ -151,7 +152,7 @@ class Ui_Dialog_Enter_decisions_select_company(object):
             
             pb_enter = QtWidgets.QPushButton()
             pb_enter.setText("Ввести")
-            pb_enter.setGeometry(QtCore.QRect(0, 0, 40, 30))
+        
             pb_enter.setStyleSheet("QPushButton{\n"
 "\n"
 "border-radius: 5px;\n"
@@ -178,6 +179,7 @@ class Ui_Dialog_Enter_decisions_select_company(object):
 "}\n"
 "\n"
 "")
+            
             pb_enter.clicked.connect(partial(self.enter_button, n=row))
             self.tableWidget.setCellWidget(row, 1, pb_enter)
 
