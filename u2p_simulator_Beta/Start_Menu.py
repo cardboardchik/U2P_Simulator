@@ -881,7 +881,13 @@ class Ui_MainWindow(object):
         
         #def settings
         self.widget_login.show() #show
-        self.widget_main.hide()
+
+        ###
+        self.widget_login.hide() # !!!
+        self.widget_main.show()
+        ###
+
+        #self.widget_main.hide()
         self.widget_settings.hide()
         self.widget_settings_profile.show() #show
         self.widget_settings_about.hide()

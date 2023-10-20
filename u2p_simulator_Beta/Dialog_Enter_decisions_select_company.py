@@ -14,6 +14,12 @@ class Ui_Dialog_Enter_decisions_select_company(object):
         Dialog_Enter_decisions_select_company.setMinimumSize(QtCore.QSize(300, 420))
         Dialog_Enter_decisions_select_company.setMaximumSize(QtCore.QSize(300, 420))
         Dialog_Enter_decisions_select_company.setStyleSheet("background-color: rgb(255, 255, 255);")
+
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("Images\icon_choose.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        Dialog_Enter_decisions_select_company.setWindowIcon(icon)
+
+
         self.label = QtWidgets.QLabel(Dialog_Enter_decisions_select_company)
         self.label.setGeometry(QtCore.QRect(0, 0, 300, 40))
         self.label.setStyleSheet("color: #1E1E1E;\n"
@@ -112,13 +118,17 @@ class Ui_Dialog_Enter_decisions_select_company(object):
 "padding-top: -4px;\n"
 "}")
         self.pushButton_cancel.setObjectName("pushButton_cancel")
+    
+        # connections
+        self.pushButton_cancel.clicked.connect(Dialog_Enter_decisions_select_company.reject)
+
 
         self.retranslateUi(Dialog_Enter_decisions_select_company)
         QtCore.QMetaObject.connectSlotsByName(Dialog_Enter_decisions_select_company)
 
     def retranslateUi(self, Dialog_Enter_decisions_select_company):
         _translate = QtCore.QCoreApplication.translate
-        Dialog_Enter_decisions_select_company.setWindowTitle(_translate("Dialog_Enter_decisions_select_company", "Dialog"))
+        Dialog_Enter_decisions_select_company.setWindowTitle(_translate("Dialog_Enter_decisions_select_company", "U2P Simulator - Select Company"))
         self.label.setText(_translate("Dialog_Enter_decisions_select_company", "Ввод решений"))
         self.tableWidget.setSortingEnabled(False)
         # item = self.tableWidget.verticalHeaderItem(0)
@@ -166,6 +176,8 @@ class Ui_Dialog_Enter_decisions_select_company(object):
 "font-weight: 800;\n"
 "line-height: 24px; /* 120% */\n"
 "letter-spacing: -1px;\n"
+"margin-top: 4px;"
+"margin-bottom: 4px;"
 "\n"
 "}\n"
 "\n"
@@ -185,6 +197,7 @@ class Ui_Dialog_Enter_decisions_select_company(object):
 
     def enter_button(self, n):
         print(n)
+
 
 if __name__ == "__main__":
     import sys

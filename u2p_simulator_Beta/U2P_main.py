@@ -138,7 +138,7 @@ class Ui_u2p(object):
         self.comboBox_language.setItemText(1, "")
         
         self.label_help = QtWidgets.QLabel(parent=self.header)
-        self.label_help.setGeometry(QtCore.QRect(148, 0, 40, 80))
+        self.label_help.setGeometry(QtCore.QRect(148, 0, 42, 80))
         self.label_help.setText("")
         self.label_help.setPixmap(QtGui.QPixmap("images/Circle_Help.svg"))
         self.label_help.setScaledContents(False)
