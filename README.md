@@ -1,4 +1,4 @@
-
+[Official U2P Simulator website](https://u2p.kz/simulator.html)
 # U2P
 U2P can be called an adaptation of MESE for modern operating systems, they are based on similar mathematical models, but there are some changes. U2P was created by <a href='https://github.com/cardboardchik'>karton4ik</a> as a replacement for Junior Achievement's MESE
 
@@ -21,9 +21,6 @@ To run the old version of the program, you need to find MESE.EXE and run it (onl
   <li>Minor changes to the main window. Firstly, the display of the first three commands by number of MPI was added. Second, the Graph button has "moved" to a separate section, as it is now independent of the game period. And a few more minor changes;</li>
   <li>Adding languages other than English. The process of adding Russian is currently underway;</li>
 </ul>
-
-# How to play in U2P
-
 
 # Minimum system requirements
 <ul>
