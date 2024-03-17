@@ -1,4 +1,11 @@
-[Official U2P Simulator website](https://u2p.kz/simulator.html)
+
+<p align="center">
+  <a href="https://u2p.kz/simulator.html">
+  <img src="https://github.com/cardboardchik/U2P_Simulator/blob/main/Images/logo_u2p_sim_full_white.png?raw=true" /><br>
+  Official U2P Simulator website
+  </a>
+</p>
+
 # U2P
 U2P can be called an adaptation of MESE for modern operating systems, they are based on similar mathematical models, but there are some changes. U2P was created by <a href='https://github.com/cardboardchik'>karton4ik</a> as a replacement for Junior Achievement's MESE
 
